@@ -5,7 +5,7 @@
     "strict": false,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "types": ["@citizenfx/client", "@citizenfx/server"],
-    "lib": ["ES2020", "DOM"]
+    "lib": ["ES2020", "DOM"],
+    "types": ["@citizenfx/client", "@citizenfx/server"]
   }
 }

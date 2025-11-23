@@ -8,7 +8,7 @@ dependencies {
 }
 
 author 'Trippler'
-version '1.0.0'
+version '1.0.2'
 
 shared_scripts {
     '@ox_lib/init.lua',

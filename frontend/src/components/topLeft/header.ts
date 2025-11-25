@@ -1,4 +1,4 @@
-import { User } from '../types';
+import { User } from '../../types';
 
 export function createHeader(user: User): HTMLDivElement {
   const upperBlock = document.createElement('div');

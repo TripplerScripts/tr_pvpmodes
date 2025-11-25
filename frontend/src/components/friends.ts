@@ -1,6 +1,6 @@
 export function createFriendsContainer(): HTMLDivElement {
   const friendsContainer = document.createElement('div');
-  friendsContainer.className = 'h-[30rem] w-8 bg-red-500';
+  friendsContainer.className = 'h-[30rem] w-full bg-red-500';
   
   const listDiv = document.createElement('div');
   listDiv.className = 'list';

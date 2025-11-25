@@ -2,16 +2,17 @@
   "name": "lenix-fivem-typescript-template",
   "version": "1.0.0",
   "scripts": {
-    "build": "npm run build:frontend && npm run build:client && npm run build:server",
-    
-    "build:frontend": "vite build --mode production",
+    "build": "npm run build:client && npm run build:server && npm run build:frontend",
+
     "build:client": "esbuild backend/client/main.ts --bundle --platform=node --target=es2020 --minify --outfile=backend/build/client.js",
     "build:server": "esbuild backend/server/main.ts --bundle --platform=node --target=es2020 --minify --outfile=backend/build/server.js",
-    
-    "watch": "npm run watch:frontend & npm run watch:client & npm run watch:server",
-    "watch:frontend": "vite build --watch",
+    "build:frontend": "esbuild frontend/src/main.ts --bundle --platform=browser --target=es2020 --minify --outfile=frontend/build/main.js",
+
+    "watch": "concurrently \"npm:watch:client\" \"npm:watch:server\" \"npm:watch:frontend\"",
+
     "watch:client": "esbuild backend/client/main.ts --bundle --platform=node --target=es2020 --watch --outfile=backend/build/client.js",
-    "watch:server": "esbuild backend/server/main.ts --bundle --platform=node --target=es2020 --watch --outfile=backend/build/server.js"
+    "watch:server": "esbuild backend/server/main.ts --bundle --platform=node --target=es2020 --watch --outfile=backend/build/server.js",
+    "watch:frontend": "esbuild frontend/src/main.ts --bundle --platform=browser --target=es2020 --watch --outfile=frontend/build/main.js"
   },
   "devDependencies": {
     "typescript": "^5.0.0",
@@ -19,6 +20,6 @@
     "@citizenfx/client": "latest",
     "@citizenfx/server": "latest",
     "esbuild": "^0.24.2",
-    "vite": "^5.4.21"
+    "concurrently": "^8.2.0"
   }
 }

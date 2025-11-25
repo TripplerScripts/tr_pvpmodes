@@ -9,7 +9,7 @@ const createElement = (parent: string, id?: string | null) => {
   return element;
 }
 
-const openClosedWorldGame = (API: { endpoint: string }) => {
+const openClosedWorldGame = (resourceName: string) => {
   const root = createElement('body', 'root')
   root.className = 'fixed w-full h-full flex items-end justify-center bg-transparent'
 
@@ -18,7 +18,7 @@ const openClosedWorldGame = (API: { endpoint: string }) => {
   button.innerHTML = 'Start'
 
   button.addEventListener('click', () => {
-    fetch(`https://${API.endpoint}/startMatchmaking`, {
+    fetch(`https://${resourceName}/startMatchmaking`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -35,10 +35,10 @@ const closeDashaboard = () => {
   }
 }
 
-document.addEventListener('message', (event: MessageEvent<any>) => {
+window.addEventListener('message', (event: MessageEvent<any>) => {
   const API = event.data
   if (API.action === 'open') {
-    openClosedWorldGame(event.data.resourceName)
+    openClosedWorldGame(API.resource)
   } else {
     if (API.action === 'close') {
       closeDashaboard()

@@ -3,6 +3,7 @@ game 'gta5'
 dependencies {
     'ox_lib',
     'qbx_core',
+    'ox_lib',
     'spawnmanager',
     'illenium-appearance'
 }

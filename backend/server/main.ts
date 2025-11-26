@@ -19,6 +19,11 @@ onNet('tr_competitive:server:startMatchmaking', () => {
   waitingRoom.push(source)
 })
 
+onNet('tr_competitive:server:stopMatchmaking', () => {
+  console.log(`[TR_COMPETITIVE] ${source} left the waiting room.`)
+  waitingRoom = waitingRoom.filter(player => player !== source) 
+})
+
 setInterval(() => {
   if (waitingRoom.length >= 2) {
     console.log('[TR_COMPETITIVE] Starting new session... for ', waitingRoom[0], 'and', waitingRoom[1])

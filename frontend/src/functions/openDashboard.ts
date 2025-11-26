@@ -1,6 +1,7 @@
 import createElement from './createElement'
 import sendCallback from './sendCallback'
 import Button from '../components/button'
+import expandFriendsPanel from './expandFriends'
 
 export default function openClosedWorldGame(resourceName: string) {
   const root = createElement('body', 'root')
@@ -9,7 +10,7 @@ export default function openClosedWorldGame(resourceName: string) {
   let interval: any
   let isMatchmaking: boolean = false
 
-  const button = Button({
+  const startButton = Button({
     children: 'Start',
     onClick: (btn: any, count) => {
       if (!isMatchmaking) {
@@ -35,5 +36,20 @@ export default function openClosedWorldGame(resourceName: string) {
       btn.className = btn.className.replace('bg-blue-700', 'bg-blue-500')
     }
   })
-  root.appendChild(button)
+
+  const inviteButton = Button({
+    children: '<i class="fas fa-user-plus"></i>',
+    onClick: (btn: any, count) => {
+      expandFriendsPanel()
+    },
+    onHover: (btn) => {
+      btn.className = btn.className.replace('bg-black-500', 'bg-black-700')
+    },
+    onHoverEnd: (btn) => {
+      btn.className = btn.className.replace('bg-black-700', 'bg-black-500')
+    }
+  })
+
+  root.appendChild(inviteButton)
+  root.appendChild(startButton)
 }

@@ -4,6 +4,7 @@ import unFocus from './functions/unfocus'
 
 const resourceName = GetCurrentResourceName()
 let lastCoords: number[]
+let camHandle: number
 
 onNet('tr_competitive:client:shutDownDashboard', () => {
   closeDashboard()
@@ -15,15 +16,21 @@ RegisterNuiCallback('startMatchmaking', (data: Object, callback: Function) => {
   callback(true)
 })
 
+RegisterNuiCallback('stopMatchmaking', (data: Object, callback: Function) => {
+  exports.qbx_core.Notify('Stopped')
+  emitNet('tr_competitive:server:stopMatchmaking')
+  callback(true)
+})
+
 RegisterNuiCallback('unfocus', (data: Object, callback: Function) => {
-  unFocus(lastCoords)
+  unFocus(lastCoords, camHandle)
   callback(true)
 })
 
 RegisterCommand('ww', () => {
   exports.qbx_core.Notify('Opened')
-  // this must be above
+  // this one must be above
   lastCoords = GetEntityCoords(PlayerPedId(), true)
   // this one
-  openClosedWorldGame(resourceName)
+  camHandle = openClosedWorldGame(resourceName)
 }, false)

@@ -1,47 +1,27 @@
-const createElement = (parent: string, id?: string | null) => {
-  const element = document.createElement('div')
-  if (id !== undefined && id !== null) {
-    element.id = id
-  }
+import openDashboard from './functions/openDashboard'
+import closeDashboard from './functions/closeDashboard'
 
-  const parentElement = document.getElementById(parent)
-  parentElement.appendChild(element);
-  return element;
-}
-
-const openClosedWorldGame = (resourceName: string) => {
-  const root = createElement('body', 'root')
-  root.className = 'fixed w-full h-full flex items-end justify-center bg-transparent'
-
-  const button = createElement('root')
-  button.className = 'text-white text-xl font-bold py-2 px-4 rounded bg-blue-500 hover:bg-blue-700 cursor-pointer'
-  button.innerHTML = 'Start'
-
-  button.addEventListener('click', () => {
-    fetch(`https://${resourceName}/startMatchmaking`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({})
-    })
-  })
-}
-
-const closeDashaboard = () => {
-  const root = document.getElementById('root')
-  if (root) {
-    root.remove()
-  }
-}
+let resourceName = 'tr_competitive'
+let isDashboardOn = false
 
 window.addEventListener('message', (event: MessageEvent<any>) => {
   const API = event.data
+  resourceName = API.resource
   if (API.action === 'open') {
-    openClosedWorldGame(API.resource)
+    openDashboard(resourceName)
+    isDashboardOn = true
   } else {
     if (API.action === 'close') {
-      closeDashaboard()
+      closeDashboard(resourceName)
+      isDashboardOn = false
+    }
+  }
+})
+
+window.addEventListener('keydown', (event: KeyboardEvent) => {
+  if (event.key === 'Escape') {
+    if (isDashboardOn) {
+      closeDashboard(resourceName)
     }
   }
 })

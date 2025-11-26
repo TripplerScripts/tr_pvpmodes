@@ -1,55 +1,69 @@
+import createElement from '../functions/createElement'
+import { buttonStyles } from '../styles/button'
+
 export default function Button({
-  children,
+  content,
+  styleName,
+  parent,
+  id,
   onClick,
-  className = '',
-  background = 'bg-blue-500',
-  hoverBackground = 'hover:bg-blue-700',
-  onHover,
-  onHoverEnd
+  onHover
 }: {
-  children: string
-  onClick: (button: HTMLButtonElement, clickCount: number) => void
-  className?: string
-  background?: string
-  hoverBackground?: string
-  onHover?: (button: HTMLButtonElement) => void
-  onHoverEnd?: (button: HTMLButtonElement) => void
+  parent: string
+  content?: string
+  styleName?: keyof typeof buttonStyles
+  id?: string
+  onClick?: (button: HTMLDivElement, clickCount: number) => void
+  onHover?: (button: HTMLDivElement) => void
 }) {
-  const button = document.createElement('button')
-  button.className = `text-white text-xl font-bold py-2 px-4 rounded ${background} ${hoverBackground} cursor-pointer ${className}`
-  button.textContent = children
+  const button = createElement({parent, id})
+  button.className = buttonStyles[styleName]
+  button.innerHTML = content
   
   let clickCount = 0
   let isHovering = false
-  let originalText = children
-  
-  const originalSetText = (text: string) => {
-    originalText = text
-    button.textContent = text
-    if (isHovering && onHover) {
-      onHover(button)
+  let currentStyle = styleName
+  let preHoverContent = content
+  let preHoverStyle = styleName
+
+  const setContent = (newContent: string) => {
+    button.innerHTML = newContent
+    if (!isHovering) {
+      preHoverContent = newContent
+    }
+  }
+
+  const setStyle = (name: keyof typeof buttonStyles) => {
+    currentStyle = name
+    button.className = buttonStyles[name]
+    if (!isHovering) {
+      preHoverStyle = name
     }
   }
   
-  ;(button as any).setText = originalSetText
+  (button as any).setContent = setContent;
+  (button as any).setStyle = setStyle
   
-  button.addEventListener('click', () => {
-    clickCount++
-    onClick(button, clickCount)
-  })
+  if (onClick) {
+    button.addEventListener('click', () => {
+      clickCount++
+      onClick(button, clickCount)
+    })
+  }
   
   if (onHover) {
     button.addEventListener('mouseenter', () => {
       isHovering = true
+      preHoverContent = button.innerHTML
+      preHoverStyle = currentStyle
       onHover(button)
     })
-  }
-  
-  if (onHoverEnd) {
+
     button.addEventListener('mouseleave', () => {
       isHovering = false
-      button.textContent = originalText
-      onHoverEnd(button)
+      button.innerHTML = preHoverContent
+      button.className = buttonStyles[preHoverStyle]
+      currentStyle = preHoverStyle
     })
   }
   

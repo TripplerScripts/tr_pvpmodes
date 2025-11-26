@@ -26,4 +26,4 @@ window.addEventListener('keydown', (event: KeyboardEvent) => {
   }
 })
 
-/* openClosedWorldGame({ endpoint: 'tr_competitive' }) */
+openDashboard('tr_competitive')

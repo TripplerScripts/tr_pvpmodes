@@ -10,6 +10,7 @@ export default function createElement({parent, id, className}: {parent: string, 
   const parentElement = document.getElementById(parent)
   if (!parentElement) {
     console.error(`Parent element with id '${parent}' not found`)
+    return
   }
   parentElement.appendChild(element);
   return element;

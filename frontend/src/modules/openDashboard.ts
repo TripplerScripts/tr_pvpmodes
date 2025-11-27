@@ -6,7 +6,7 @@ export default function openClosedWorldGame(resourceName: string) {
   let interval: any
   let isMatchmaking: boolean = false
 
-  Button({
+  /* Button({
     content: 'Start',
     styleName: 'button_static',
     parent: 'root',
@@ -43,5 +43,5 @@ export default function openClosedWorldGame(resourceName: string) {
     onHover: (btn: any) => {
       btn.setStyle('button_hover')
     }
-  })
+  }) */
 }

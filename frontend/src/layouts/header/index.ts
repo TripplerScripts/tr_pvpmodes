@@ -1,7 +1,16 @@
 import createElement from '../../modules/createElement'
-import './identity/index'
 
 createElement({
-  parent: 'root',
-  id: 'header',
+  parent: 'header',
+  id: 'identity',
+})
+
+createElement({
+  parent: 'identity',
+  id: 'avatar',
+})
+
+createElement({
+  parent: 'identity',
+  id: 'name',
 })

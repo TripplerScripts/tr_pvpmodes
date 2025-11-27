@@ -1,4 +1,4 @@
-import createElement from '../functions/createElement'
+import createElement from '../modules/createElement'
 import { buttonStyles } from '../styles/button'
 
 export default function Button({

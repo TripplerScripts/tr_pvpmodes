@@ -1,7 +1,7 @@
 import openDashboard from './modules/openDashboard'
 import closeDashboard from './modules/closeDashboard'
+import './layouts/init'
 import '../src/styles/index'
-import '../src/layouts/index'
 
 let resourceName = 'tr_competitive'
 let isDashboardOn = false

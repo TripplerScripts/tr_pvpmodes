@@ -1,5 +1,0 @@
-import './index'
-import './profile/init'
-import './coins/init'
-import './money/init'
-import './friends/init'

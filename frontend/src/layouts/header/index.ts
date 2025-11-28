@@ -4,3 +4,18 @@ createElement({
   parent: 'root',
   id: 'header',
 })
+
+createElement({
+  parent: 'header',
+  id: 'server-identity',
+})
+
+createElement({
+  parent: 'header',
+  id: 'location',
+})
+
+createElement({
+  parent: 'header',
+  id: 'player-stats',
+})

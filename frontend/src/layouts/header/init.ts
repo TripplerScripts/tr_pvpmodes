@@ -1,3 +1,4 @@
 import './index'
 import './identity/init'
-import './control/init'
+import './stats/init'
+import './location/init'

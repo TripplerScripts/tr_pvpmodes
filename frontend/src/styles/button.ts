@@ -1,36 +1,40 @@
-export const buttonStyles = {
-  button_static: `
+export const types = {
+  primary: `
     text-white
-    text-xl
-    font-bold
-    py-2
-    px-4
-    rounded
-    bg-blue-500
-    cursor-pointer
-    transition-all
-  `,
-  button_click: `
-    text-white
-    text-xl
-    font-bold
-    py-2
-    px-4
-    rounded
-    bg-green-500
-    cursor-pointer
-    transition-all
-  `,
-  button_hover: `
-    text-white
-    text-xl
-    font-bold
-    py-2
+    text-x
+    font-semibold
+    py-1
     px-4
     rounded
     bg-blue-700
-    cursor-pointer
+    cursor-default
     transition-all
-    scale-105
+    hover:bg-blue-600
+  `,
+  secondary: `
+    text-white
+    text-x
+    font-semibold
+    py-1
+    px-4
+    rounded
+    bg-neutral-700
+    border
+    border-stone-600
+    cursor-default
+    transition-all
+    hover:bg-stone-600/90
+  `,
+  soft: `
+    text-blue-500
+    text-x
+    font-semibold
+    py-1
+    px-4
+    rounded
+    bg-blue-950/70
+    cursor-default
+    transition-all
+    hover:bg-blue-900/50
   `,
 }

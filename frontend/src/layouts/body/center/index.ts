@@ -1,20 +1,35 @@
 import createElement from '../../../modules/createElement'
+import Button from '../../../components/button'
 
 createElement({
   parent: 'center-content',
-  id: 'character-display',
+  id: 'lobby-container',
 })
 
 createElement({
-  parent: 'character-display',
-  id: 'customize-left',
+  parent: 'lobby-container',
+  id: 'left-invite-box',
 })
-const leftBtn = document.getElementById('customize-left')
-leftBtn.innerHTML = '+'
 
 createElement({
-  parent: 'character-display',
-  id: 'customize-right',
+  parent: 'lobby-container',
+  id: 'right-invite-box',
 })
-const rightBtn = document.getElementById('customize-right')
-rightBtn.innerHTML = '+'
+
+for (let i = 0; i < 2; i++) {
+  Button({
+    parent: 'left-invite-box',
+    id: 'left-invite-button',
+    content: '<i class="fas fa-plus"></i>',
+    type: 'secondary',
+  })
+}
+
+for (let i = 0; i < 2; i++) {
+  Button({
+    parent: 'right-invite-box',
+    id: 'right-invite-button',
+    content: '<i class="fas fa-plus"></i>',
+    type: 'secondary',
+  })
+}

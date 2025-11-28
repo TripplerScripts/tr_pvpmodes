@@ -6,9 +6,8 @@ Button({
   id: 'friends-button',
   type: 'secondary',
   onClick: () => {
-    console.log('Friends button clicked')
-  },
-  onHover: () => {
-    console.log('Friends button hovered')
+    const panel = document.getElementById('friends-panel')
+    panel.classList.toggle('w-[3rem]')
+    panel.classList.toggle('w-[15rem]')
   },
 })

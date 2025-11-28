@@ -12,10 +12,5 @@ createElement({
 
 createElement({
   parent: 'header',
-  id: 'location',
-})
-
-createElement({
-  parent: 'header',
   id: 'player-stats',
 })

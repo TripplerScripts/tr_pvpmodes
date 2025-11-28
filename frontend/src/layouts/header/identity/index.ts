@@ -1,7 +1,6 @@
-const nameElement = document.getElementById('name')
-nameElement.innerHTML = 'Trippler'
+import createElement from '../../../modules/createElement'
 
-const avatar = document.getElementById('avatar')
-avatar.innerHTML = `
- <img id='avatar-image' src='https://r2.fivemanage.com/COKMc8Wcmk9K5dp547rEw/trippler.png'>
-`
+createElement({
+  parent: 'header',
+  id: 'identity',
+})

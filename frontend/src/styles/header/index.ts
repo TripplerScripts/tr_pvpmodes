@@ -1,16 +1,35 @@
 const headerStyles = {
-  'header': 'flex-1 bg-gray-800 w-full h-[10vh] flex flex-row justify-between',
-  'identity': 'flex items-center justify-between',
-  'server-avatar': 'h-full',
-  'server-image': 'h-full',
-  'server-name': 'text-white',
-  'control': 'flex items-center justify-between',
-  'player-informations': 'h-full w-[7rem]',
-  'player-details': 'flex h-[85%] items-center gap-2 px-[0.5rem] text-white text-md',
-  'player-avatar': 'h-full p-[0.5rem] bg-black rounded-md',
-  'player-image': 'h-full rounded-sm',
-  'bar-level': 'flex bg-white h-[15%]',
-  'filled-bar': 'bg-sky-500 w-[1rem]',
+  'header': 'bg-[#2a2a2a] w-full h-[8vh] flex flex-row items-center justify-between px-4',
+  
+  'server-identity': 'flex items-center gap-3',
+  'server-logo': 'w-10 h-10',
+  'server-logo-image': 'w-full h-full object-contain',
+  'server-name': 'text-white text-lg font-semibold',
+  
+  'player-stats': 'flex items-center gap-4',
+  
+  'level-badge': 'bg-[#3a3a3a] rounded-md px-3 py-1 flex items-center gap-2',
+  'level-icon': 'text-yellow-400 text-sm',
+  'level-info': 'flex items-center gap-2 text-white text-sm',
+  'level-number': 'font-bold',
+  'level-divider': 'text-gray-500',
+  'player-name': '',
+  'level-progress': 'bottom-0 left-0 h-1 bg-green-500 w-[60px]',
+  
+  'stars-container': 'bg-[#3a3a3a] rounded-md px-3 py-1 flex items-center gap-2',
+  'star-icon': 'text-sm',
+  'star-count': 'text-white text-sm font-semibold',
+  
+  'money-container': 'bg-[#3a3a3a] rounded-md px-3 py-1 flex items-center gap-2',
+  'money-icon': 'text-sm',
+  'money-amount': 'text-white text-sm font-semibold',
+  
+  'friends-container': 'bg-[#3a3a3a] rounded-md px-3 py-1 flex items-center gap-2',
+  'friends-icon': 'text-sm',
+  'friends-count': 'text-white text-sm font-semibold',
+  
+  'location': 'flex items-center',
+  'location-text': 'text-white text-lg font-semibold',
 }
 
 Object.entries(headerStyles).forEach(([id, className]) => {

@@ -2,22 +2,10 @@ import createElement from '../../../modules/createElement'
 
 createElement({
   parent: 'left-sidebar',
-  id: 'quests-panel',
-})
-
-createElement({
-  parent: 'quests-panel',
-  id: 'quests-title',
-})
-const questsTitle = document.getElementById('quests-title')
-questsTitle.innerHTML = 'Quests'
-
-createElement({
-  parent: 'left-sidebar',
   id: 'menu-panel',
 })
 
-const menuItems = ['Battlepass', 'Settings', 'Arsenal', 'Style', 'Store', 'Play']
+const menuItems = ['Battlepass', 'Settings', 'Arsenal', 'Styles', 'Store', 'Play']
 
 menuItems.forEach((item, index) => {
   createElement({

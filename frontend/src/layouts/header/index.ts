@@ -1,4 +1,4 @@
-import createElement from '../../modules/createElement'
+import createElement from '../../components/createElement'
 
 createElement({
   parent: 'root',
@@ -12,5 +12,6 @@ createElement({
 
 createElement({
   parent: 'header',
+  id: 'player-details',
   className: 'player-details',
 })

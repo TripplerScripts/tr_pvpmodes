@@ -1,7 +1,7 @@
 export const types = {
   primary: `
     text-white
-    text-x
+    text-sm
     font-semibold
     py-1
     px-4
@@ -27,7 +27,7 @@ export const types = {
   `,
   soft: `
     text-blue-500
-    text-x
+    text-sm
     font-semibold
     py-1
     px-4
@@ -37,4 +37,5 @@ export const types = {
     transition-all
     hover:bg-blue-900/50
   `,
+  none: ''
 }

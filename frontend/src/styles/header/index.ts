@@ -18,8 +18,6 @@ const headerStyles = {
   'player-level-bar': 'w-full h-[12px] bg-[#d1d5db] rounded-full overflow-hidden',
   'player-level-bar-fill': 'w-[45%] h-full bg-[#00ff88] rounded-full',
 
-  'friends-panel': 'bg-[#4a4a4a] w-full h-full flex items-start justify-center p-4 transition-all absolute right-[-69%]',
-  'friends-panel-open': 'right-0',
 }
 
 Object.entries(headerStyles).forEach(([className, styles]) => {

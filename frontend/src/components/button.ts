@@ -1,6 +1,6 @@
 import { ButtonConfig } from '../types/index'
 import { types } from '../styles/button'
-import createElement from '../modules/createElement'
+import createElement from './createElement'
 
 export default function Button(config: ButtonConfig) {
   const { parent, content, id, className, type, onClick, onHover } = config
@@ -22,4 +22,5 @@ export default function Button(config: ButtonConfig) {
   }
 
   parentElement.appendChild(button)
+  return button
 }

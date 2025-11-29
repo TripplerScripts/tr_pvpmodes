@@ -1,4 +1,4 @@
-export default function createElement({parent, id, content}: {parent: string, id?: string | null, content?: string | null}) {
+export default function createElement({parent, id, className, content}: {parent: string, id?: string | null, className?: string | null, content?: string | null}) {
   const element = document.createElement('div')
   if (id !== undefined && id !== null) {
     element.id = id
@@ -13,6 +13,11 @@ export default function createElement({parent, id, content}: {parent: string, id
   if (content !== undefined && content !== null) {
     element.innerHTML = content
   }
+  
+  if (className !== undefined && className !== null) {
+    element.className = className
+  }
+
   parentElement.appendChild(element);
   return element;
 }

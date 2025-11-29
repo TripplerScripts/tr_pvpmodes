@@ -12,7 +12,7 @@ menuItems.forEach((item, index) => {
     parent: 'menu-panel',
     className: `menu-item-${index}`,
   })
-  const menuItem = document.getElementById(`menu-item-${index}`)
+  const menuItem = document.querySelector(`.menu-item-${index}`)
   menuItem.innerHTML = item
   menuItem.className = 'menu-item'
 })

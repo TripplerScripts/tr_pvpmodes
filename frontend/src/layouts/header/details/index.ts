@@ -24,8 +24,7 @@ Button({
   content: `<i class="fas fa-users"></i> ${friendsItems.length}`,
   type: 'secondary',
   onClick: () => {
-    const panel = document.querySelector('.friends-panel')
-    panel.classList.toggle('right-[-69%]')
-    panel.classList.toggle('-right-0')
+    const panel = document.getElementById('friends-panel')
+    panel.style.right = panel.style.right === '0px' ? '-69%' : '0'
   },
 })

@@ -17,7 +17,6 @@ const headerStyles = {
   'player-name': 'text-white text-2xl font-semibold',
   'player-level-bar': 'w-full h-[12px] bg-[#d1d5db] rounded-full overflow-hidden',
   'player-level-bar-fill': 'w-[45%] h-full bg-[#00ff88] rounded-full',
-
 }
 
 Object.entries(headerStyles).forEach(([className, styles]) => {

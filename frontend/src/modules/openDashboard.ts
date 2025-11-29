@@ -10,7 +10,7 @@ export default function openClosedWorldGame(resourceName: string) {
     content: 'Start',
     styleName: 'button_static',
     parent: 'root',
-    id: 'start-button',
+    className: 'start-button',
     onClick: (btn: any) => {
       btn.setStyle('button_click')
       if (!isMatchmaking) {
@@ -35,7 +35,7 @@ export default function openClosedWorldGame(resourceName: string) {
   Button({
     parent: 'root',
     content: '<i class="fas fa-user-plus"></i>',
-    id: 'invite-button',
+    className: 'invite-button',
     styleName: 'button_static',
     onClick: (btn: any) => {
       expandFriendsPanel()

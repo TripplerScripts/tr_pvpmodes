@@ -1,4 +1,4 @@
-import createElement from '../../modules/createElement'
+import createElement from '../../components/createElement'
 
 createElement({
   parent: 'root',
@@ -18,4 +18,5 @@ createElement({
 createElement({
   parent: 'body',
   className: 'right-sidebar',
+  id: 'right-sidebar',
 })

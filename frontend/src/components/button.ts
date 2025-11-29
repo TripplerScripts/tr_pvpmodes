@@ -5,9 +5,9 @@ import createElement from '../modules/createElement'
 export default function Button(config: ButtonConfig) {
   const { parent, content, id, className, type, onClick, onHover } = config
 
-  const parentElement = document.getElementById(parent)
+  const parentElement = document.getElementById(parent) || document.querySelector(`.${parent}`)
   if (!parentElement) {
-    throw new Error(`Parent element with id "${parent}" not found`)
+    throw new Error(`Parent element "${parent}" not found`)
   }
 
   const button = createElement({parent: parent, id: id, className: className, content: content})

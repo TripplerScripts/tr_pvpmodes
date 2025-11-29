@@ -12,5 +12,25 @@ createElement({
 
 createElement({
   parent: 'header',
-  id: 'player-stats',
+  id: 'player-details',
+})
+
+createElement({
+  parent: 'player-details',
+  id: 'player-card'
+})
+
+createElement({
+  parent: 'player-details',
+  id: 'player-coins'
+})
+
+createElement({
+  parent: 'player-details',
+  id: 'player-money'
+})
+
+createElement({
+  parent: 'player-details',
+  id: 'player-friends'
 })

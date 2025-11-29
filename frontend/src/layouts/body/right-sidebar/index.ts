@@ -1,5 +1,7 @@
 import createElement from '../../../modules/createElement'
-import { friendsItems } from '../../../modules/playerFriends'
+import { bodyStyles } from '../../../styles/body/index'
+
+let friendsCount = 0
 
 createElement({
   parent: 'right-sidebar',
@@ -7,25 +9,23 @@ createElement({
   id: 'friends-panel'
 })
 
-const initFriends = () => {
-  for (let i = 0; i < friendsItems.length; i++) {
+const showFriendElement = (avatar: string, name: string) => {
+  createElement({
+    parent: 'friends-panel',
+    className: `friend-item ${bodyStyles['friend-item']}`
+  })
 
-    createElement({
-      parent: 'friends-panel',
-      className: 'friend-item'
-    })
+  createElement({
+    parent: `friend-item`,
+    className: `friend-item ${bodyStyles['friend-item-avatar']}`,
+    content: `<img class="friend-avatar" src="${avatar}">`
+  })
 
-    createElement({
-      parent: 'friend-item',
-      className: 'friend-item-avatar',
-      content: `<img className="friend-avatar" src="${friendsItems[i].avatar}">`
-    })
-
-    createElement({
-      parent: 'friend-item',
-      className: 'friend-item-name',
-      content: `${friendsItems[i].name}`
-    })
-  }
+  createElement({
+    parent: `friend-item`,
+    className: `${bodyStyles['friend-item-name']}`,
+    content: name
+  })
 }
-initFriends()
+
+export default showFriendElement

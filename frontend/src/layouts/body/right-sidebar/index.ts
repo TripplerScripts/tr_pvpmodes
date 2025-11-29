@@ -1,23 +1,30 @@
 import createElement from '../../../modules/createElement'
+import { friendsItems } from '../../../modules/playerFriends'
 
 createElement({
   parent: 'right-sidebar',
-  id: 'friends-panel',
+  className: 'friends-panel',
 })
 
-createElement({
-  parent: 'friends-panel',
-  id: 'friend-item'
-})
+const initFriends = () => {
+  for (let i = 0; i < friendsItems.length; i++) {
 
-createElement({
-  parent: 'friend-item',
-  id: 'friend-item-avatar',
-  content: '<img id="friend-avatar" src="https://r2.fivemanage.com/COKMc8Wcmk9K5dp547rEw/Lenix_924.png">'
-})
+    createElement({
+      parent: 'friends-panel',
+      className: 'friend-item'
+    })
 
-createElement({
-  parent: 'friend-item',
-  id: 'friend-item-name',
-  content: 'Lenix'
-})
+    createElement({
+      parent: 'friend-item',
+      className: 'friend-item-avatar',
+      content: `<img className="friend-avatar" src="${friendsItems[i].avatar}">`
+    })
+
+    createElement({
+      parent: 'friend-item',
+      className: 'friend-item-name',
+      content: `${friendsItems[i].name}`
+    })
+  }
+}
+initFriends()

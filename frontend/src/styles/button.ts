@@ -13,7 +13,7 @@ export const types = {
   `,
   secondary: `
     text-white
-    text-x
+    text-sm
     font-semibold
     py-1
     px-4

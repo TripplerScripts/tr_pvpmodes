@@ -4,9 +4,10 @@ export default function createElement({parent, id, className, content}: {parent:
     element.id = id
   }
 
-  const parentElement = document.getElementById(parent)
+  const parentElement = document.getElementById(parent) || document.querySelector(`.${parent}`)
+
   if (!parentElement) {
-    console.error(`Parent element with id '${parent}' not found`)
+    console.error(`Parent element '${parent}' not found`)
     return
   }
 

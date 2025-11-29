@@ -13,14 +13,12 @@ export const bodyStyles = {
   'friends-panel': 'bg-[#4a4a4a] w-full h-full flex items-start justify-center p-4 transition-all absolute right-[-69%] hover:-right-0',
   'friend-item': 'w-full h-[3rem] bg-[#555] rounded-md flex items-center justify-start text-white text-lg cursor-pointer hover:bg-[#666] pl-2 gap-2 transition-all',
   'friend-avatar': 'w-8 h-8 object-contain rounded-md',
+  'menu-item': 'text-4xl text-white italic hover:font-bold cursor-pointer transition-all',
 }
 
-Object.entries(bodyStyles).forEach(([id, className]) => {
-  const element = document.getElementById(id)
-  if (element) element.className = className
-})
-
-const menuItems = document.querySelectorAll('.menu-item')
-menuItems.forEach((item) => {
-  ;(item as HTMLElement).className = 'text-4xl text-white italic hover:font-bold cursor-pointer transition-all'
+Object.entries(bodyStyles).forEach(([className, styles]) => {
+  const elements = document.querySelectorAll(`.${className}`)
+  elements.forEach((element) => {
+    (element as HTMLElement).className = styles
+  })
 })

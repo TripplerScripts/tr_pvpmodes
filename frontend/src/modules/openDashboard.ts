@@ -1,4 +1,4 @@
-import sendCallback from './sendCallback'
+import sendCallback from '../components/sendCallback'
 import Button from '../components/button'
 import expandFriendsPanel from './expandFriends'
 

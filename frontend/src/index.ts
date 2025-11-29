@@ -2,7 +2,6 @@ import openDashboard from './modules/openDashboard'
 import closeDashboard from './modules/closeDashboard'
 import './layouts/init'
 import '../src/styles/index'
-import './modules/playerFriends.ts'
 
 let resourceName = 'tr_competitive'
 let isDashboardOn = false

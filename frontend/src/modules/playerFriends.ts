@@ -4,6 +4,7 @@ let friendsCount = 0
 
 setInterval(() => {
   showFriendElement('https://r2.fivemanage.com/COKMc8Wcmk9K5dp547rEw/Lenix_924.png', 'Lenix')
+  console.log(true)
   friendsCount++
   const countElement = document.getElementById('friends-counts')
   if (countElement) {

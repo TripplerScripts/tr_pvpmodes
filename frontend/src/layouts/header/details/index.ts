@@ -1,6 +1,5 @@
 import createElement from '../../../modules/createElement'
 import Button from '../../../components/button'
-import { friendsItems } from '../../../modules/playerFriends'
 
 createElement({
   parent: 'player-details',
@@ -21,10 +20,12 @@ Button({
 
 Button({
   parent: 'player-details',
-  content: `<i class="fas fa-users"></i> ${friendsItems.length}`,
+  content: '<i class="fas fa-users"></i> 0',
+  id: 'friends-counts',
   type: 'secondary',
   onClick: () => {
     const panel = document.getElementById('friends-panel')
-    panel.style.right = panel.style.right === '0px' ? '-69%' : '0'
+    panel.classList.toggle('right-[-69%]')
+    panel.classList.toggle('-right-0')
   },
 })

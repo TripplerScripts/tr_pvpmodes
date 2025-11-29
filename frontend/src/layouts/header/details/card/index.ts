@@ -1,4 +1,4 @@
-import createElement from '../../../../modules/createElement'
+import createElement from '../../../../components/createElement'
 
 createElement({
   parent: 'player-card',

@@ -12,19 +12,12 @@ createElement({
 
 createElement({
   parent: 'friend-item',
-  id: 'friend-item-avatar'
+  id: 'friend-item-avatar',
+  content: '<img id="friend-avatar" src="https://r2.fivemanage.com/COKMc8Wcmk9K5dp547rEw/Lenix_924.png">'
 })
 
 createElement({
   parent: 'friend-item',
-  id: 'friend-item-name'
+  id: 'friend-item-name',
+  content: 'Lenix'
 })
-
-const friendItemAvatar = document.getElementById('friend-item-avatar')
-friendItemAvatar.innerHTML = `
-<img id="friend-avatar" src="https://r2.fivemanage.com/COKMc8Wcmk9K5dp547rEw/Lenix_924.png">
-<div id="friend-status">🟢</div>
-`
-
-const friendItemName = document.getElementById('friend-item-name')
-friendItemName.innerHTML = 'Lenix'

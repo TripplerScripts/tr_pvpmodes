@@ -4,6 +4,7 @@ import { friendsItems } from '../../../modules/playerFriends'
 createElement({
   parent: 'right-sidebar',
   className: 'friends-panel',
+  id: 'friends-panel'
 })
 
 const initFriends = () => {

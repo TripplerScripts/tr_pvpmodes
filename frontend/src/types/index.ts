@@ -1,4 +1,4 @@
-import { types } from '../styles/button'
+import { types } from '../components/button'
 
 export interface ButtonConfig {
   parent: string

@@ -1,5 +1,4 @@
 import './elements/init'
-import './styles/index'
 
 import openDashboard from './modules/openDashboard'
 import closeDashboard from './modules/closeDashboard'

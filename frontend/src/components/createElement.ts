@@ -1,24 +1,17 @@
-export default function createElement({parent, id, className, content}: {parent: string, id?: string | null, className?: string | null, content?: string | null}) {
+export default function createElement({parent, id, className, content}: {parent: string, id?: string, className?: string, content?: string}) {
   const element = document.createElement('div')
-  if (id !== undefined && id !== null) {
-    element.id = id
-  }
+  
+  if (id) element.id = id
+  if (className) element.className = className
+  if (content) element.innerHTML = content
 
   const parentElement = document.getElementById(parent) || document.querySelector(`.${parent}`)
 
   if (!parentElement) {
-    console.error(`Parent element '${parent}' not found`)
-    return
+    console.error(`Parent '${parent}' not found`)
+    return element
   }
 
-  if (content !== undefined && content !== null) {
-    element.innerHTML = content
-  }
-  
-  if (className !== undefined && className !== null) {
-    element.className = className
-  }
-
-  parentElement.appendChild(element);
-  return element;
+  parentElement.appendChild(element)
+  return element
 }

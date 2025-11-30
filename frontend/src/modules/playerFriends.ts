@@ -1,4 +1,4 @@
-import showFriendElement from '../layouts/body/right-sidebar/index'
+import showFriendElement from '../elements/body/right-sidebar/index'
 
 let friendsCount = 0
 

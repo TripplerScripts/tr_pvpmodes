@@ -1,0 +1,5 @@
+import './index'
+import './card/init'
+import './coins/init'
+import './money/init'
+import './friends/init'

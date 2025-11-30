@@ -1,6 +1,53 @@
 import { ButtonConfig } from '../types/index'
-import { types } from '../styles/button'
 import createElement from './createElement'
+
+export const types = {
+  primary: `
+    text-white
+    text-sm
+    font-semibold
+    py-1
+    px-4
+    rounded
+    bg-blue-700
+    cursor-default
+    transition-all
+    w-fit
+    h-fit
+    hover:bg-blue-600
+  `,
+  secondary: `
+    text-white
+    text-sm
+    font-semibold
+    py-1
+    px-4
+    rounded
+    bg-neutral-700
+    border
+    border-stone-600
+    cursor-default
+    transition-all
+    w-fit
+    h-fit
+    hover:bg-stone-600/90
+  `,
+  soft: `
+    text-blue-500
+    text-sm
+    font-semibold
+    py-1
+    px-4
+    rounded
+    bg-blue-950/70
+    cursor-default
+    transition-all
+    w-fit
+    h-fit
+    hover:bg-blue-900/50
+  `,
+  none: ''
+}
 
 export default function Button(config: ButtonConfig) {
   const { parent, content, id, className, type, onClick, onHover } = config
@@ -21,6 +68,7 @@ export default function Button(config: ButtonConfig) {
     button.addEventListener('mouseenter', onHover)
   }
 
+  
   parentElement.appendChild(button)
   return button
 }

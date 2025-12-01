@@ -5,7 +5,7 @@ export interface ButtonConfig {
   content: string
   id?: string
   className?: string
-  type: keyof typeof types
+  type?: keyof typeof types
   onClick?: () => void
   onHover?: () => void
 }

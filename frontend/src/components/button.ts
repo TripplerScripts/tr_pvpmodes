@@ -15,6 +15,7 @@ export const types = {
     w-fit
     h-fit
     hover:bg-blue-600
+    whitespace-nowrap
   `,
   secondary: `
     text-white
@@ -31,6 +32,7 @@ export const types = {
     w-fit
     h-fit
     hover:bg-stone-600/90
+    whitespace-nowrap
   `,
   soft: `
     text-blue-500
@@ -45,6 +47,7 @@ export const types = {
     w-fit
     h-fit
     hover:bg-blue-900/50
+    whitespace-nowrap
   `,
   none: ''
 }
@@ -58,7 +61,7 @@ export default function Button(config: ButtonConfig) {
   }
 
   const button = createElement({parent: parent, id: id, className: className, content: content})
-  button.className = types[type].trim().replace(/\s+/g, ' ')
+  button.className = types[type] != undefined ? types[type].trim().replace(/\s+/g, ' ') : className
 
   if (onClick) {
     button.addEventListener('click', onClick)

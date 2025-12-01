@@ -1,6 +1,12 @@
 import createElement from "../../../components/createElement"
 
 createElement({
+  parent: "body",
+  id: "menus",
+  className: "w-[15%] h-[75%] flex flex-col items-center gap-5"
+})
+
+createElement({
   parent: "menus",
   className: "w-[80%] h-1/2 bg-gray-400"
 })

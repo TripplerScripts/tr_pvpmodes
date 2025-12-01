@@ -27,15 +27,15 @@ Button({
   type: "secondary",
   onClick: () => {
     const friendsItems = document.getElementById("friendsItems")
-    const friendsSearched = document.getElementById("friendsSearched")
+    const playersItems = document.getElementById("playersItems")
     const friendsheader = document.getElementById("friendsHeaderText")
     if (friendsBlockSelected == 'list') {
       friendsItems.classList.add("hidden")
-      friendsSearched.classList.remove("hidden")
+      playersItems.classList.remove("hidden")
       friendsheader.innerText = "Find New Friends"
       friendsBlockSelected = "searched"
     } else {
-      friendsSearched.classList.add("hidden")
+      playersItems.classList.add("hidden")
       friendsItems.classList.remove("hidden")
       friendsheader.innerText = "Friends List"
       friendsBlockSelected = "list"
@@ -51,7 +51,7 @@ createElement({
 
 createElement({
   parent: "friendsList",
-  id: "friendsSearched",
+  id: "playersItems",
   className: "w-full hidden bg-blue-500 h-full overflow-auto [scrollbar-width:none]"
 })
 
@@ -134,3 +134,98 @@ setTimeout(() => {
     removeFriendItem(3)
   }, 2000)
 }, 2000)
+
+const players = [
+  {
+    name: 'Alice',
+    avatar: 'https://i.pravatar.cc/300',
+  },
+  {
+    name: 'John',
+    avatar: 'https://i.pravatar.cc/300',
+  },
+  {
+    name: 'Bob',
+    avatar: 'https://i.pravatar.cc/300',
+  },
+  {
+    name: 'Charlie',
+    avatar: 'https://i.pravatar.cc/300',
+  },
+  {
+    name: 'David',
+    avatar: 'https://i.pravatar.cc/300',
+  },
+  {
+    name: 'Eve',
+    avatar: 'https://i.pravatar.cc/300',
+  },
+  {
+    name: 'Frank',
+    avatar: 'https://i.pravatar.cc/300',
+  },
+  {
+    name: 'Grace',
+    avatar: 'https://i.pravatar.cc/300',
+  },
+  {
+    name: 'Hannah',
+    avatar: 'https://i.pravatar.cc/300',
+  },
+]
+
+createElement({
+  parent: "playersItems",
+  id: "playersSearchContainer",
+  className: "w-full flex flex-col gap-2"
+})
+createElement({
+  parent: "playersSearchContainer",
+  id: "playersResults",
+  className: "w-full flex flex-col gap-2"
+})
+const searchInput = document.createElement("input")
+searchInput.className = "w-full p-2 bg-stone-700 rounded text-white outline-none"
+searchInput.placeholder = "Search players..."
+
+const container = document.getElementById("playersSearchContainer")
+container.prepend(searchInput)
+const resultsBox = document.getElementById("playersResults")
+
+searchInput.addEventListener("input", () => {
+  const text = searchInput.value.toLowerCase()
+
+  // Clear previous results
+  resultsBox.innerHTML = ""
+
+  // If empty → show nothing
+  if (text === "") return
+
+  const matches = players.filter(p =>
+    p.name.toLowerCase().includes(text)
+  )
+
+  matches.forEach(player => {
+    createElement({
+      parent: "playersResults",
+      id: `player-item-${player.name}`,
+      className: "flex items-center justify-between hover:bg-stone-600 text-sm py-1"
+    })
+    Button({
+      parent: `player-item-${player.name}`,
+      content: `
+        <img src="${player.avatar}" class="w-[40px] h-[40px] rounded mr-2">
+        <span>${player.name}</span>
+      `,
+      className: "flex items-center text-white"
+    })
+    const invitationBTN = Button({
+      parent: `player-item-${player.name}`,
+      content: '➕',
+      type: "primary",
+      onClick: () => {
+        invitationBTN.innerText = '✅'
+      }
+    })
+  })
+})

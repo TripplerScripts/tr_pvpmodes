@@ -1,5 +1,9 @@
 fx_version 'cerulean'
 game 'gta5'
+dependencies {
+  'tr_lib',
+  'oxmysql',
+}
 
 author 'Trippler'
 version '0.0.0'
@@ -10,5 +14,5 @@ server_script 'backend/build/server.js'
 ui_page 'frontend/index.html'
 files {
   'frontend/index.html',
-  'frontend/build/main.js'
+  'frontend/build/index.js'
 }

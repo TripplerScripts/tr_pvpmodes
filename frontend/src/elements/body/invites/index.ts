@@ -22,23 +22,27 @@ createElement({
 Button({
   parent: "left-InviteSide",
   content: "+",
+  size: "sm",
   type: "soft"
 })
 
 Button({
   parent: "left-InviteSide",
   content: "+",
+  size: "sm",
   type: "soft"
 })
 
 Button({
   parent: "right-InviteSide",
   content: "+",
+  size: "sm",
   type: "soft"
 })
 
 Button({
   parent: "right-InviteSide",
   content: "+",
+  size: "sm",
   type: "soft"
 })

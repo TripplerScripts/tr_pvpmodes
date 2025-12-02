@@ -1,11 +1,18 @@
 import nuiMessage from '../wrappers/nuiMessage'
 import placePlayerInLobby from './placePlayer'
+import { lib } from '../wrappers/lib'
 
-export default function openClosedWorldGame(resourceName: string) {
-  setTimeout(() => {
+RegisterNuiCallback('createUser', (data: { name: string }, cb: (success: boolean) => void) => {
+  const success = lib.callback.await('createUser', null, data.name)
+  cb(success)
+})
+
+export default function openClosedWorldGame() {
+  setTimeout(async () => {
+    const exist = await lib.callback.await('doesUserAlreadyExist', 1500) as boolean
     nuiMessage({
       action: 'open',
-      resource: resourceName
+      exist: exist
     })
     SetNuiFocus(true, true)
   }, 2000)

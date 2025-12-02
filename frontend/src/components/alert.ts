@@ -1,4 +1,4 @@
-import createElement from "../components/createElement";
+import createElement from "./createElement";
 let alerts = []
 
 export default function alert(title: string, message: string) {

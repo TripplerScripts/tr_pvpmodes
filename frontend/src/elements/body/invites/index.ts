@@ -4,7 +4,7 @@ import createElement from "../../../components/createElement"
 createElement({
   parent: "body",
   id: "invites",
-  className: "w-[65%] h-[75%] bg-gray-300 flex justify-between items-center gap-[25%]"
+  className: "w-[65%] h-[75%] flex justify-between items-center gap-[25%]"
 })
 
 createElement({

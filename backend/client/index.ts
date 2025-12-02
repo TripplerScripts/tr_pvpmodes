@@ -2,7 +2,6 @@ import openClosedWorldGame from './functions/openGame'
 import closeDashboard from './functions/closeGame'
 import unFocus from './functions/unfocus'
 
-const resourceName = GetCurrentResourceName()
 let lastCoords: number[]
 let camHandle: number
 
@@ -32,5 +31,5 @@ RegisterCommand('ww', () => {
   // this one must be above
   lastCoords = GetEntityCoords(PlayerPedId(), true)
   // this one
-  camHandle = openClosedWorldGame(resourceName)
+  camHandle = openClosedWorldGame()
 }, false)

@@ -48,6 +48,7 @@ createElement({
 const requestSwitchButton = Button({
   parent: "requestsHeader",
   content: "🕜",
+  size: "sm",
   type: "secondary",
   onClick: () => {
     const incoming = document.getElementById('incomingRequests')

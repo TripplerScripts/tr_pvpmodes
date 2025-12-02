@@ -1,5 +1,6 @@
 import createElement from "../../../../components/createElement"
 import Button from "../../../../components/button"
+import Input from "../../../../components/input"
 
 createElement({
   parent: "friendsPanel",
@@ -24,6 +25,7 @@ let friendsBlockSelected = "list"
 Button({
   parent: "friendsHeader",
   content: "➕",
+  size: "sm",
   type: "secondary",
   onClick: () => {
     const friendsItems = document.getElementById("friendsItems")
@@ -178,54 +180,61 @@ createElement({
   parent: "playersItems",
   id: "playersSearchContainer",
   className: "w-full flex flex-col gap-2"
-})
+});
+
 createElement({
   parent: "playersSearchContainer",
   id: "playersResults",
   className: "w-full flex flex-col gap-2"
-})
-const searchInput = document.createElement("input")
-searchInput.className = "w-full p-2 bg-stone-700 rounded text-white outline-none"
-searchInput.placeholder = "Search players..."
+});
 
-const container = document.getElementById("playersSearchContainer")
-container.prepend(searchInput)
-const resultsBox = document.getElementById("playersResults")
+const searchInput = Input({
+  parent: "playersSearchContainer",
+  className: "w-full p-2 bg-stone-700 rounded text-white outline-none",
+  placeholder: "Search players...",
+  onChange: handleSearch
+});
 
-searchInput.addEventListener("input", () => {
-  const text = searchInput.value.toLowerCase()
+const container = document.getElementById("playersSearchContainer");
+container.prepend(searchInput);
 
-  // Clear previous results
-  resultsBox.innerHTML = ""
+const resultsBox = document.getElementById("playersResults");
 
-  // If empty → show nothing
-  if (text === "") return
+function handleSearch() {
+  const text = searchInput.value.toLowerCase();
+
+  resultsBox.innerHTML = "";
+
+  if (text === "") return;
 
   const matches = players.filter(p =>
     p.name.toLowerCase().includes(text)
-  )
+  );
 
   matches.forEach(player => {
     createElement({
       parent: "playersResults",
       id: `player-item-${player.name}`,
-      className: "flex items-center justify-between hover:bg-stone-600 text-sm py-1"
-    })
+      className: "flex items-center justify-between hover:bg-stone-600 text-sm py-1 px-2 rounded"
+    });
+
     Button({
       parent: `player-item-${player.name}`,
       content: `
         <img src="${player.avatar}" class="w-[40px] h-[40px] rounded mr-2">
         <span>${player.name}</span>
       `,
-      className: "flex items-center text-white"
-    })
-    const invitationBTN = Button({
+      className: "flex items-center text-white gap-2",
+      onClick: () => event.stopPropagation()
+    });
+
+    const inviteBtn = Button({
       parent: `player-item-${player.name}`,
       content: '➕',
       type: "primary",
       onClick: () => {
-        invitationBTN.innerText = '✅'
+        inviteBtn.innerText = '✅';
       }
-    })
-  })
-})
+    });
+  });
+}

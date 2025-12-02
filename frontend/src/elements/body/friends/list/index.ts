@@ -5,7 +5,7 @@ import Input from "../../../../components/input"
 createElement({
   parent: "friendsPanel",
   id: "friendsList",
-  className: "w-full top-0 absolute h-[90%] bg-stone-500 flex flex-col justify-start transition-all"
+  className: "w-full top-0 absolute h-[90%] flex flex-col justify-start transition-all"
 })
 
 createElement({

@@ -1,11 +1,13 @@
 import sendCallback from '../components/sendCallback'
 import Button from '../components/button'
 import expandFriendsPanel from './expandFriends'
+import openDashboard from '../elements'
+import { resourceName } from '../index'
 
-export default function openClosedWorldGame(resourceName: string) {
+export default function openClosedWorldGame(exist: boolean) {
   let interval: any
   let isMatchmaking: boolean = false
-
+  openDashboard(exist)
   /* Button({
     content: 'Start',
     styleName: 'button_static',

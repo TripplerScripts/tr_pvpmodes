@@ -1,5 +1,6 @@
 import unfocus from './unfocus'
+import { resourceName } from '../index'
 
-export default function closeDashboard(resourceName: string) {
+export default function closeDashboard() {
   unfocus(resourceName)
 }

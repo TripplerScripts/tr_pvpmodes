@@ -33,7 +33,7 @@ Button({
   parent: "friendsRequests",
   content: "",
   id: "requestsHeader",
-  className: "w-full bg-green-400 h-[13%] flex justify-between items-center",
+  className: "w-full h-[13%] flex justify-between items-center",
   onClick: () => {
     updateRequestBlockState(!requestsBlockCollapsed)
   }

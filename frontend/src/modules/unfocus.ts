@@ -8,6 +8,6 @@ export default function unfocus (resourceName: string) {
   })
   const root = document.getElementById('root')
   if (root) {
-    root.remove()
+    root.classList.add('hidden')
   }
 }

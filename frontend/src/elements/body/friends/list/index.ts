@@ -11,7 +11,7 @@ createElement({
 createElement({
   parent: "friendsList",
   id: "friendsHeader",
-  className: "w-full bg-blue-400 h-[13%] flex justify-between items-center"
+  className: "w-full blured-20 text-white bg-stone-900/20 h-[13%] flex justify-between items-center"
 })
 
 createElement({
@@ -48,13 +48,13 @@ Button({
 createElement({
   parent: "friendsList",
   id: "friendsItems",
-  className: "w-full bg-blue-500 h-full overflow-auto [scrollbar-width:none]"
+  className: "w-full h-full overflow-auto [scrollbar-width:none]"
 })
 
 createElement({
   parent: "friendsList",
   id: "playersItems",
-  className: "w-full hidden bg-blue-500 h-full overflow-auto [scrollbar-width:none]"
+  className: "w-full hidden h-full overflow-auto [scrollbar-width:none]"
 })
 
 let currentItems = document.getElementById('friendsItems')

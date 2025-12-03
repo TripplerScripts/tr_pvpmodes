@@ -8,7 +8,7 @@ createElement({
 
 createElement({
   parent: "menus",
-  className: "w-[80%] h-1/2 bg-gray-400"
+  className: "w-[80%] blured-15 h-1/2 bg-gray-400"
 })
 createElement({
   parent: "menus",

@@ -4,9 +4,9 @@ import { lobby, cam } from '../config/lobby'
 export default function placePlayerInLobby() {
   const handle = exports.tr_kit.createCam({
     coords: cam,
-    rotation: { vertical: -10.0, horizontal: 0.0 },
+    rotation: { vertical: 2.0, horizontal: 0.0 },
     more: {
-      fov: 30.0
+      fov: 50.0
     }
   })
   setTimeout(() => {

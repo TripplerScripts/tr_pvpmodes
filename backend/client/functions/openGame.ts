@@ -3,7 +3,7 @@ import placePlayerInLobby from './placePlayer'
 import { lib } from '../wrappers/lib'
 
 RegisterNuiCallback('createUser', (data: { name: string }, cb: (success: boolean) => void) => {
-  const success = lib.callback.await('createUser', null, data.name)
+  const success = lib.callback.await('createUser', null, data[0])
   cb(success)
 })
 

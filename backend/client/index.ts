@@ -47,6 +47,10 @@ RegisterNuiCallback('acceptFriendship', async (data: Array<string>, callback: Fu
   lib.callback.await('acceptFriendship', null, data[0])
 })
 
+RegisterNuiCallback('removePlayerFriendship', async (data: Array<string>, callback: Function): Promise<void> => {
+  lib.callback.await('removePlayerFriendship', null, data[0])
+})
+
 RegisterNuiCallback('removeIncomingRequest', async (data: Array<string>, callback: Function): Promise<void> => {
   lib.callback.await('removeIncomingRequest', null, data[0])
 })

@@ -115,6 +115,21 @@ lib.callback.register('acceptFriendship', async (source: string, name: string): 
   updateSingleColumn('tr_competitive_users', 'friends', 'name', JSON.stringify(receiverRequests), name)
 })
 
+lib.callback.register('removePlayerFriendship', async (source: string, name: string): Promise<void> => {
+  const license = GetPlayerIdentifierByType(source, 'license')
+  const senderResponse = await getSingleRow(['name', 'friends'], 'tr_competitive_users', 'license', license)
+  const receiverResponse = await getSingleRow(['friends'], 'tr_competitive_users', 'name', name)
+
+  const senderName = senderResponse.name
+  const senderRequests = JSON.parse(senderResponse.friends)
+  const receiverRequests = JSON.parse(receiverResponse.friends)
+  senderRequests.splice(senderRequests.indexOf(name), 1)
+  receiverRequests.splice(receiverRequests.indexOf(senderName), 1)
+
+  updateSingleColumn('tr_competitive_users', 'friends', 'license', JSON.stringify(senderRequests), license)
+  updateSingleColumn('tr_competitive_users', 'friends', 'name', JSON.stringify(receiverRequests), name)
+})
+
 const createUserIntoTheDatabase = async (license: string, name: string) => {
   const user = await getSingleRow(['userId'], 'users', 'license', license)
   if (!user || !user.userId) return

@@ -1,5 +1,7 @@
 import createElement from "../../../../components/createElement"
 import Button from "../../../../components/button"
+import sendCallback from "../../../../components/sendCallback"
+
 
 let requestsBlockCollapsed = true
 let requestsBlockSelected = "incoming"
@@ -84,41 +86,23 @@ createElement({
   className: "w-full hidden bg-blue-500 h-full overflow-auto [scrollbar-width:none]"
 })
 
-const incomingFriends = [
-  {
-    name: 'Jonah',
-    avatar: 'https://i.pravatar.cc/300',
-  },
-  {
-    name: 'Younes',
-    avatar: 'https://i.pravatar.cc/300',
-  },
-  {
-    name: 'Siagh',
-    avatar: 'https://i.pravatar.cc/300',
-  },
-  {
-    name: 'Marouane',
-    avatar: 'https://i.pravatar.cc/300',
-  },
-  {
-    name: 'Lenix',
-    avatar: 'https://i.pravatar.cc/300',
-  },
-  {
-    name: 'Dev',
-    avatar: 'https://i.pravatar.cc/300',
-  },
-]
-
-const getIncomingFriends = () => {
+const getIncomingFriends = async () => {
+  const incomingFriends = await sendCallback('getIncomingFriends')
   return incomingFriends
 }
 
 let currentIncoming = document.getElementById('incomingRequests')
 let incomingRequests = []
 
-const addNewIncomingRequest = (index, avatar, name) => {
+const removeIncomingRequest = (name: string) => {
+  sendCallback('removeIncomingRequest', name)
+}
+
+const acceptFriendship = (name: string) => {
+  sendCallback('acceptFriendship', name)
+}
+
+const addNewIncomingRequest = (index: number, name: string) => {
   const request = createElement({
     parent: "incomingRequests",
     id: `incoming-item-${index}`,
@@ -128,7 +112,7 @@ const addNewIncomingRequest = (index, avatar, name) => {
     parent: `incoming-item-${index}`,
     className: "w-[75%] flex items-center justify-start",
     content: `
-      <img src="${avatar}" class="w-[20%]" />
+      <img src="https://i.pravatar.cc/300" class="w-[20%]" />
       <div class="ml-2 flex flex-col">
         <p class="text-base font-semibold">${name}</p>
       </div>
@@ -141,6 +125,8 @@ const addNewIncomingRequest = (index, avatar, name) => {
     onClick: () => {
       request.remove()
       incomingRequests.splice(index, 1)
+      removeIncomingRequest(name)
+      acceptFriendship(name)
     }
   })
   Button({
@@ -150,52 +136,31 @@ const addNewIncomingRequest = (index, avatar, name) => {
     onClick: () => {
       request.remove()
       incomingRequests.splice(index, 1)
+      removeIncomingRequest(name)
     }
   })
   incomingRequests.push(request)
   currentIncoming.appendChild(request)
 }
 
-setTimeout(() => {
-  const incoming = getIncomingFriends()
-  incoming.forEach((friend, index) => addNewIncomingRequest(index, friend.avatar, friend.name))
+setTimeout(async () => {
+  const incoming = await getIncomingFriends()
+  incoming.forEach((friendName: string, index: number) => addNewIncomingRequest(index, friendName))
 }, 2000)
 
-const outgoingFriends = [
-  {
-    name: 'Jonah',
-    avatar: 'https://i.pravatar.cc/300',
-  },
-  {
-    name: 'Younes',
-    avatar: 'https://i.pravatar.cc/300',
-  },
-  {
-    name: 'Siagh',
-    avatar: 'https://i.pravatar.cc/300',
-  },
-  {
-    name: 'Marouane',
-    avatar: 'https://i.pravatar.cc/300',
-  },
-  {
-    name: 'Lenix',
-    avatar: 'https://i.pravatar.cc/300',
-  },
-  {
-    name: 'Dev',
-    avatar: 'https://i.pravatar.cc/300',
-  },
-]
-
-const getOutgoingFriends = () => {
+const getOutgoingFriends = async () => {
+  const outgoingFriends = await sendCallback('getOutgoingFriends')
   return outgoingFriends
 }
 
 let currentOutgoing = document.getElementById('outgoingRequests')
 let outgoingRequests = []
 
-const addNewOutgoingRequest = (index, avatar, name) => {
+const cancelOutgoingFriendship = async (name: string) => {
+  sendCallback('cancelOutgoingFriendship', name)
+}
+
+const addNewOutgoingRequest = (index: number, name: string) => {
   const request = createElement({
     parent: "outgoingRequests",
     id: `outgoing-item-${index}`,
@@ -205,7 +170,7 @@ const addNewOutgoingRequest = (index, avatar, name) => {
     parent: `outgoing-item-${index}`,
     className: "w-[75%] flex items-center justify-start",
     content: `
-      <img src="${avatar}" class="w-[20%]" />
+      <img src="https://i.pravatar.cc/300" class="w-[20%]" />
       <div class="ml-2 flex flex-col">
         <p class="text-base font-semibold">${name}</p>
       </div>
@@ -218,13 +183,14 @@ const addNewOutgoingRequest = (index, avatar, name) => {
     onClick: () => {
       request.remove()
       outgoingRequests.splice(index, 1)
+      cancelOutgoingFriendship(name)
     }
   })
   outgoingRequests.push(request)
   currentOutgoing.appendChild(request)
 }
 
-setTimeout(() => {
-  const outgoing = getOutgoingFriends()
-  outgoing.forEach((friend, index) => addNewOutgoingRequest(index, friend.avatar, friend.name))
+setTimeout(async () => {
+  const outgoing = await getOutgoingFriends()
+  outgoing.forEach((friendName: string, index: number) => addNewOutgoingRequest(index, friendName))
 }, 2000)

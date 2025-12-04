@@ -2,7 +2,6 @@ import sendCallback from '../components/sendCallback'
 import Button from '../components/button'
 import expandFriendsPanel from './expandFriends'
 import openDashboard from '../elements'
-import { resourceName } from '../index'
 
 export default function openClosedWorldGame(exist: boolean) {
   let interval: any

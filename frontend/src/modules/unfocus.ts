@@ -1,11 +1,7 @@
-export default function unfocus (resourceName: string) {
-  fetch(`https://${resourceName}/unfocus`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({})
-  })
+import sendCallback from "../components/sendCallback"
+
+export default function unfocus () {
+  sendCallback('unfocus')
   const root = document.getElementById('root')
   if (root) {
     root.classList.add('hidden')

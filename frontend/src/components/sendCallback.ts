@@ -1,9 +1,10 @@
-export default function sendCallback (resourceName: string, callback: string) {
-  fetch(`https://${resourceName}/${callback}`, {
+export default async function sendCallback(callback: string, ...args: any[]) {
+  const response = await fetch(`https://tr_competitive/${callback}`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json; charset=UTF-8',
     },
-    body: JSON.stringify({}),
+    body: JSON.stringify(args),
   })
+  return response.json()
 }

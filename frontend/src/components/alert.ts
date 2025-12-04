@@ -7,7 +7,7 @@ export default function alert(title: string, message: string) {
   document.body.setAttribute('class', 'relative')
   const index = createElement({
     parent: "index",
-    className: "absolute top-0 flex flex-col justify-center backdrop-blur-md w-full h-[100vh]",
+    className: "absolute top-0 flex flex-col justify-center bg-stone-900/90 w-full h-[100vh]",
     id: "alert-" + alerts.length
   })
   

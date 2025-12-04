@@ -44,13 +44,17 @@ export default function Button(config: ButtonConfig) {
   const button = createElement({parent: parent, id: id, className: className, content: content})
   button.className = getType(type, size) != undefined ? getType(type, size).trim().replace(/\s+/g, ' ') : className
 
+  let isDisabled = false
+
   if (onClick) {
-    button.addEventListener('click', onClick)
-    DEV: parentElement.addEventListener('keydown', (e) => {
-      if (!disableKey) {
-        if (e.key === 'Enter') {
-          onClick()
-        }
+    button.addEventListener('click', () => {
+      if (isDisabled) return
+      onClick(() => isDisabled = true)
+    })
+    
+    parentElement.addEventListener('keydown', (e) => {
+      if (!disableKey && !isDisabled && e.key === 'Enter') {
+        onClick(() => isDisabled = true)
       }
     })
   }
@@ -59,7 +63,6 @@ export default function Button(config: ButtonConfig) {
     button.addEventListener('mouseenter', onHover)
   }
 
-  
   parentElement.appendChild(button)
   return button
 }

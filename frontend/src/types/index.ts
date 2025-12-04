@@ -6,7 +6,7 @@ export interface ButtonConfig {
   size?: 'xs' | 'sm' | 'base' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl' | '6xl' | '7xl' | '8xl' | '9xl'
   type?: 'primary' | 'secondary' | 'soft' | 'none'
   disableKey?: boolean
-  onClick?: () => void
+  onClick?: (disable: () => void) => void
   onHover?: () => void
 }
 

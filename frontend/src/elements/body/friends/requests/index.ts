@@ -1,12 +1,12 @@
 import createElement from "../../../../components/createElement"
 import Button from "../../../../components/button"
-import updateRequestBlockState from "../../../../modules/updateRequestBlockState"
-import toggleRequestMode from "../../../../modules/toggleRequestMode"
+import updateRequestBlockState from "../../../../interactions/updateRequestBlockState"
+import toggleRequestMode from "../../../../interactions/toggleRequestMode"
 
 createElement({
   parent: "friendsPanel",
   id: "friendsRequests",
-  className: "w-full -bottom-[80%] absolute h-[90%] flex flex-col justify-start transition-all"
+  className: "w-full -bottom-[80%] absolute h-[88.3%] flex flex-col justify-start transition-all"
 })
 
 Button({

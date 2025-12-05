@@ -1,20 +1,39 @@
-let requestsBlockCollapsed = true
+let isRequestsBlockCollapsed = true
 
 const friendsHeader = document.getElementById('friendsHeader')
 friendsHeader.addEventListener('click', () => {
   updateRequestBlockState(true)
+  isRequestsBlockCollapsed = true
 })
 
-export default function updateRequestBlockState(collapsed: boolean) {
-  const requests = document.getElementById('friendsRequests');
+const collapse = (requests: HTMLDivElement) => {
+  requests.classList.remove("-bottom-[0%]")
+  requests.classList.add("-bottom-[80%]")
+  isRequestsBlockCollapsed = true
+}
 
-  if (collapsed === true) {
-    requests.classList.remove("-bottom-[0%]");
-    requests.classList.add("-bottom-[80%]");
+const expand = (requests: HTMLDivElement) => {
+  requests.classList.remove("-bottom-[80%]")
+  requests.classList.add("-bottom-[0%]")
+  isRequestsBlockCollapsed = false
+}
+
+export default function updateRequestBlockState(state?: boolean) {
+  const requests = document.getElementById('friendsRequests') as HTMLDivElement
+
+  if (state === true) {
+    if (isRequestsBlockCollapsed) return
+    collapse(requests)
   } else {
-    requests.classList.remove("-bottom-[80%]");
-    requests.classList.add("-bottom-[0%]");
+    if (state === false) {
+      if (!isRequestsBlockCollapsed) return
+      expand(requests)
+    } else {
+      if (isRequestsBlockCollapsed) {
+        expand(requests)
+      } else {
+        collapse(requests)
+      }
+    }
   }
-
-  requestsBlockCollapsed = collapsed;
 };

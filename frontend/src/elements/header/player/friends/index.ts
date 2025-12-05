@@ -1,5 +1,5 @@
 import Button from "../../../../components/button"
-import toggleFriendsPanel from "../../../../modules/toggleFriendsPanel"
+import toggleFriendsPanel from "../../../../interactions/toggleFriendsPanel"
 
 Button({
   parent: "player-details",

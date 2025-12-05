@@ -57,4 +57,4 @@ const addNewIncomingRequest = (index: number, name: string) => {
 (async () => {
   const incoming = await getIncomingFriends()
   incoming.forEach((friendName: string, index: number) => addNewIncomingRequest(index, friendName))
-})
+})()

@@ -1,14 +1,13 @@
 import createElement from "../../../../components/createElement"
 import Button from "../../../../components/button"
-import Alert from "../../../../components/alert"
-
+import unavailableNotice from "../../../../modules/serviceUnavailable"
 
 Button({
   parent: "player-details",
   id: "player-card",
   className: "w-[35%] h-[100%] bg-gray-700 flex justify-center items-center rounded-md overflow-hidden",
   onClick: () => {
-    Alert("Notice", "This feature is still not available yet", "Come back later", () => {})
+    unavailableNotice()
   }
 })
 

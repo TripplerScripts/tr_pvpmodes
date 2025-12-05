@@ -3,7 +3,7 @@ import createUser from '../modules/createUser'
 
 const root = document.createElement("div")
 root.id = 'root'
-root.className = 'select-none hidden'
+root.className = 'select-none hidden bg-stone-900/70'
 document.body.appendChild(root)
 
 export default async function openDashboard(exist: boolean) {
@@ -14,3 +14,5 @@ export default async function openDashboard(exist: boolean) {
   }
   root.classList.remove('hidden')
 }
+
+openDashboard(true)

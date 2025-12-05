@@ -1,4 +1,4 @@
-import alert from "../components/alert";
+import Alert from "../components/alert";
 import Button from "../components/button";
 import createElement from "../components/createElement";
 import Input from "../components/input";

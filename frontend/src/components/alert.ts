@@ -1,7 +1,8 @@
 import createElement from "./createElement";
+import Button from "./button";
 let alerts = []
 
-export default function alert(title: string, message: string) {
+export default function Alert(title: string, message: string, button: string, onClick: () => void) {
   alerts.push(alerts.length)
   document.body.setAttribute('id', 'index')
   document.body.setAttribute('class', 'relative')
@@ -34,5 +35,16 @@ export default function alert(title: string, message: string) {
     className: "text-gray-300 max-w-[60%] text-center",
     content: message
   })
+
+  Button({
+    parent: "alert-button-block-" + alerts.length,
+    content: button,
+    size: "xl",
+    type: "soft",
+    onClick: () => {
+      (index as HTMLDivElement).remove(),
+      onClick()
+    }
+  })  
   return [index, alerts.length]
 }

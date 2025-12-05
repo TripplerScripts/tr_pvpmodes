@@ -12,7 +12,7 @@ createElement({
 createElement({
   parent: "friendsList",
   id: "friendsHeader",
-  className: "w-full blured-20 text-white bg-stone-900/20 h-[13%] flex justify-between items-center"
+  className: "w-full blured-20 text-white bg-stone-900/20 h-[13%] flex justify-around gap-1 items-center"
 })
 
 createElement({
@@ -57,7 +57,7 @@ Button({
     if (friendsBlockSelected == 'list') {
       friendsItems.classList.add("hidden")
       playersItems.classList.remove("hidden")
-      friendsheader.innerText = "Find New Friends"
+      friendsheader.innerText = "Find Friends"
       friendsBlockSelected = "searched"
     } else {
       playersItems.classList.add("hidden")

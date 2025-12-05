@@ -2,7 +2,7 @@ import createElement from "./createElement";
 import Button from "./button";
 let alerts = []
 
-export default function Alert(title: string, message: string, button: string, onClick: () => void) {
+export default function Alert(title: string, message: string, button: string | null, onClick: () => void) {
   alerts.push(alerts.length)
   document.body.setAttribute('id', 'index')
   document.body.setAttribute('class', 'relative')
@@ -42,7 +42,7 @@ export default function Alert(title: string, message: string, button: string, on
     size: "xl",
     type: "soft",
     onClick: () => {
-      (index as HTMLDivElement).remove(),
+      index.remove(),
       onClick()
     }
   })  

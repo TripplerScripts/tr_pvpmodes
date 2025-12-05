@@ -14,5 +14,3 @@ export default async function openDashboard(exist: boolean) {
   }
   root.classList.remove('hidden')
 }
-
-openDashboard(true)

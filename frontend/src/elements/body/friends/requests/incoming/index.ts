@@ -6,8 +6,8 @@ import acceptFriendship from "../../../../../modules/acceptFriendship"
 
 createElement({
   parent: "friendsRequests",
-  id: "outgoingRequests",
-  className: "w-full hidden h-full overflow-auto [scrollbar-width:none]"
+  id: "incomingRequests",
+  className: "w-full h-full overflow-auto [scrollbar-width:none]"
 })
 
 let currentIncoming = document.getElementById('incomingRequests')

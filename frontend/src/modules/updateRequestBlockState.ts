@@ -7,12 +7,14 @@ friendsHeader.addEventListener('click', () => {
 })
 
 const collapse = (requests: HTMLDivElement) => {
+  document.getElementById('noFriendsFound')?.classList.remove("hidden")
   requests.classList.remove("-bottom-[0%]")
   requests.classList.add("-bottom-[80%]")
   isRequestsBlockCollapsed = true
 }
 
 const expand = (requests: HTMLDivElement) => {
+  document.getElementById('noFriendsFound')?.classList.add("hidden")
   requests.classList.remove("-bottom-[80%]")
   requests.classList.add("-bottom-[0%]")
   isRequestsBlockCollapsed = false

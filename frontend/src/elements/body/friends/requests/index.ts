@@ -28,14 +28,14 @@ const updateRequestBlockState = (collapsed) => {
 createElement({
   parent: "friendsPanel",
   id: "friendsRequests",
-  className: "w-full -bottom-[80%] absolute h-[90%] bg-stone-800 flex flex-col justify-start transition-all"
+  className: "w-full -bottom-[80%] absolute h-[90%] flex flex-col justify-start transition-all"
 })
 
 Button({
   parent: "friendsRequests",
   content: "",
   id: "requestsHeader",
-  className: "w-full h-[13%] flex justify-between items-center",
+  className: "w-full blured-20 text-white bg-stone-900/20 h-[13%] flex justify-around gap-1 items-center",
   onClick: () => {
     updateRequestBlockState(!requestsBlockCollapsed)
   }
@@ -77,13 +77,13 @@ const requestSwitchButton = Button({
 createElement({
   parent: "friendsRequests",
   id: "incomingRequests",
-  className: "w-full bg-blue-500 h-full overflow-auto [scrollbar-width:none]"
+  className: "w-full h-full overflow-auto [scrollbar-width:none]"
 })
 
 createElement({
   parent: "friendsRequests",
   id: "outgoingRequests",
-  className: "w-full hidden bg-blue-500 h-full overflow-auto [scrollbar-width:none]"
+  className: "w-full hidden h-full overflow-auto [scrollbar-width:none]"
 })
 
 const getIncomingFriends = async () => {

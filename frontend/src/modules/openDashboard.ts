@@ -1,13 +1,18 @@
-import sendCallback from '../components/sendCallback'
-import Button from '../components/button'
-import expandFriendsPanel from './expandFriends'
-import openDashboard from '../elements'
+import initOnBoarding from '../modules/onBoard'
+import createUser from '../modules/createUser'
 
-export default function openClosedWorldGame(exist: boolean) {
+export default async function openClosedWorldGame(exist: boolean) {
+  const root = document.getElementById('root')
+  if (root && !exist) {
+    const username: string = await initOnBoarding()
+    createUser(username)
+  }
+  root.classList.remove('hidden')
+}
+  /*
   let interval: any
   let isMatchmaking: boolean = false
-  openDashboard(exist)
-  /* Button({
+   Button({
     content: 'Start',
     styleName: 'button_static',
     parent: 'root',
@@ -45,4 +50,3 @@ export default function openClosedWorldGame(exist: boolean) {
       btn.setStyle('button_hover')
     }
   }) */
-}

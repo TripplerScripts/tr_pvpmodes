@@ -6,7 +6,7 @@ import Input from "../components/input";
 export default async function initOnBoarding(): Promise<string> {
   let username: string = undefined
   let submited: boolean = false
-  const [index, length] = alert("Account Setup", "Welcome to Trippler Scripts's competitive game.\n Please set you name, be aware that the name will be the same for the username and the display name (nickname).")
+  const [index, length] = Alert("Account Setup", "Welcome to Trippler Scripts's competitive game.\n Please set you name, be aware that the name will be the same for the username and the display name (nickname).")
 
   const input = Input({
     parent: "alert-button-block-" + length,
@@ -20,7 +20,7 @@ export default async function initOnBoarding(): Promise<string> {
   const nameValidation = (input: HTMLInputElement, index: HTMLDivElement) => {
     if (input.value.length < 4) {
       input.classList.add('hidden')
-      const [failure, failureIndex] = alert("Name too short", "Your name must be at least 4 characters long")
+      const [failure, failureIndex] = Alert("Name too short", "Your name must be at least 4 characters long")
       Button({
         parent: "alert-button-block-" + failureIndex,
         content: "Try again",
@@ -35,7 +35,7 @@ export default async function initOnBoarding(): Promise<string> {
     } else {
       if (input.value.length > 15) {
         input.classList.add('hidden')
-        const [failure, failureIndex] = alert("Name too long", "Your name must be at most 15 characters long")
+        const [failure, failureIndex] = Alert("Name too long", "Your name must be at most 15 characters long")
         Button({
           parent: "alert-button-block-" + failureIndex,
           content: "Try again",
@@ -49,7 +49,7 @@ export default async function initOnBoarding(): Promise<string> {
         return
       } else {
         input.classList.add('hidden')
-        const [confimation, confimationIndex] = alert("Are you sure?", "Please be aware that once you set you name and confirm it, you won't be able to changed it again later, so double check that.")
+        const [confimation, confimationIndex] = Alert("Are you sure?", "Please be aware that once you set you name and confirm it, you won't be able to changed it again later, so double check that.")
         createElement({
           parent: "alert-button-block-" + confimationIndex,
           id: "confirm-buttons-" + confimationIndex,
@@ -71,7 +71,7 @@ export default async function initOnBoarding(): Promise<string> {
           onClick: () => {
             (confimation as HTMLDivElement).remove()
             index.remove()
-            const [success, successIndex] = alert("Success", "Your name has been set, Welcome on board!")
+            const [success, successIndex] = Alert("Success", "Your name has been set, Welcome on board!")
             Button({
               parent: "alert-button-block-" + successIndex,
               content: "Get Started",

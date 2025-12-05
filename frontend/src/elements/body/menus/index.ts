@@ -3,7 +3,7 @@ import createElement from "../../../components/createElement"
 createElement({
   parent: "body",
   id: "menus",
-  className: "w-[15%] h-[75%] flex flex-col items-center gap-5"
+  className: "w-[20%] h-[75%] flex flex-col items-center gap-5"
 })
 
 createElement({
@@ -24,31 +24,31 @@ createElement({
 
 createElement({
   parent: "main-menu-block",
-  className: "text-md text-white italic hover:font-bold hover:text-lg transition-all",
+  className: "text-xl text-white italic hover:font-bold hover:text-2xl transition-all",
   content: "Battlepass"
 })
 createElement({
   parent: "main-menu-block",
-  className: "text-md text-white italic hover:font-bold hover:text-lg transition-all",
+  className: "text-xl text-white italic hover:font-bold hover:text-2xl transition-all",
   content: "Settings"
 })
 createElement({
   parent: "main-menu-block",
-  className: "text-md text-white italic hover:font-bold hover:text-lg transition-all",
+  className: "text-xl text-white italic hover:font-bold hover:text-2xl transition-all",
   content: "Arsenal"
 })
 createElement({
   parent: "main-menu-block",
-  className: "text-md text-white italic hover:font-bold hover:text-lg transition-all",
+  className: "text-xl text-white italic hover:font-bold hover:text-2xl transition-all",
   content: "Store"
 })
 createElement({
   parent: "main-menu-block",
-  className: "text-md text-white italic hover:font-bold hover:text-lg transition-all",
+  className: "text-xl text-white italic hover:font-bold hover:text-2xl transition-all",
   content: "Style"
 })
 createElement({
   parent: "main-menu-block",
-  className: "text-md text-white italic hover:font-bold hover:text-lg transition-all",
+  className: "text-xl text-white italic hover:font-bold hover:text-2xl transition-all",
   content: "Play"
 })

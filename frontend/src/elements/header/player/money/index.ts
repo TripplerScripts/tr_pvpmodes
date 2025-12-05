@@ -1,5 +1,5 @@
 import Button from "../../../../components/button"
-import Alert from "../../../../components/alert"
+import unavailableNotice from "../../../../modules/serviceUnavailable"
 
 Button({
   parent: "player-details",
@@ -7,6 +7,6 @@ Button({
   size: "base",
   type: "primary",
   onClick: () => {
-    Alert("Notice", "This feature is still not available yet", "Come back later", () => {})
+    unavailableNotice()
   }
 })

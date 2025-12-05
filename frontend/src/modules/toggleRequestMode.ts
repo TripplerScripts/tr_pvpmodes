@@ -2,14 +2,14 @@ import updateRequestBlockState from "./updateRequestBlockState"
 
 let requestsBlockSelected = "incoming"
 
-export default function toggleRequestMode() {
+export default function toggleRequestMode(state: boolean) {
   const incoming = document.getElementById('incomingRequests')
   const outgoing = document.getElementById('outgoingRequests')
   const requestHeaderText = document.getElementById('requestsHeaderText')
   const requestSwitchButton = document.getElementById('requestSwitchButton')
 
   event.stopPropagation();
-  updateRequestBlockState(false)
+  updateRequestBlockState(state)
   if (requestsBlockSelected == "incoming") {
     outgoing.classList.remove("hidden")
     incoming.classList.add("hidden")

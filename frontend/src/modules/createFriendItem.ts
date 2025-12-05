@@ -1,11 +1,11 @@
-import Button from "../../../../../components/button"
-import removePlayerFriendship from "../../../../../APIs/removePlayerFriendship"
-import createElement from "../../../../../components/createElement"
+import Button from "../components/button"
+import removePlayerFriendship from "../APIs/removePlayerFriendship"
+import createElement from "../components/createElement"
 
 let currentItems = document.getElementById('friendsItems')
 let friendsItems = 0
 
-export default function addFriendItem(name: string) {
+export default function createFriendItem(name: string) {
   document.getElementById('noFriendsFound')?.remove()
   
   const friend = createElement({

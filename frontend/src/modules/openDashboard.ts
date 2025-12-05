@@ -1,4 +1,4 @@
-import initOnBoarding from '../elements/onBoard'
+import initOnBoarding from './onBoard'
 import createUser from '../APIs/createUser'
 
 export default async function openClosedWorldGame(exist: boolean) {

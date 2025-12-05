@@ -2,7 +2,7 @@ import createElement from "../../../../../components/createElement"
 import Button from "../../../../../components/button"
 import sendCallback from "../../../../../components/sendCallback"
 import Input from "../../../../../components/input"
-import getFriendablePlayers from "../../../../../modules/getFriendablePlayers"
+import getFriendablePlayers from "../../../../../APIs/getFriendablePlayers"
 
 const container = document.getElementById("playersSearchContainer");
 const resultsBox = document.getElementById("playersResults");

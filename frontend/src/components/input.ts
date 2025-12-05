@@ -5,7 +5,7 @@ export default function Input(options: InputOptions) {
     parent,
     className = "bg-stone-800 outline-none p-2 rounded text-white",
     defaultValue = "",
-    placeholder,
+    placeholder = "press tab to jump in",
     type = "text",
     onJoin,
     onChange,

@@ -1,5 +1,5 @@
 import Button from "../../../../components/button"
-import unavailableNotice from "../../../../modules/serviceUnavailable"
+import unavailableNotice from "../../../../interactions/serviceUnavailable"
 
 Button({
   parent: "player-details",

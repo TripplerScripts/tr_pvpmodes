@@ -2,17 +2,14 @@ import Input from "../../../../../components/input"
 import createElement from "../../../../../components/createElement"
 import Button from "../../../../../components/button"
 import sendCallback from "../../../../../components/sendCallback"
+import refreshFriends from "../../../../header/player/friends/index"
 
 let currentItems = document.getElementById('friendsItems')
-let friendsAvailable = []
 
 const getPlayerFriends = async () => {
   const friends = await sendCallback('getPlayerFriends')
+  refreshFriends(friends.length)
   return friends
-}
-
-const removeFriendItem = (index: number) => {
-  friendsAvailable[index].remove()
 }
 
 const removePlayerFriendship = (name: string) => {
@@ -33,7 +30,6 @@ const addFriendItem = (index: number, name: string) => {
         <img src="https://i.pravatar.cc/300" class="w-[20%]" />
         <div class="ml-2 flex flex-col">
           <p class="text-base font-semibold">${name}</p>
-          <p class="text-xs text-gray-200">Online</p>
         </div>
       </div>
     `
@@ -55,11 +51,9 @@ const addFriendItem = (index: number, name: string) => {
     content: '➖',
     onClick: () => {
       friend.remove()
-      removeFriendItem(index)
       removePlayerFriendship(name)
     }
   })
-  friendsAvailable.push(friend)
   currentItems.appendChild(friend)
 }
 
@@ -68,9 +62,6 @@ setTimeout(async () => {
   friendsItems.forEach((friendName: string, index: number) => {
     addFriendItem(index, friendName)
   });
-  setTimeout(() => {
-    removeFriendItem(3)
-  }, 2000)
 }, 2000)
 
 const getFriendablePlayers = async () => {

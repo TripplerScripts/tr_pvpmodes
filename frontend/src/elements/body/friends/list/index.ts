@@ -1,6 +1,6 @@
 import createElement from "../../../../components/createElement"
 import Button from "../../../../components/button"
-import toggleFriendsState from "../../../../modules/toggleFriendsState"
+import toggleFriendsState from "../../../../interactions/toggleFriendsState"
 
 createElement({
   parent: "friendsPanel",
@@ -16,12 +16,17 @@ createElement({
 
 createElement({
   parent: "friendsList",
-  id: "friendsItems",
-  className: "w-full h-full  overflow-auto [scrollbar-width:none]"
+  id: "friendsContainer"  
 })
 
 createElement({
-  parent: "friendsList",
+  parent: "friendsContainer",
+  id: "friendsItems",
+  className: "w-full h-fit overflow-auto [scrollbar-width:none]"
+})
+
+createElement({
+  parent: "friendsContainer",
   id: "playersItems",
   className: "w-full hidden h-full overflow-auto [scrollbar-width:none]"
 })

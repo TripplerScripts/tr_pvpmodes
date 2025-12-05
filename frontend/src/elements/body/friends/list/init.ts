@@ -1,2 +1,2 @@
 import './index'
-import './modules/init'
+import './current/init'

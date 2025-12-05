@@ -1,6 +1,6 @@
 import createElement from "../../../../../components/createElement"
-import getPlayerFriends from "../../../../../modules/getPlayerFriends"
-import createFriendItem from "../../../../../modules/createFriendItem"
+import getPlayerFriends from "../../../../../APIs/getPlayerFriends"
+import createFriendItem from "./createFriendItem"
 
 createElement({
   parent: "friendsItems",

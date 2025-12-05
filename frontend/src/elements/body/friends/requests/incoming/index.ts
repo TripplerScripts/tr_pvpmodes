@@ -1,8 +1,8 @@
 import createElement from "../../../../../components/createElement"
 import Button from "../../../../../components/button"
-import getIncomingFriends from "../../../../../modules/getIncomingFriends"
-import removeIncomingRequest from "../../../../../modules/removeIncomingRequest"
-import acceptFriendship from "../../../../../modules/acceptFriendship"
+import getIncomingFriends from "../../../../../APIs/getIncomingFriends"
+import removeIncomingRequest from "../../../../../APIs/removeIncomingRequest"
+import acceptFriendship from "../../../../../APIs/acceptFriendship"
 
 createElement({
   parent: "friendsRequests",

@@ -1,7 +1,6 @@
 import createElement from "../../../../components/createElement"
 import Button from "../../../../components/button"
-
-let friendsBlockSelected = "list"
+import toggleFriendsState from "../../../../modules/toggleFriendsState"
 
 createElement({
   parent: "friendsPanel",
@@ -18,7 +17,7 @@ createElement({
 createElement({
   parent: "friendsList",
   id: "friendsItems",
-  className: "w-full h-full overflow-auto [scrollbar-width:none]"
+  className: "w-full h-full  overflow-auto [scrollbar-width:none]"
 })
 
 createElement({
@@ -51,19 +50,6 @@ Button({
   size: "sm",
   type: "secondary",
   onClick: () => {
-    const friendsItems = document.getElementById("friendsItems")
-    const playersItems = document.getElementById("playersItems")
-    const friendsheader = document.getElementById("friendsHeaderText")
-    if (friendsBlockSelected == 'list') {
-      friendsItems.classList.add("hidden")
-      playersItems.classList.remove("hidden")
-      friendsheader.innerText = "Find Friends"
-      friendsBlockSelected = "searched"
-    } else {
-      playersItems.classList.add("hidden")
-      friendsItems.classList.remove("hidden")
-      friendsheader.innerText = "Friends List"
-      friendsBlockSelected = "list"
-    }
+    toggleFriendsState()
   }
 })

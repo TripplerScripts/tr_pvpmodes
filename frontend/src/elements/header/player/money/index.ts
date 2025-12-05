@@ -1,6 +1,12 @@
-import createElement from "../../../../components/createElement"
+import Button from "../../../../components/button"
+import Alert from "../../../../components/alert"
 
-createElement({
+Button({
   parent: "player-details",
-  className: "w-[20%] h-[20%] bg-green-700"
+  content: "🌟 | 3000/4500",
+  size: "base",
+  type: "primary",
+  onClick: () => {
+    Alert("Notice", "This feature is still not available yet", "Come back later", () => {})
+  }
 })

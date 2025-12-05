@@ -3,7 +3,7 @@ import createElement from "../../../components/createElement"
 createElement({
   parent: "body",
   id: "friends",
-  className: "w-[15%] h-full relative overflow-hidden"
+  className: "w-[20%] h-full relative overflow-hidden"
 })
 
 createElement({

@@ -1,5 +1,3 @@
 import sendCallback from "../components/sendCallback"
 
-export default function createUser(name: string): void {
-  sendCallback('createUser', name)
-}
+export default (name: string) => sendCallback<boolean>('createUser', name)

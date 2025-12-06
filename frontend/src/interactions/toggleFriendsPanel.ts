@@ -1,6 +1,6 @@
 let friendsPanelCollapsed = true
 
-export default function toggleFriendsPanel(): void {
+export default (): void => {
   const friendsPanel = document.getElementById('friendsPanel')
   if (friendsPanelCollapsed) {
     friendsPanel.classList.remove('right-[-80%]')

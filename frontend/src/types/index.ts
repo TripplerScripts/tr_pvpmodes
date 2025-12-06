@@ -35,7 +35,3 @@ export interface AlertOptions {
   button?: string
   onClick?: () => void
 }
-
-export interface GetFriendablePlayersResponse {
-  players: string[]
-}

@@ -33,9 +33,7 @@ export function getType(type: string, size: string): string {
   }
 }
 
-export default function Button(config: ButtonConfig) {
-  const { parent, content, id, className, type, size, disableKey, onClick, onHover } = config
-
+export default function Button({ parent, content, id, className, type, size, disableKey, onClick, onHover }: ButtonConfig) {
   const parentElement = document.getElementById(parent) || document.querySelector(`.${parent}`)
   if (!parentElement) {
     throw new Error(`Parent element "${parent}" not found`)

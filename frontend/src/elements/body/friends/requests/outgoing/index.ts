@@ -2,6 +2,7 @@ import createElement from "../../../../../components/createElement"
 import Button from "../../../../../components/button"
 import cancelOutgoingFriendship from "../../../../../APIs/cancelOutgoingFriendship"
 import getOutgoingFriends from "../../../../../APIs/getOutgoingFriends"
+import getOutgoingAvatar from "../../../../../modules/getOutgoingAvatar"
 
 createElement({
   parent: "friendsRequests",
@@ -10,9 +11,9 @@ createElement({
 })
 
 let currentOutgoing = document.getElementById('outgoingRequests')
-let outgoingRequests = []
+let outgoingRequests: HTMLDivElement[] = []
 
-const addNewOutgoingRequest = (index: number, name: string) => {
+const addNewOutgoingRequest = (index: number, name: string): void => {
   const request = createElement({
     parent: "outgoingRequests",
     id: `outgoing-item-${index}`,
@@ -22,7 +23,7 @@ const addNewOutgoingRequest = (index: number, name: string) => {
     parent: `outgoing-item-${index}`,
     className: "w-[75%] flex items-center justify-start",
     content: `
-      <img src="https://i.pravatar.cc/300" class="w-[20%]" />
+      <img src=${getOutgoingAvatar()} class="w-[20%]" />
       <div class="ml-2 flex flex-col">
         <p class="text-base font-semibold">${name}</p>
       </div>

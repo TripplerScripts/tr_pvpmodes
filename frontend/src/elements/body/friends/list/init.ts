@@ -1,3 +1,3 @@
-import './index'
+import '.'
 import './current/init'
 import './search/init'

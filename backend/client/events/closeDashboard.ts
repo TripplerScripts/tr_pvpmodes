@@ -1,5 +1,7 @@
 import closeDashboard from '../modules/closeGame'
 
-onNet('tr_competitive:client:shutDownDashboard', () => {
-  closeDashboard()
-})
+export default (): void => {
+  onNet('tr_competitive:client:shutDownDashboard', () => {
+    closeDashboard()
+  })
+}

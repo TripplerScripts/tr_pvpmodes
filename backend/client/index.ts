@@ -1,6 +1,8 @@
 import prepareNuiCallbacks from './callbacks/nui'
 import openClosedWorldGame from './modules/openGame'
+import prepareEvents from './events'
 
+prepareEvents()
 prepareNuiCallbacks()
 
 globalThis.lastCoords = [];

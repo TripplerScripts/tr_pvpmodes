@@ -1,3 +1,3 @@
 import '.'
-import './incoming/init'
-import './outgoing/init'
+import './incoming'
+import './outgoing'

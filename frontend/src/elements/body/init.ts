@@ -1,4 +1,4 @@
 import '.'
-import './menus/init'
-import './invites/init'
+import './menus'
+import './invites'
 import './friends/init'

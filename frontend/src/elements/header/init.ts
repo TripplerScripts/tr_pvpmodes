@@ -1,3 +1,3 @@
 import '.'
-import './server/init'
+import './server'
 import './player/init'

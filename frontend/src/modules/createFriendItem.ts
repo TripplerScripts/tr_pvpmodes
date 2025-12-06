@@ -5,7 +5,7 @@ import createElement from "../components/createElement"
 let currentItems = document.getElementById('friendsItems') as HTMLDivElement
 let friendsItems = 0
 
-export default function createFriendItem(name: string): void {
+export default (name: string): void => {
   document.getElementById('noFriendsFound')?.remove()
   
   const friend = createElement({

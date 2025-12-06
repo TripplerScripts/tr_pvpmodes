@@ -20,7 +20,7 @@ const getSize = (size: string): string => {
   return sizes[size]
 }
 
-export function getType(type: string, size: string): string {
+export const getType = (type: string, size: string): string => {
   switch(type) {
     case 'primary':
       return getSize(size) + ' w-fit h-fit font-semibold text-white rounded bg-blue-700 cursor-default transition-all hover:bg-blue-600 whitespace-nowrap'
@@ -29,11 +29,13 @@ export function getType(type: string, size: string): string {
     case 'soft':
       return getSize(size) + ' w-fit h-fit font-semibold text-blue-500 rounded bg-blue-950/70 cursor-default transition-all hover:bg-blue-900/50 whitespace-nowrap'
     case 'none':
+      return ''
+    default:
     return ''
   }
 }
 
-export default function Button({ parent, content, id, className, type, size, disableKey, onClick, onHover }: ButtonConfig) {
+export default ({ parent, content, id, className, type, size, disableKey, onClick, onHover }: ButtonConfig): typeof button => {
   const parentElement = document.getElementById(parent) || document.querySelector(`.${parent}`)
   if (!parentElement) {
     throw new Error(`Parent element "${parent}" not found`)

@@ -13,9 +13,9 @@ const handleSearch = async (): Promise<void> => {
   resultsBox.innerHTML = "";
 
   if (text === "") return;
-  const players = await getFriendablePlayers()
-
-  const matches = players.filter((player: string) =>
+  const { players } = await getFriendablePlayers()
+  
+  const matches = players.filter(player =>
     player.toLowerCase().includes(text)
   );
 

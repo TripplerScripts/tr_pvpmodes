@@ -1,3 +1,3 @@
-import './index'
+import '.'
 import './header/init'
 import './body/init'

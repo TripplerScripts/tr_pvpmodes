@@ -1,0 +1,1 @@
+export default exports.tr_lib.init()

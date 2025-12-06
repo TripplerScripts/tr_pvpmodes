@@ -3,7 +3,7 @@ import Button from "../../../../../components/button"
 import getIncomingFriends from "../../../../../APIs/getIncomingFriends"
 import removeIncomingRequest from "../../../../../APIs/removeIncomingRequest"
 import acceptFriendship from "../../../../../APIs/acceptFriendship"
-import getIncomingAvatar from "../../../../../modules/getIncomingAvatar"
+import playerDetails from "../../../../../modules/playerDetails"
 
 createElement({
   parent: "friendsRequests",
@@ -24,7 +24,7 @@ const addNewIncomingRequest = (index: number, name: string):void => {
     parent: `incoming-item-${index}`,
     className: "w-[75%] flex items-center justify-start",
     content: `
-      <img src="${getIncomingAvatar()}" class="w-[20%]" />
+      <img src="${new playerDetails().avatar}" class="w-[20%]" />
       <div class="ml-2 flex flex-col">
         <p class="text-base font-semibold">${name}</p>
       </div>

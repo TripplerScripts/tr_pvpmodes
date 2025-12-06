@@ -28,7 +28,7 @@ createElement({
 createElement({
   parent: "player-info",
   id: "player-info-text",
-  className: "flex-[3] py-1 px-2 text-white",
+  className: "h-[80%] py-1 px-2 text-white",
 })
 
 createElement({
@@ -40,7 +40,7 @@ createElement({
 createElement({
   parent: "player-info",
   id: "player-levelBar",
-  className: "flex-[1] bg-stone-800"
+  className: "h-[20%] bg-stone-800"
 })
 
 createElement({

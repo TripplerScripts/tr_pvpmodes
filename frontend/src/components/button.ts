@@ -20,18 +20,16 @@ const getSize = (size: string): string => {
   return sizes[size]
 }
 
-export const getType = (type: string, size: string): string => {
+const getType = (type: string, size: string): string => {
   switch(type) {
     case 'primary':
       return getSize(size) + ' w-fit h-fit font-semibold text-white rounded bg-blue-700 cursor-default transition-all hover:bg-blue-600 whitespace-nowrap'
-      case 'secondary':
+    case 'secondary':
       return getSize(size) + ' w-fit h-fit font-semibold text-white rounded bg-neutral-700 border border-stone-600 cursor-default transition-all hover:bg-stone-600/90 whitespace-nowrap'    
     case 'soft':
       return getSize(size) + ' w-fit h-fit font-semibold text-blue-500 rounded bg-blue-950/70 cursor-default transition-all hover:bg-blue-900/50 whitespace-nowrap'
     case 'none':
       return ''
-    default:
-    return ''
   }
 }
 

@@ -3,6 +3,11 @@ import Button from "../../../../components/button"
 import updateRequestBlockState from "../../../../interactions/updateRequestBlockState"
 import toggleRequestMode from "../../../../interactions/toggleRequestMode"
 
+const friendsHeader = document.getElementById('friendsHeader')
+friendsHeader.addEventListener('click', () => {
+  updateRequestBlockState(true)
+})
+
 createElement({
   parent: "friendsPanel",
   id: "friendsRequests",

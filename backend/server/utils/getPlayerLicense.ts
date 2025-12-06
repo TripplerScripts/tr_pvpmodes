@@ -1,0 +1,1 @@
+export default (source: string) => GetPlayerIdentifierByType(source, 'license')

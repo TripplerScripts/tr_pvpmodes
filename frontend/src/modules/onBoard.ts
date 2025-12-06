@@ -3,7 +3,7 @@ import Button from "../components/button";
 import createElement from "../components/createElement";
 import Input from "../components/input";
 
-export default async function initOnBoarding(): Promise<string> {
+export default (): Promise<typeof username> => {
   let username: string = undefined
   let submited: boolean = false
   const [index, length] = Alert({

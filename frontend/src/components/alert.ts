@@ -1,5 +1,6 @@
 import createElement from "./createElement";
 import Button from "./button";
+import { AlertOptions } from '../types'
 let alerts = []
 
 const types = {
@@ -9,7 +10,7 @@ const types = {
   info: '<svg width="64px" height="64px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title></title> <g id="Complete"> <g id="info-circle"> <g> <circle cx="12" cy="12" data-name="--Circle" fill="none" id="_--Circle" r="10" stroke="#007bff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></circle> <line fill="none" stroke="#007bff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" x1="12" x2="12" y1="12" y2="16"></line> <line fill="none" stroke="#007bff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" x1="12" x2="12" y1="8" y2="8"></line> </g> </g> </g> </g></svg>',
 }
 
-export default function Alert(type: string, title: string, message: string, button?: string, onClick?: () => void) {
+export default ({ type, title, message, button, onClick }: AlertOptions): [HTMLDivElement, number] => {
   alerts.push(alerts.length)
   document.body.setAttribute('id', 'index')
   document.body.setAttribute('class', 'relative')

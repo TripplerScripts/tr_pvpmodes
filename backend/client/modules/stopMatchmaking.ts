@@ -1,3 +1,1 @@
-export default () => {
-  emitNet('tr_competitive:server:stopMatchmaking')
-}
+export default () => emitNet('tr_competitive:server:stopMatchmaking')

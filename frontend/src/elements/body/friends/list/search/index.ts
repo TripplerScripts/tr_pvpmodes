@@ -3,7 +3,7 @@ import Button from "../../../../../components/button"
 import sendCallback from "../../../../../components/sendCallback"
 import Input from "../../../../../components/input"
 import getFriendablePlayers from "../../../../../APIs/getFriendablePlayers"
-import getUserAvatar from "../../../../../modules/getUserAvatar"
+import playerDetails from "../../../../../modules/playerDetails"
 
 const container = document.getElementById("playersSearchContainer");
 const resultsBox = document.getElementById("playersResults");
@@ -29,7 +29,7 @@ const handleSearch = async (): Promise<void> => {
     Button({
       parent: `player-item-${playerName}`,
       content: `
-        <img src="${getUserAvatar()}" class="w-[40px] h-[40px] rounded mr-2">
+        <img src="${new playerDetails().friendAvatar}" class="w-[40px] h-[40px] rounded mr-2">
         <span>${playerName}</span>
       `,
       className: "flex items-center text-white gap-2",

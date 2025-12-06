@@ -19,7 +19,6 @@ createElement({
   content: `<img src='${new playerDetails().avatar}' class='rounded-sm'>`
 })
 
-
 createElement({
   parent: "player-card",
   id: "player-info",

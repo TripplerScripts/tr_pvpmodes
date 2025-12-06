@@ -1,6 +1,6 @@
 import { ElementOptions } from '../types'
 
-export default ({ parent, id, className, content}: ElementOptions): HTMLDivElement => {
+export default ({ parent, id, className, content}: ElementOptions): typeof element => {
   const element = document.createElement('div')
   
   if (id) element.id = id

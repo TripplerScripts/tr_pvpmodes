@@ -2,7 +2,7 @@ import updateRequestBlockState from "./updateRequestBlockState"
 
 let requestsBlockSelected = "incoming"
 
-export default function toggleRequestMode(state: boolean): void {
+export default (state: boolean): void => {
   const incoming = document.getElementById('incomingRequests')
   const outgoing = document.getElementById('outgoingRequests')
   const requestHeaderText = document.getElementById('requestsHeaderText')

@@ -2,7 +2,7 @@ import lib from '../../lib'
 import { getSingleRow, updateSingleColumn } from '../../database'
 
 export default (): void => {
-  lib.callback.register('cancelOutgoingFriendship', async (source: string, name: string): Promise<void> => {
+  lib.callback.register('cancelOutgoingFriendship', async (source: string, name: string) => {
     const license = GetPlayerIdentifierByType(source, 'license')
     const senderResponse = await getSingleRow(['name', 'outgoingInvitations'], 'tr_competitive_users', 'license', license)
     if (!senderResponse) return

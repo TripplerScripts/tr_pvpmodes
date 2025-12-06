@@ -1,4 +1,3 @@
-
 let waitingRoom = []
 
 const homeLocation = [-353.7528, -822.3127, 31.5012, 0.9013]

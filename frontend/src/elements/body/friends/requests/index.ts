@@ -11,7 +11,7 @@ createElement({
 
 Button({
   parent: "friendsRequests",
-  content: "",
+  // content: "",
   id: "requestsHeader",
   className: "w-full blured-20 text-white bg-stone-900/20 h-[13%] flex justify-around gap-1 items-center",
   onClick: () => {

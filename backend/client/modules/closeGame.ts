@@ -1,6 +1,6 @@
 import nuiMessage from '../components/nuiMessage'
 
-export default function closeDashboard() {
+export default (): void => {
   nuiMessage({
     action: 'close',
   })

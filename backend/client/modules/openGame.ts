@@ -2,7 +2,7 @@ import nuiMessage from '../components/nuiMessage'
 import placePlayerInLobby from './placePlayer'
 import doesUserAlreadyExist from '../callbacks/APIs/doesUserAlreadyExist'
 
-export default function openClosedWorldGame() {
+export default (): number => {
   setTimeout(async () => {
     const exist = await doesUserAlreadyExist(1500)
     nuiMessage({

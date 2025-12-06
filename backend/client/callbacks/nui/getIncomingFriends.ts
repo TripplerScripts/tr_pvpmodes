@@ -1,6 +1,8 @@
 import getIncomingFriends from '../APIs/getIncomingFriends'
 
-RegisterNuiCallback('getIncomingFriends', async (_data: Array<any>, callback: (response: any) => void): Promise<void> => {
-  const response = await getIncomingFriends()
-  callback(response)
-})
+export default (): void => {
+  RegisterNuiCallback('getIncomingFriends', async (_data: Array<any>, callback: (response: any) => void): Promise<void> => {
+    const response = await getIncomingFriends()
+    callback(response)
+  })
+}

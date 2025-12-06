@@ -1,6 +1,6 @@
 import { getSingleRow, insertNewRow } from '../database'
 
-export default async function createUserIntoTheDatabase(license: string, name: string) {
+export default async (license: string, name: string): Promise<boolean> => {
   const user = await getSingleRow(['userId'], 'users', 'license', license)
   if (!user || !user.userId) return
 

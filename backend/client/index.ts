@@ -1,12 +1,12 @@
+import prepareNuiCallbacks from './callbacks/nui'
 import openClosedWorldGame from './modules/openGame'
+
+prepareNuiCallbacks()
 
 globalThis.lastCoords = [];
 globalThis.camHandle = 0;
 
 RegisterCommand('ww', () => {
-  exports.qbx_core.Notify('Opened')
-  // this one must be above
   lastCoords = GetEntityCoords(PlayerPedId(), true)
-  // this one
   camHandle = openClosedWorldGame()
 }, false)

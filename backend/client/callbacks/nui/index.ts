@@ -1,13 +1,15 @@
 import unFocus from '../../modules/unfocus'
+import startMatchmaking from '../../modules/startMatchmaking'
+import stopMatchmaking from '../../modules/stopMatchmaking'
 
 RegisterNuiCallback('startMatchmaking', (_data: Array<any>, callback: (response: any) => void) => {
-  emitNet('tr_competitive:server:startMatchmaking')
-  callback(true)
+  const response = startMatchmaking()
+  callback(response)
 })
 
 RegisterNuiCallback('stopMatchmaking', (_data: Array<any>, callback: (response: any) => void) => {
-  emitNet('tr_competitive:server:stopMatchmaking')
-  callback(true)
+  const response = stopMatchmaking()
+  callback(response)
 })
 
 RegisterNuiCallback('unfocus', (_data: Array<any>, callback: (response: any) => void) => {

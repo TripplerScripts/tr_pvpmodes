@@ -1,4 +1,4 @@
-import './index'
+import '.'
 import './card/init'
 import './coins/init'
 import './money/init'

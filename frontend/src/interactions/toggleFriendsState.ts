@@ -1,6 +1,6 @@
 let isFriendsListSelected = true
 
-export default function toggleFriendsState(): void {
+export default (): void => {
   const friendsItems = document.getElementById("friendsItems")
   const playersItems = document.getElementById("playersItems")
   const friendsheader = document.getElementById("friendsHeaderText")

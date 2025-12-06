@@ -1,5 +1,11 @@
 import Alert from "../components/alert"
 
-export default function unavailableNotice(): void {
-  Alert("warn", "Notice", "This feature is still not available yet", "Come back later", () => {})
+export default (): void => {
+  Alert({
+    type: "warn",
+    title: "Notice",
+    message: "This feature is still not available yet",
+    button: "Come back later",
+    onClick: () => {}
+  })
 }

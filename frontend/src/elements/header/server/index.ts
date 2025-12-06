@@ -1,6 +1,5 @@
 import createElement from "../../../components/createElement"
-import getServerAvatar from "../../../modules/getServerAvatar"
-import getServerName from "../../../modules/getServerName"
+import serverDetails from "../../../modules/serverDetails"
 
 createElement({
   parent: "header",
@@ -13,11 +12,11 @@ createElement({
   parent: "server-details",
   className: "w-[20%] h-full overflow-hidden flex items-center justify-center",
   content: `
-    <img class='w-fit h-full rounded-md object-contain' src="${getServerAvatar()}">
+    <img class='w-fit h-full rounded-md object-contain' src="${new serverDetails().avatar}">
   `
 })
 createElement({
   parent: "server-details",
   className: "text-white font-bold text-2xl italic",
-  content: getServerName()
+  content: new serverDetails().name
 })

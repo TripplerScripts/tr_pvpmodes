@@ -1,4 +1,4 @@
-export default async function sendCallback(callback: string, ...args: any[]) {
+export default async (callback: string, ...args: any[]): Promise<any> => {
   const response = await fetch(`https://tr_competitive/${callback}`, {
     method: 'POST',
     headers: {

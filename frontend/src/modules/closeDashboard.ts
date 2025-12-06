@@ -1,6 +1,6 @@
 import sendCallback from "../components/sendCallback"
 
-export default function closeDashboard() {
+export default (): void => {
   sendCallback('unfocus')
   const root = document.getElementById('root')
   if (root) {

@@ -1,6 +1,6 @@
 import createElement from "../../../../../components/createElement"
 import Button from "../../../../../components/button"
-import sendCallback from "../../../../../components/sendCallback"
+import sendUserFriendInvitation from "../../../../../modules/sendUserFriendInvitation"
 import Input from "../../../../../components/input"
 import getFriendablePlayers from "../../../../../APIs/getFriendablePlayers"
 import playerDetails from "../../../../../modules/playerDetails"
@@ -13,7 +13,7 @@ const handleSearch = async (): Promise<void> => {
   resultsBox.innerHTML = "";
 
   if (text === "") return;
-  const { players } = await getFriendablePlayers()
+  const players = await getFriendablePlayers()
   
   const matches = players.filter(player =>
     player.toLowerCase().includes(text)
@@ -45,7 +45,7 @@ const handleSearch = async (): Promise<void> => {
       onClick: async (disable) => {
         inviteBtn.innerText = '💬'
         disable()
-        const response = await sendCallback('sendUserFriendInvitation', playerName)
+        const response = await sendUserFriendInvitation(playerName)
         if (response) {
           inviteBtn.innerText = '✅';
         } else {

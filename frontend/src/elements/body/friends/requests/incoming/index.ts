@@ -3,6 +3,7 @@ import Button from "../../../../../components/button"
 import getIncomingFriends from "../../../../../APIs/getIncomingFriends"
 import removeIncomingRequest from "../../../../../APIs/removeIncomingRequest"
 import acceptFriendship from "../../../../../APIs/acceptFriendship"
+import getIncomingAvatar from "../../../../../modules/getIncomingAvatar"
 
 createElement({
   parent: "friendsRequests",
@@ -11,9 +12,9 @@ createElement({
 })
 
 let currentIncoming = document.getElementById('incomingRequests')
-let incomingRequests = []
+let incomingRequests: HTMLDivElement[] = []
 
-const addNewIncomingRequest = (index: number, name: string) => {
+const addNewIncomingRequest = (index: number, name: string):void => {
   const request = createElement({
     parent: "incomingRequests",
     id: `incoming-item-${index}`,
@@ -23,7 +24,7 @@ const addNewIncomingRequest = (index: number, name: string) => {
     parent: `incoming-item-${index}`,
     className: "w-[75%] flex items-center justify-start",
     content: `
-      <img src="https://i.pravatar.cc/300" class="w-[20%]" />
+      <img src="${getIncomingAvatar()}" class="w-[20%]" />
       <div class="ml-2 flex flex-col">
         <p class="text-base font-semibold">${name}</p>
       </div>
@@ -56,5 +57,5 @@ const addNewIncomingRequest = (index: number, name: string) => {
 
 (async () => {
   const incoming = await getIncomingFriends()
-  incoming.forEach((friendName: string, index: number) => addNewIncomingRequest(index, friendName))
+  incoming.forEach((friendName, index: number) => addNewIncomingRequest(index, friendName))
 })()

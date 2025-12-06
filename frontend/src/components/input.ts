@@ -1,7 +1,6 @@
 import { InputOptions } from "../types";
 
-export default (options: InputOptions): typeof input => {
-  const {
+export default ({
     parent,
     className = "bg-stone-800 outline-none p-2 rounded text-white",
     defaultValue = "",
@@ -10,7 +9,7 @@ export default (options: InputOptions): typeof input => {
     onJoin,
     onChange,
     onSubmit,
-  } = options;
+  }: InputOptions): typeof input => {
 
   const input = document.createElement("input");
 

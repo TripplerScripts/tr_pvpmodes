@@ -1,10 +1,8 @@
 import lib from '../../lib'
 import { getSingleRow } from '../../database'
+import getPlayerLicense from '../../utils/getPlayerLicense'
 
-export default (): void => {
-  lib.callback.register('getPlayerFriends', async (source: string) => {
-    const license = GetPlayerIdentifierByType(source, 'license')
-    const response = await getSingleRow(['friends'], 'tr_competitive_users', 'license', license)
-    return response ? JSON.parse(response.friends) : []
-  })
-}
+export default () =>  lib.callback.register('getPlayerFriends', async (source: string) => {
+  const response = await getSingleRow(['friends'], 'tr_competitive_users', 'license', getPlayerLicense(source))
+  return response ? JSON.parse(response.friends) : []
+})

@@ -1,4 +1,6 @@
-export default function createElement({parent, id, className, content}: {parent: string, id?: string, className?: string, content?: string}) {
+import { ElementOptions } from '../types'
+
+export default ({ parent, id, className, content}: ElementOptions): HTMLDivElement => {
   const element = document.createElement('div')
   
   if (id) element.id = id

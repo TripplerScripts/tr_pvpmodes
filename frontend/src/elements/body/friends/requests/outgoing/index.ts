@@ -2,7 +2,7 @@ import createElement from "../../../../../components/createElement"
 import Button from "../../../../../components/button"
 import cancelOutgoingFriendship from "../../../../../APIs/cancelOutgoingFriendship"
 import getOutgoingFriends from "../../../../../APIs/getOutgoingFriends"
-import getOutgoingAvatar from "../../../../../modules/getOutgoingAvatar"
+import playerDetails from "../../../../../modules/playerDetails"
 
 createElement({
   parent: "friendsRequests",
@@ -23,7 +23,7 @@ const addNewOutgoingRequest = (index: number, name: string): void => {
     parent: `outgoing-item-${index}`,
     className: "w-[75%] flex items-center justify-start",
     content: `
-      <img src=${getOutgoingAvatar()} class="w-[20%]" />
+      <img src=${new playerDetails().avatar} class="w-[20%]" />
       <div class="ml-2 flex flex-col">
         <p class="text-base font-semibold">${name}</p>
       </div>

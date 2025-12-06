@@ -2,7 +2,7 @@ import createElement from "../../../../../components/createElement"
 import getPlayerFriends from "../../../../../APIs/getPlayerFriends"
 import createFriendItem from "../../../../../modules/createFriendItem"
 
-export default (): void => {
+export default () => {
   createElement({
     parent: "friendsItems",
     id: "noFriendsFound",
@@ -14,7 +14,7 @@ export default (): void => {
   })
 }
 
-(async (): Promise<void> => {
+(async () => {
   const friendsItems = await getPlayerFriends()
   friendsItems.forEach(friendName => {
     createFriendItem(friendName)

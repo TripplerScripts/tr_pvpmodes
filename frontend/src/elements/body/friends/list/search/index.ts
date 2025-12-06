@@ -3,11 +3,12 @@ import Button from "../../../../../components/button"
 import sendCallback from "../../../../../components/sendCallback"
 import Input from "../../../../../components/input"
 import getFriendablePlayers from "../../../../../APIs/getFriendablePlayers"
+import getUserAvatar from "../../../../../modules/getUserAvatar"
 
 const container = document.getElementById("playersSearchContainer");
 const resultsBox = document.getElementById("playersResults");
 
-const handleSearch = async () => {
+const handleSearch = async (): Promise<void> => {
   const text = searchInput.value.toLowerCase();
   resultsBox.innerHTML = "";
 
@@ -18,7 +19,7 @@ const handleSearch = async () => {
     player.toLowerCase().includes(text)
   );
 
-  matches.forEach((playerName: string) => {
+  matches.forEach(playerName => {
     createElement({
       parent: "playersResults",
       id: `player-item-${playerName}`,
@@ -28,7 +29,7 @@ const handleSearch = async () => {
     Button({
       parent: `player-item-${playerName}`,
       content: `
-        <img src="https://i.pravatar.cc/300" class="w-[40px] h-[40px] rounded mr-2">
+        <img src="${getUserAvatar()}" class="w-[40px] h-[40px] rounded mr-2">
         <span>${playerName}</span>
       `,
       className: "flex items-center text-white gap-2",
@@ -60,5 +61,5 @@ const searchInput = Input({
   className: "w-full p-2 bg-stone-700 rounded text-white outline-none",
   placeholder: "Search players by: <name>",
   onChange: handleSearch
-});
+})
 container.prepend(searchInput);

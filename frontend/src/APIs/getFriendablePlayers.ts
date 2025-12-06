@@ -1,6 +1,6 @@
 import sendCallback from "../components/sendCallback"
+import { GetFriendablePlayersResponse } from "../types"
 
-export default async function getFriendablePlayers(): Promise<string[]> {
-  const players = await sendCallback('getFriendablePlayers')
-  return players
+export default (): Promise<GetFriendablePlayersResponse> => {
+  return sendCallback('getFriendablePlayers')
 }

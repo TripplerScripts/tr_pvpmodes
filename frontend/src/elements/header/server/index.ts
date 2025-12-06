@@ -1,4 +1,6 @@
 import createElement from "../../../components/createElement"
+import getServerAvatar from "../../../modules/getServerAvatar"
+import getServerName from "../../../modules/getServerName"
 
 createElement({
   parent: "header",
@@ -11,11 +13,11 @@ createElement({
   parent: "server-details",
   className: "w-[20%] h-full overflow-hidden flex items-center justify-center",
   content: `
-    <img class='w-fit h-full rounded-md object-contain' src="https://r2.fivemanage.com/COKMc8Wcmk9K5dp547rEw/trippler.png">
+    <img class='w-fit h-full rounded-md object-contain' src="${getServerAvatar()}">
   `
 })
 createElement({
   parent: "server-details",
   className: "text-white font-bold text-2xl italic",
-  content: "Trippler Scripts"
+  content: getServerName()
 })

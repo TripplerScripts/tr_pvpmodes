@@ -1,3 +1,1 @@
-export default () => {
-  emitNet('tr_competitive:server:startMatchmaking')
-}
+export default () => emitNet('tr_competitive:server:startMatchmaking')

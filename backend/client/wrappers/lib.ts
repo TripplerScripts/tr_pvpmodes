@@ -1,1 +1,0 @@
-export const lib = exports.tr_lib.init()

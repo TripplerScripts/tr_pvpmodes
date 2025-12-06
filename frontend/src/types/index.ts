@@ -1,3 +1,10 @@
+export interface ElementOptions {
+  parent: string
+  id?: string
+  className?: string
+  content?: string
+}
+
 export interface ButtonConfig {
   parent: string
   content?: string
@@ -11,12 +18,24 @@ export interface ButtonConfig {
 }
 
 export interface InputOptions {
-  parent: string,
-  className?: string,
-  defaultValue?: string,
-  placeholder?: string,
-  type?: string,
-  onJoin?: () => void,
-  onChange?: () => void,
-  onSubmit?: () => void,
+  parent: string
+  className?: string
+  defaultValue?: string
+  placeholder?: string
+  type?: string
+  onJoin?: () => void
+  onChange?: () => void
+  onSubmit?: () => void
+}
+
+export interface AlertOptions {
+  type: string
+  title: string
+  message: string
+  button?: string
+  onClick?: () => void
+}
+
+export interface GetFriendablePlayersResponse {
+  players: string[]
 }

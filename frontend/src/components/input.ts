@@ -1,6 +1,6 @@
 import { InputOptions } from "../types/index";
 
-export default function Input(options: InputOptions) {
+export default (options: InputOptions): typeof input => {
   const {
     parent,
     className = "bg-stone-800 outline-none p-2 rounded text-white",

@@ -1,6 +1,3 @@
 import lib from '../../lib'
 
-export default async (timeout: number, name: string): Promise<typeof response> => {
-  const response = await lib.callback.await('acceptFriendship', timeout, name)
-  return response
-}
+export default (timeout: number, name: string) => lib.callback.await('acceptFriendship', timeout, name)

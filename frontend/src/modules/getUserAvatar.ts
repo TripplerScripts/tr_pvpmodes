@@ -1,1 +1,0 @@
-export default () => { return 'https://i.pravatar.cc/300' }

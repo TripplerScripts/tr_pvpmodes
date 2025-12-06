@@ -1,4 +1,4 @@
-import { InputOptions } from "../types/index";
+import { InputOptions } from "../types";
 
 export default (options: InputOptions): typeof input => {
   const {

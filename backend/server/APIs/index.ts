@@ -1,4 +1,4 @@
-import lib from '../lib/index'
+import lib from '../lib'
 import createUserIntoTheDatabase from '../modules/createUserIntoTheDatabase'
 import doesUserAlreadyExist from '../modules/doesUserExist'
 

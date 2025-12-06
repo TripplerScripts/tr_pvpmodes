@@ -1,4 +1,4 @@
-import lib from '../../lib/index'
+import lib from '../../lib'
 import { getSingleRow, getSingleColumn, updateSingleColumn } from '../../database'
 
 lib.callback.register('getFriendablePlayers', async (source: string) => {

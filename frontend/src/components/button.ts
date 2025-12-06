@@ -1,4 +1,4 @@
-import { ButtonConfig } from '../types/index'
+import { ButtonConfig } from '../types'
 import createElement from './createElement'
 
 const getSize = (size: string): string => {

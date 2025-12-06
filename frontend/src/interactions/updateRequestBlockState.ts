@@ -1,11 +1,5 @@
 let isRequestsBlockCollapsed = true
 
-const friendsHeader = document.getElementById('friendsHeader')
-friendsHeader.addEventListener('click', () => {
-  updateRequestBlockState(true)
-  isRequestsBlockCollapsed = true
-})
-
 const collapse = (requests: HTMLDivElement): void => {
   document.getElementById('friendsContainer').classList.remove("hidden")
   requests.classList.remove("-bottom-[0%]")
@@ -20,7 +14,7 @@ const expand = (requests: HTMLDivElement): void => {
   isRequestsBlockCollapsed = false
 }
 
-export default function updateRequestBlockState(state?: boolean): void {
+export default (state?: boolean): void => {
   const requests = document.getElementById('friendsRequests') as HTMLDivElement
 
   if (state === true) {

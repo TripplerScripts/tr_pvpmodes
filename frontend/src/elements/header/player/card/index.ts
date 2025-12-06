@@ -1,6 +1,9 @@
 import createElement from "../../../../components/createElement"
 import Button from "../../../../components/button"
 import unavailableNotice from "../../../../interactions/serviceUnavailable"
+import getPlayerAvatar from "../../../../modules/getPlayerAvatar"
+import getPlayerLevel from "../../../../modules/getPlayerLevel"
+import getPlayerName from "../../../../modules/getPlayerName"
 
 Button({
   parent: "player-details",
@@ -15,7 +18,7 @@ createElement({
   parent: "player-card",
   id: "player-avatar",
   className: "w-full h-full bg-stone-800 flex-[1] flex justify-center items-center p-1",
-  content: "<img src='https://r2.fivemanage.com/COKMc8Wcmk9K5dp547rEw/Lenix_924.png' class='rounded-sm'>"
+  content: `<img src='${getPlayerAvatar()}' class='rounded-sm'>`
 })
 
 
@@ -34,7 +37,7 @@ createElement({
 createElement({
   parent: "player-info-text",
   id: "player-info-text-content",
-  content: "7 | Lenix"
+  content: `${getPlayerLevel()} | ${getPlayerName()}`
 })
 
 createElement({

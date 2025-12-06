@@ -1,9 +1,5 @@
 import lib from '../../lib'
 import createUserIntoTheDatabase from '../../modules/createUserIntoTheDatabase'
+import getPlayerLicense from '../../utils/getPlayerLicense'
 
-export default (): void => {
-  lib.callback.register('createUser', async (source: string, name: string) => {
-    const license = GetPlayerIdentifierByType(source, 'license')
-    return await createUserIntoTheDatabase(license, name)
-  })
-}
+export default () => lib.callback.register('createUser', (source: string, name: string) => createUserIntoTheDatabase(getPlayerLicense(source), name))

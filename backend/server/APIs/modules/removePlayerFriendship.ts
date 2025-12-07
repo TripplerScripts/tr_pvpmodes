@@ -1,21 +1,21 @@
 import lib from '../../lib'
-import { getSingleRow, updateSingleColumn } from '../../database'
+import { getSingleRow, updateRow } from '../../database'
 import getPlayerLicense from '../../utils/getPlayerLicense'
 
-export default () => lib.callback.register('removePlayerFriendship', async (source: string, name: string) => {
+export default () => lib.callback.register('removePlayerFriendship', async (source: string, userId: number) => {
   const license = getPlayerLicense(source)
-  const senderResponse = await getSingleRow(['name', 'friends'], 'tr_competitive_users', 'license', license)
+  const senderResponse = await getSingleRow('userId, friends', 'tr_competitive_users', 'license = ?', license)
   if (!senderResponse) return
-  const receiverResponse = await getSingleRow(['friends'], 'tr_competitive_users', 'name', name)
+  const receiverResponse = await getSingleRow('friends', 'tr_competitive_users', 'name = ?', userId)
   if (!receiverResponse) return
 
-  const senderName = senderResponse.name
+  const senderUserId = senderResponse.userId
   const senderRequests = JSON.parse(senderResponse.friends)
   const receiverRequests = JSON.parse(receiverResponse.friends)
-  senderRequests.splice(senderRequests.indexOf(name), 1)
-  receiverRequests.splice(receiverRequests.indexOf(senderName), 1)
+  senderRequests.splice(senderRequests.indexOf(userId), 1)
+  receiverRequests.splice(receiverRequests.indexOf(senderUserId), 1)
 
-  const senderAffectedColumn = updateSingleColumn('tr_competitive_users', 'friends', 'license', JSON.stringify(senderRequests), license)
-  const receiverAffectedColumn = updateSingleColumn('tr_competitive_users', 'friends', 'name', JSON.stringify(receiverRequests), name)
+  const senderAffectedColumn = updateRow('tr_competitive_users', 'friends', 'license = ?', JSON.stringify(senderRequests), license)
+  const receiverAffectedColumn = updateRow('tr_competitive_users', 'friends', 'userId = ?', JSON.stringify(receiverRequests), userId)
   return senderAffectedColumn && receiverAffectedColumn
 })

@@ -15,7 +15,7 @@ export default () => lib.callback.register('cancelOutgoingFriendship', async (so
   senderRequests.splice(senderRequests.indexOf(userId), 1)
   receiverRequests.splice(receiverRequests.indexOf(senderUserId), 1)
   
-  const senderAffectedColumn = updateRow('tr_competitive_users', 'outgoingInvitations', 'license = ?', senderRequests, license)
-  const receiverAffectedColumn = updateRow('tr_competitive_users', 'incomingInvitations', 'userId = ?', receiverRequests, senderUserId)
+  const senderAffectedColumn = updateRow('tr_competitive_users', 'outgoingInvitations', 'license = ?', license, senderRequests)
+  const receiverAffectedColumn = updateRow('tr_competitive_users', 'incomingInvitations', 'userId = ?', senderUserId, receiverRequests)
   return senderAffectedColumn && receiverAffectedColumn
 })

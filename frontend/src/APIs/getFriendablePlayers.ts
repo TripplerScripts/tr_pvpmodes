@@ -1,3 +1,3 @@
 import sendCallback from "../components/sendCallback"
 
-export default () => sendCallback<string[]>('getFriendablePlayers')
+export default () => sendCallback<number[]>('getFriendablePlayers')

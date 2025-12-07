@@ -1,3 +1,3 @@
 import sendCallback from "../components/sendCallback"
 
-export default (name: string) => sendCallback<boolean>('removeIncomingRequest', name)
+export default (userId: number) => sendCallback<boolean>('removeIncomingRequest', userId)

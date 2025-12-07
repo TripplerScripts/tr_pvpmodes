@@ -15,7 +15,7 @@ export default () => lib.callback.register('removePlayerFriendship', async (sour
   senderRequests.splice(senderRequests.indexOf(userId), 1)
   receiverRequests.splice(receiverRequests.indexOf(senderUserId), 1)
 
-  const senderAffectedColumn = updateRow('tr_competitive_users', 'friends', 'license = ?', JSON.stringify(senderRequests), license)
-  const receiverAffectedColumn = updateRow('tr_competitive_users', 'friends', 'userId = ?', JSON.stringify(receiverRequests), userId)
+  const senderAffectedColumn = updateRow('tr_competitive_users', 'friends', 'license = ?', license, senderRequests)
+  const receiverAffectedColumn = updateRow('tr_competitive_users', 'friends', 'userId = ?', userId, receiverRequests)
   return senderAffectedColumn && receiverAffectedColumn
 })

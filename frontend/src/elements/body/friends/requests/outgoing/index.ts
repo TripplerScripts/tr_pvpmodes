@@ -13,7 +13,7 @@ createElement({
 let currentOutgoing = document.getElementById('outgoingRequests')
 let outgoingRequests: HTMLDivElement[] = []
 
-const addNewOutgoingRequest = (index: number, name: string): void => {
+const addNewOutgoingRequest = (index: number, userId: number): void => {
   const request = createElement({
     parent: "outgoingRequests",
     id: `outgoing-item-${index}`,
@@ -25,7 +25,7 @@ const addNewOutgoingRequest = (index: number, name: string): void => {
     content: `
       <img src=${new playerDetails().avatar} class="w-[20%]" />
       <div class="ml-2 flex flex-col">
-        <p class="text-base font-semibold">${name}</p>
+        <p class="text-base font-semibold">${userId}</p>
       </div>
     `
   })
@@ -34,9 +34,10 @@ const addNewOutgoingRequest = (index: number, name: string): void => {
     className: "w-[25%] h-[12.5%] hover:bg-blue-500 flex items-center justify-center",
     content: '🚫',
     onClick: () => {
+      const response = cancelOutgoingFriendship(userId)
+      if (!response) return
       request.remove()
       outgoingRequests.splice(index, 1)
-      cancelOutgoingFriendship(name)
     }
   })
   outgoingRequests.push(request)
@@ -45,5 +46,5 @@ const addNewOutgoingRequest = (index: number, name: string): void => {
 
 (async () => {
   const outgoing = await getOutgoingFriends()
-  outgoing.forEach((friendName: string, index: number) => addNewOutgoingRequest(index, friendName))
+  outgoing.forEach((userId, index: number) => addNewOutgoingRequest(index, userId))
 })()

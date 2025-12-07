@@ -1,6 +1,5 @@
 import acceptFriendship from '../../APIs/acceptFriendship'
 
-export default () => RegisterNuiCallback('acceptFriendship', (data: Array<string>, callback: (response: any) => void) => {
-  const response = acceptFriendship(null, data[0])
-  callback(response)
-})
+export default (): void => RegisterNuiCallback('acceptFriendship', async (data: Array<string>, callback: (response: any) => void) =>
+  callback(await acceptFriendship(null, data[0]))
+)

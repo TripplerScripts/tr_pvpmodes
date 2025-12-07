@@ -15,7 +15,7 @@ export default () => lib.callback.register('acceptFriendship', async (source: st
   senderRequests.push(userId)
   receiverRequests.push(senderUserId)
 
-  const senderAffectedColumn = updateRow('tr_competitive_users', 'friends', 'license = ?', senderRequests, license)
-  const receiverAffectedColumn = updateRow('tr_competitive_users', 'friends', 'userId = ?', receiverRequests, userId)
+  const senderAffectedColumn = updateRow('tr_competitive_users', 'friends', 'license = ?', license, senderRequests)
+  const receiverAffectedColumn = updateRow('tr_competitive_users', 'friends', 'userId = ?', userId, receiverRequests)
   return senderAffectedColumn && receiverAffectedColumn
 })

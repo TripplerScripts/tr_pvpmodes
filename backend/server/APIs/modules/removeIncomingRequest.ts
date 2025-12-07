@@ -4,7 +4,7 @@ import getPlayerLicense from '../../utils/getPlayerLicense'
 
 export default () => lib.callback.register('removeIncomingRequest', async (source: string, userId: string) => {
   const license = getPlayerLicense(source)
-  const senderResponse = await getSingleRow('name, incomingInvitations', 'tr_competitive_users', 'license = ?', license)
+  const senderResponse = await getSingleRow('userId, incomingInvitations', 'tr_competitive_users', 'license = ?', license)
   if (!senderResponse) return
   const receiverResponse = await getSingleRow('outgoingInvitations', 'tr_competitive_users', 'userId = ?', userId)
   if (!receiverResponse) return
@@ -15,7 +15,7 @@ export default () => lib.callback.register('removeIncomingRequest', async (sourc
   senderRequests.splice(senderRequests.indexOf(userId), 1)
   receiverRequests.splice(receiverRequests.indexOf(senderUserId), 1)
 
-  const senderAffectedColumn = updateRow('tr_competitive_users', 'incomingInvitations', 'license = ?', JSON.stringify(senderRequests), license)
-  const receiverAffectedColumn = updateRow('tr_competitive_users', 'outgoingInvitations', 'userId = ?', JSON.stringify(receiverRequests), userId)
+  const senderAffectedColumn = updateRow('tr_competitive_users', 'incomingInvitations', 'license = ?', license, senderRequests)
+  const receiverAffectedColumn = updateRow('tr_competitive_users', 'outgoingInvitations', 'userId = ?', userId, receiverRequests)
   return senderAffectedColumn && receiverAffectedColumn
 })

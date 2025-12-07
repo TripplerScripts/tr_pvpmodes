@@ -4,9 +4,9 @@ import getPlayerLicense from '../../utils/getPlayerLicense'
 
 export default () => lib.callback.register('getFriendablePlayers', async (source: string) => {
   const license = getPlayerLicense(source)
-  const senderRow = await getSingleRow('name, friends, outgoingInvitations, incomingInvitations', 'tr_competitive_users', 'license = ?', license)
+  const senderRow = await getSingleRow('userId, friends, outgoingInvitations, incomingInvitations', 'tr_competitive_users', 'license = ?', license)
   if (!senderRow) return
-  const senderName = senderRow.name
+  const senderName = senderRow.userId
   const senderFriends = JSON.parse(senderRow.friends)
   const senderIncomingRequests = JSON.parse(senderRow.incomingInvitations)
   const senderOutgoingRequests = JSON.parse(senderRow.outgoingInvitations)

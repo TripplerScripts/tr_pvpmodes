@@ -1,3 +1,5 @@
+type SQLValue = string | number | boolean | null
+
 export const createDatabaseTable = () => exports.oxmysql.query_async(
   `
     CREATE TABLE IF NOT EXISTS tr_competitive_users (
@@ -12,18 +14,18 @@ export const createDatabaseTable = () => exports.oxmysql.query_async(
   `
 )
 
-export const getSingleRow = (columns: string[], table: string, condition: string, ...values: any[]) => exports.oxmysql.single_async(
-  `SELECT ${columns.join(', ')} FROM ${table} WHERE ${condition} = ? LIMIT 1`
+export const getSingleRow = (columns: string, table: string, conditions?: string, ...values: SQLValue[]) => exports.oxmysql.single_async(
+  `SELECT ${columns} FROM ${table}${conditions ? ` WHERE ${conditions}` : ''}`
 , values)
 
-export const getSingleColumn = (column: string, table: string) => exports.oxmysql.executeSync(
-  `SELECT ${column} FROM ${table}`
-)
-
-export const updateSingleColumn = (table: string, column: string, condition: string, ...values: any[]) => exports.oxmysql.update_async(
-  `UPDATE ${table} SET ${column} = ? WHERE ${condition} = ?`
+export const getSingleColumn = (column: string, table: string, conditions?: string, ...values: SQLValue[]) => exports.oxmysql.executeSync(
+  `SELECT ${column} FROM ${table}${conditions ? ` WHERE ${conditions}` : ''}`
 , values)
 
-export const insertNewRow = (table: string, columns: string[], ...values: any[]) => exports.oxmysql.insert_async(
-  `INSERT INTO ${table} (${columns.join(', ')}) VALUES (${values.map(() => '?').join(', ')})`
+export const updateRow = (table: string, column: string, conditions?: string, ...values: SQLValue[]) => exports.oxmysql.update_async(
+  `UPDATE ${table} SET ${column}${conditions ? ` WHERE ${conditions}` : ''}`
+, values)
+
+export const insertNewRow = (table: string, columns: string, placeholders: string, ...values: SQLValue[]) => exports.oxmysql.insert_async(
+  `INSERT INTO ${table} (${columns}) VALUES (${placeholders})`
 , values)

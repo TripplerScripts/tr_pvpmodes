@@ -1,5 +1,5 @@
 import lib from '../../lib'
-import { getSingleRow, updateSingleColumn } from '../../database'
+import { getSingleRow, updateRow } from '../../database'
 import getPlayerLicense from '../../utils/getPlayerLicense'
 
 export default () => lib.callback.register('sendUserFriendInvitation', async (source: string, name: string) => {
@@ -16,8 +16,8 @@ export default () => lib.callback.register('sendUserFriendInvitation', async (so
   senderOutgoingInvitations.push(name)
   receiverIncomingInvitations.push(senderName)
 
-  const outgoingUpdated = await updateSingleColumn('tr_competitive_users', 'outgoingInvitations', 'license', JSON.stringify(senderOutgoingInvitations), senderLicense)
-  const incomingUpdated = await updateSingleColumn('tr_competitive_users', 'incomingInvitations', 'name', JSON.stringify(receiverIncomingInvitations), name)
+  const outgoingUpdated = await updateRow('tr_competitive_users', 'outgoingInvitations', 'license', JSON.stringify(senderOutgoingInvitations), senderLicense)
+  const incomingUpdated = await updateRow('tr_competitive_users', 'incomingInvitations', 'name', JSON.stringify(receiverIncomingInvitations), name)
 
   return outgoingUpdated && incomingUpdated
 })

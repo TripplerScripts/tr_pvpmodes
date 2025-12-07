@@ -3,6 +3,7 @@ game 'gta5'
 dependencies {
   'tr_lib',
   'oxmysql',
+  --[[ MariaDB 8.0.13 ]]
 }
 
 author 'Trippler'

@@ -1,3 +1,3 @@
 import sendCallback from "../components/sendCallback"
 
-export default (userId: number) => sendCallback<boolean>('removePlayerFriendship', userId)
+export default (identity: number) => sendCallback<boolean>('removePlayerFriendship', identity)

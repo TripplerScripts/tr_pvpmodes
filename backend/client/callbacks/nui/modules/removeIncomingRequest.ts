@@ -1,5 +1,5 @@
-import removeIncomingRequest from '../../APIs/removeIncomingRequest'
+import getUserProfile from '../../APIs/getUserProfile'
 
-export default (): void => RegisterNuiCallback('removeIncomingRequest', async (data: Array<string>, callback: (response: any) => void) =>
-  callback(await removeIncomingRequest(null, data[0]))
+export default (): void => RegisterNuiCallback('getUserProfile', async (data: Array<any>, callback: (response: any) => void) =>
+  callback(await getUserProfile(null, data[0]))
 )

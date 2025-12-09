@@ -3,13 +3,13 @@ type SQLValue = string | number | boolean | null
 export const createDatabaseTable = async () => await exports.oxmysql.query_async(
   `
     CREATE TABLE IF NOT EXISTS tr_competitive_users (
-      userId int UNSIGNED NOT NULL AUTO_INCREMENT,
+      identity int UNSIGNED NOT NULL AUTO_INCREMENT,
       name varchar(255) NOT NULL,
       license varchar(255) NOT NULL,
       friends JSON NOT NULL DEFAULT ('[]'),
       incomingInvitations JSON NOT NULL DEFAULT ('[]'),
       outgoingInvitations JSON NOT NULL DEFAULT ('[]'),
-      PRIMARY KEY (userId)
+      PRIMARY KEY (identity)
     ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
   `
 )

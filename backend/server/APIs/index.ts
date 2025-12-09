@@ -9,6 +9,7 @@ import getPlayerFriends from './modules/getPlayerFriends'
 import removeIncomingRequest from './modules/removeIncomingRequest'
 import removePlayerFriendship from './modules/removePlayerFriendship'
 import sendUserFriendInvitation from './modules/sendUserFriendInvitation'
+import getUserProfile from './modules/getUserProfile'
 
 export default (): void => {
   acceptFriendship()
@@ -22,4 +23,5 @@ export default (): void => {
   removeIncomingRequest()
   removePlayerFriendship()
   sendUserFriendInvitation()
+  getUserProfile()
 }

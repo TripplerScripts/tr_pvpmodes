@@ -4,23 +4,23 @@ import getPlayerLicense from '../../utils/getPlayerLicense'
 
 export default () => lib.callback.register('getFriendablePlayers', async (source: string) => {
   const license = getPlayerLicense(source)
-  const senderRow = await getSingleRow('userId, friends, outgoingInvitations, incomingInvitations', 'tr_competitive_users', 'license = ?', license)
+  const senderRow = await getSingleRow('identity, friends, outgoingInvitations, incomingInvitations', 'tr_competitive_users', 'license = ?', license)
   if (!senderRow) return
-  const senderName = senderRow.userId
+  const senderidentity = senderRow.identity
   const senderFriends = JSON.parse(senderRow.friends)
   const senderIncomingRequests = JSON.parse(senderRow.incomingInvitations)
   const senderOutgoingRequests = JSON.parse(senderRow.outgoingInvitations)
 
-  const serverUsers = await getSingleColumn('name', 'tr_competitive_users')
+  const serverUsers = await getSingleColumn('identity', 'tr_competitive_users')
   if (!serverUsers) return
 
   let filteredPlayers: string[] = []
-  serverUsers.forEach((user: { name: string }) => {
-    const notSelf = user.name !== senderName
-    const notFriend = !senderFriends.includes(user.name)
-    const notInIncoming = !senderIncomingRequests.includes(user.name)
-    const notInOutgoing = !senderOutgoingRequests.includes(user.name)
-    if (notSelf && notFriend && notInIncoming && notInOutgoing) filteredPlayers.push(user.name)
+  serverUsers.forEach((user: { identity: string }) => {
+    const notSelf = user.identity !== senderidentity
+    const notFriend = !senderFriends.includes(user.identity)
+    const notInIncoming = !senderIncomingRequests.includes(user.identity)
+    const notInOutgoing = !senderOutgoingRequests.includes(user.identity)
+    if (notSelf && notFriend && notInIncoming && notInOutgoing) filteredPlayers.push(user.identity)
     })
   return filteredPlayers
 })

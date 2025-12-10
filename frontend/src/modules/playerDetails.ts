@@ -1,25 +1,20 @@
 import getUserProfile from '../APIs/getUserProfile'
 
 export default class {
-  private static instance: any = null
-  
-  name: string
-  avatar: string
-  incomingAvatar: string
-  outgoingAvatar: string
-  friendAvatar: string
+  private name: string
+  private avatar: string
+  private selfUserId: number
 
-  private constructor() {}
+  public async getUserDetails(identity?: number) {
+    const targetId = identity ?? this.selfUserId
+    if (!targetId) throw new Error('No cached identity found')
 
-  static async getUserDetails(identity: number) {
-    if (!this.instance) {
-      this.instance = new this()
-      this.instance.name = await getUserProfile(identity).then(response => response.name)
-    }
-    return this.instance
-  }
+    const user = await getUserProfile(targetId)
+    this.name = user.name
+    this.avatar = user.avatar
 
-  async refresh(identity: number) {
-    this.name = await getUserProfile(identity)
+    this.selfUserId ??= targetId
+
+    return { name: this.name, avatar: this.avatar }
   }
 }

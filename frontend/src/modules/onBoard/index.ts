@@ -1,0 +1,24 @@
+import Alert from "../../components/alert";
+import nameSetup from "./name"
+import avatarSetup from "./avatar"
+
+export default async (): Promise<{ userName: string, userAvatar: string }> => {
+  const userName = await nameSetup()
+  const userAvatar = await avatarSetup()
+  
+  if (typeof userName === 'string' && typeof userAvatar === 'string') {
+    const [success, _successIndex] = Alert({
+      type: "success",
+      title: "success",
+      message: "Your profile has been successfully set, Welcome on board!",
+      button: "Get Started",
+      onClick: () => {
+        success.remove()
+      }
+    })
+    
+    return { userName, userAvatar }
+  }
+  
+  throw new Error("Invalid setup data")
+}

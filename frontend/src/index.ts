@@ -25,3 +25,5 @@ window.addEventListener('keydown', (event: KeyboardEvent) => {
     }
   }
 })
+
+openDashboard(true)

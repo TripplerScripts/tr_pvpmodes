@@ -28,5 +28,5 @@ createElement({
 createElement({
   parent: "player-info",
   className: "h-full text-white flex items-center",
-  content: `${new playerDetails().name} Lenix`
+  content: `${new playerDetails().name}`
 })

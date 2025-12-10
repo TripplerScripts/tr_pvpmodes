@@ -4,8 +4,8 @@ import createUser from '../APIs/createUser'
 export default async (exist: boolean): Promise<void> => {
   const root = document.getElementById('root')
   if (root && !exist) {
-    const username: string = await initOnBoarding()
-    createUser(username)
+    const { username, avatar } = await initOnBoarding()
+    createUser(username, avatar)
   }
   root.classList.remove('hidden')
 }

@@ -4,7 +4,6 @@ export default class {
   private static instance: any = null
   
   avatar: string = 'https://r2.fivemanage.com/COKMc8Wcmk9K5dp547rEw/Lenix_924.png'
-  level: number = 7
   name: string = ''
   incomingAvatar: string = 'https://i.pravatar.cc/300'
   outgoingAvatar: string = 'https://i.pravatar.cc/300'

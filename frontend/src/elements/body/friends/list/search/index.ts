@@ -5,61 +5,59 @@ import Input from "../../../../../components/input"
 import getFriendablePlayers from "../../../../../APIs/getFriendablePlayers"
 import playerDetails from "../../../../../modules/playerDetails"
 
-const container = document.getElementById("playersSearchContainer");
-const resultsBox = document.getElementById("playersResults");
+const container = document.getElementById("playersSearchContainer")
+const resultsBox = document.getElementById("playersResults")
 
-const handleSearch = async (): Promise<void> => {
-  const text = searchInput.value.toLowerCase();
-  resultsBox.innerHTML = "";
-
-  if (text === "") return;
-  const players = await getFriendablePlayers()
-
-  const matches = players.filter(player =>
-    player.toLowerCase().includes(text)
-  );
-
-  matches.forEach(playerName => {
-    createElement({
-      parent: "playersResults",
-      id: `player-item-${playerName}`,
-      className: "flex items-center justify-between hover:bg-stone-600 text-sm py-1 px-2 rounded"
-    });
-
-    Button({
-      parent: `player-item-${playerName}`,
-      content: `
-        <img src="${new playerDetails().friendAvatar}" class="w-[40px] h-[40px] rounded mr-2">
-        <span>${playerName}</span>
-      `,
-      className: "flex items-center text-white gap-2",
-      onClick: () => {
-        event.stopPropagation()
-      }
-    });
-
-    const inviteBtn = Button({
-      parent: `player-item-${playerName}`,
-      content: '➕',
-      type: 'primary',
-      onClick: async (disable) => {
-        inviteBtn.innerText = '💬'
-        disable()
-        const response = await sendUserFriendInvitation(playerName)
-        if (response) {
-          inviteBtn.innerText = '✅';
-        } else {
-          inviteBtn.innerText = '❌';
-        }
-      }
-    });
-  });
-}
+let players: Array<{ name: string, avatar: string }> = []
 
 const searchInput = Input({
   parent: "playersSearchContainer",
   className: "w-full p-2 bg-stone-700 rounded text-white outline-none",
   placeholder: "Search players by: <name>",
-  onChange: handleSearch
+  onJoin: async () => {
+    const playerIds = await getFriendablePlayers()
+    players = await Promise.all(
+      playerIds.map(async id => {
+        const player = await playerDetails.getUserDetails(id)
+        return { name: player.name, avatar: player.friendAvatar }
+      })
+    )
+  },
+  onChange: () => {
+    const text = searchInput.value.toLowerCase().trim()
+    resultsBox.innerHTML = ""
+    if (!text) return
+
+    players.filter(p => p.name.toLowerCase().includes(text)).forEach(player =>
+      {
+        createElement({
+          parent: "playersResults",
+          id: `player-item-${player.name}`,
+          className: "flex items-center justify-between hover:bg-stone-600 text-sm py-1 px-2 rounded"
+        })
+
+        Button({
+          parent: `player-item-${player.name}`,
+          content: `
+            <img src="${player.avatar}" class="w-[40px] h-[40px] rounded mr-2">
+            <span>${player.name}</span>
+          `,
+          className: "flex items-center text-white gap-2",
+          onClick: () => event?.stopPropagation()
+        })
+
+        const btn = Button({
+          parent: `player-item-${player.name}`,
+          content: '➕',
+          type: 'primary',
+          onClick: async (disable) => {
+            btn.innerText = '💬'
+            disable()
+            btn.innerText = await sendUserFriendInvitation(player.name) ? '✅' : '❌'
+          }
+        })
+      })
+  }
 })
-container.prepend(searchInput);
+
+container.prepend(searchInput)

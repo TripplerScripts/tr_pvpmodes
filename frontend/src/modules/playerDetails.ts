@@ -3,13 +3,13 @@ import getUserProfile from '../APIs/getUserProfile'
 export default class {
   private static instance: any = null
   
-  avatar: string = 'https://r2.fivemanage.com/COKMc8Wcmk9K5dp547rEw/Lenix_924.png'
-  name: string = ''
-  incomingAvatar: string = 'https://i.pravatar.cc/300'
-  outgoingAvatar: string = 'https://i.pravatar.cc/300'
-  friendAvatar: string = 'https://i.pravatar.cc/300'
+  name: string
+  avatar: string
+  incomingAvatar: string
+  outgoingAvatar: string
+  friendAvatar: string
 
-  public constructor() {}
+  private constructor() {}
 
   static async getUserDetails(identity: number) {
     if (!this.instance) {

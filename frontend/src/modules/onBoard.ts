@@ -7,10 +7,7 @@ export default (): Promise<typeof username> => {
   let username: string = undefined
   let submited: boolean = false
   const [index, length] = Alert({
-    type: "info", title: "Account Setup", message: "Welcome to Trippler Scripts's competitive game.\n Please set you name, be aware that the name will be the same for the username and the display name (nickname).", button: "Submit",
-    onClick: () => {
-      nameValidation(input as HTMLInputElement, index as HTMLDivElement)
-    }
+    type: "info", title: "Account Setup", message: "Welcome to Trippler Scripts's competitive game.\n Please set you name, be aware that the name will be the same for the username and the display name (nickname)."
   })
 
   const input = Input({
@@ -92,6 +89,17 @@ export default (): Promise<typeof username> => {
       }
     }
   }
+
+  Button({
+    parent: "alert-button-block-" + length,
+    size: "xl",
+    type: "primary",
+    content: "Submit",
+    onClick: () => {
+      nameValidation(input as HTMLInputElement, index as HTMLDivElement)
+    }
+  })
+
   return new Promise((resolve) => {
     const interval = setInterval(() => {
       if (submited == true) {

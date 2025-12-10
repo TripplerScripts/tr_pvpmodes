@@ -45,7 +45,7 @@ export default ({ type, title, message, button, onClick }: AlertOptions): [typeo
     content: message
   })
 
-  Button({
+  button != undefined && Button({
     parent: "alert-button-block-" + alerts.length,
     content: button,
     size: "xl",

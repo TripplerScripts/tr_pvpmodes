@@ -22,29 +22,11 @@ createElement({
 createElement({
   parent: "player-card",
   id: "player-info",
-  className: "w-full h-full hover:bg-gray-600 flex flex-[5] flex-col"
+  className: "w-full h-full hover:bg-gray-600 flex flex-[4] px-2"
 })
 
 createElement({
   parent: "player-info",
-  id: "player-info-text",
-  className: "h-[80%] py-1 px-2 text-white",
-})
-
-createElement({
-  parent: "player-info-text",
-  id: "player-info-text-content",
-  content: `${new playerDetails().level} | ${new playerDetails().name}`
-})
-
-createElement({
-  parent: "player-info",
-  id: "player-levelBar",
-  className: "h-[20%] bg-stone-800"
-})
-
-createElement({
-  parent: "player-levelBar",
-  id: "player-levelBar-fill",
-  className: "w-[20%] h-full bg-emerald-500"
+  className: "h-full text-white flex items-center",
+  content: `${new playerDetails().name} Lenix`
 })

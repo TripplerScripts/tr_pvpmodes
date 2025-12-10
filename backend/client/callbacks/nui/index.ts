@@ -5,6 +5,8 @@ import getFriendablePlayers from './modules/getFriendablePlayers'
 import getIncomingFriends from './modules/getIncomingFriends'
 import getOutgoingFriends from './modules/getOutgoingFriends'
 import getPlayerFriends from './modules/getPlayerFriends'
+import getServerProfile from './modules/getServerProfile'
+import getUserProfile from './modules/getUserProfile' 
 import removeIncomingRequest from './modules/removeIncomingRequest'
 import removePlayerFriendship from './modules/removePlayerFriendship'
 import sendUserFriendInvitation from './modules/sendUserFriendInvitation'
@@ -20,6 +22,8 @@ export default (): void => {
   getIncomingFriends()
   getOutgoingFriends()
   getPlayerFriends()
+  getServerProfile()
+  getUserProfile()
   removeIncomingRequest()
   removePlayerFriendship()
   sendUserFriendInvitation()

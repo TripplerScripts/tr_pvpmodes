@@ -4,8 +4,9 @@ export const createDatabaseTable = async () => await exports.oxmysql.query_async
   `
     CREATE TABLE IF NOT EXISTS tr_competitive_users (
       identity int UNSIGNED NOT NULL AUTO_INCREMENT,
-      name varchar(255) NOT NULL,
       license varchar(255) NOT NULL,
+      name varchar(255) NOT NULL,
+      avatar varchar(255) NOT NULL,
       friends JSON NOT NULL DEFAULT ('[]'),
       incomingInvitations JSON NOT NULL DEFAULT ('[]'),
       outgoingInvitations JSON NOT NULL DEFAULT ('[]'),

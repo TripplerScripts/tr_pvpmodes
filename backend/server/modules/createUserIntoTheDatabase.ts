@@ -1,11 +1,12 @@
 import { insertNewRow } from '../database'
 
-export default (license: string, name: string) => insertNewRow(
+export default (license: string, name: string, avatar: string) => insertNewRow(
   'tr_competitive_users',
-  'name, license, friends, incomingInvitations, outgoingInvitations',
-  '?, ?, ?, ?, ?',
-  name,
+  'license, name, avatar, friends, incomingInvitations, outgoingInvitations',
+  '?, ?, ?, ?, ?, ?',
   license,
+  name,
+  avatar,
   JSON.stringify([]),
   JSON.stringify([]),
   JSON.stringify([])

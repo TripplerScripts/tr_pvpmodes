@@ -14,7 +14,7 @@ createElement({
 let currentIncoming = document.getElementById('incomingRequests')
 let incomingRequests: HTMLDivElement[] = []
 
-const addNewIncomingRequest = (index: number, userId: number):void => {
+const addNewIncomingRequest = (index: number, identity: number):void => {
   const request = createElement({
     parent: "incomingRequests",
     id: `incoming-item-${index}`,
@@ -26,7 +26,7 @@ const addNewIncomingRequest = (index: number, userId: number):void => {
     content: `
       <img src="${new playerDetails().avatar}" class="w-[20%]" />
       <div class="ml-2 flex flex-col">
-        <p class="text-base font-semibold">${userId}</p>
+        <p class="text-base font-semibold">${identity}</p>
       </div>
     `
   })
@@ -35,9 +35,9 @@ const addNewIncomingRequest = (index: number, userId: number):void => {
     className: "w-[25%] h-[12.5%] hover:bg-blue-500 flex items-center justify-center",
     content: '✅',
     onClick: async () => {
-      const response = await removeIncomingRequest(userId)
+      const response = await removeIncomingRequest(identity)
       if (!response) return
-      const _response = await acceptFriendship(userId)
+      const _response = await acceptFriendship(identity)
       if (!_response) return
       request.remove()
       incomingRequests.splice(index, 1)
@@ -48,7 +48,7 @@ const addNewIncomingRequest = (index: number, userId: number):void => {
     className: "w-[25%] h-[12.5%] hover:bg-blue-500 flex items-center justify-center",
     content: '❌',
     onClick: async () => {
-      const response = removeIncomingRequest(userId)
+      const response = removeIncomingRequest(identity)
       if (!response) return
       request.remove()
       incomingRequests.splice(index, 1)
@@ -60,5 +60,5 @@ const addNewIncomingRequest = (index: number, userId: number):void => {
 
 (async () => {
   const incoming = await getIncomingFriends()
-  incoming.forEach((userId, index: number) => addNewIncomingRequest(index, userId))
+  incoming.forEach((identity, index: number) => addNewIncomingRequest(index, identity))
 })()

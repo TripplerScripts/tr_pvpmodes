@@ -16,7 +16,7 @@ export default () => {
 
 (async () => {
   const friendsItems = await getPlayerFriends()
-  friendsItems.forEach(userId => {
-    createFriendItem(userId)
+  friendsItems.forEach(identity => {
+    createFriendItem(identity)
   });
 })()

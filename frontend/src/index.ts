@@ -1,14 +1,18 @@
 import './elements/init'
 import openDashboard from './modules/openDashboard'
 import closeDashboard from './modules/closeDashboard'
+import playerDetails from './modules/playerDetails'
 
 let isDashboardOn = false
 
-window.addEventListener('message', (event: MessageEvent<any>) => {
+window.addEventListener('message', async (event: MessageEvent<any>) => {
   const API = event.data
-  const exist: boolean = API.exist
+  const identity: number = API.identity
+
   if (API.action === 'open') {
-    openDashboard(exist)
+    const response = await new playerDetails().refresh(identity)
+    if (!response) return
+    openDashboard(identity)
     isDashboardOn = true
   } else {
     if (API.action === 'close') {

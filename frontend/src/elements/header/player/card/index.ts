@@ -16,7 +16,7 @@ createElement({
   parent: "player-card",
   id: "player-avatar",
   className: "w-full h-full bg-stone-800 flex-[1] flex justify-center items-center p-1",
-  content: `<img src='${new playerDetails().avatar}' class='rounded-sm'>`
+  content: `<img src='${new playerDetails().getUserDetails().avatar}' class='rounded-sm'>`
 })
 
 createElement({
@@ -28,5 +28,5 @@ createElement({
 createElement({
   parent: "player-info",
   className: "h-full text-white flex items-center",
-  content: `${new playerDetails().name}`
+  content: `${new playerDetails().getUserDetails().avatar}`
 })

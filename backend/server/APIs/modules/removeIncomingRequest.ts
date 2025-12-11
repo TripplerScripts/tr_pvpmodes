@@ -9,13 +9,13 @@ export default () => lib.callback.register('removeIncomingRequest', async (sourc
   const receiverResponse = await getSingleRow('outgoingInvitations', 'tr_competitive_users', 'identity = ?', identity)
   if (!receiverResponse) return
 
-  const senderidentity = senderResponse.identity
+  const senderId = senderResponse.identity
   const senderRequests = JSON.parse(senderResponse.incomingInvitations)
   const receiverRequests = JSON.parse(receiverResponse.outgoingInvitations)
   senderRequests.splice(senderRequests.indexOf(identity), 1)
-  receiverRequests.splice(receiverRequests.indexOf(senderidentity), 1)
+  receiverRequests.splice(receiverRequests.indexOf(senderId), 1)
 
-  const senderAffectedColumn = updateRow('tr_competitive_users', 'incomingInvitations', 'license = ?', license, senderRequests)
-  const receiverAffectedColumn = updateRow('tr_competitive_users', 'outgoingInvitations', 'identity = ?', identity, receiverRequests)
+  const senderAffectedColumn = updateRow('tr_competitive_users', 'incomingInvitations', 'license = ?', JSON.stringify(senderRequests), license)
+  const receiverAffectedColumn = updateRow('tr_competitive_users', 'outgoingInvitations', 'identity = ?', JSON.stringify(receiverRequests), identity)
   return senderAffectedColumn && receiverAffectedColumn
 })

@@ -10,8 +10,7 @@ window.addEventListener('message', async (event: MessageEvent<any>) => {
   const identity: number = API.identity
 
   if (API.action === 'open') {
-    const response = await new playerDetails().refresh(identity)
-    if (!response) return
+    await new playerDetails().getUserDetails(identity, true)
     openDashboard(identity)
     isDashboardOn = true
   } else {

@@ -24,7 +24,7 @@ export const getSingleColumn = async (column: string, table: string, conditions?
 , values)
 
 export const updateRow = async (table: string, column: string, conditions?: string, ...values: SQLValue[]) => await exports.oxmysql.update_async(
-  `UPDATE ${table} SET ${column}${conditions ? ` WHERE ${conditions}` : ''}`
+  `UPDATE ${table} SET ${column} = ?${conditions ? ` WHERE ${conditions}` : ''}`
 , values)
 
 export const insertNewRow = async (table: string, columns: string, placeholders: string, ...values: SQLValue[]) => await exports.oxmysql.insert_async(

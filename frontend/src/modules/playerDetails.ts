@@ -3,18 +3,15 @@ import getUserProfile from '../APIs/getUserProfile'
 export default class {
   private name: string
   private avatar: string
-  private selfUserId: number
 
-  public async getUserDetails(identity?: number) {
-    const targetId = identity ?? this.selfUserId
-    if (!targetId) throw new Error('No cached identity found')
-
-    const user = await getUserProfile(targetId)
+  public async refresh(identity: number) {
+    const user = await getUserProfile(identity)
     this.name = user.name
     this.avatar = user.avatar
+    return true
+  }
 
-    this.selfUserId ??= targetId
-
-    return { name: this.name, avatar: this.avatar }
+  public getUserDetails() {
+    return { name: this.name, avatar: this.avatar}
   }
 }

@@ -4,10 +4,10 @@ import doesUserAlreadyExist from '../callbacks/APIs/doesUserAlreadyExist'
 
 export default (): number => {
   setTimeout(async () => {
-    const exist = await doesUserAlreadyExist(1500)
+    const identity = await doesUserAlreadyExist(1500)
     nuiMessage({
       action: 'open',
-      exist: exist
+      identity: identity,
     })
     SetNuiFocus(true, true)
   }, 2000)

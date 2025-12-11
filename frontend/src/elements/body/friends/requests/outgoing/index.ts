@@ -13,7 +13,9 @@ createElement({
 let currentOutgoing = document.getElementById('outgoingRequests')
 let outgoingRequests: HTMLDivElement[] = []
 
-const addNewOutgoingRequest = (index: number, identity: number): void => {
+const addNewOutgoingRequest = async (index: number, identity: number): Promise<void> => {
+  const user = await new playerDetails().getUserDetails(identity)
+  
   const request = createElement({
     parent: "outgoingRequests",
     id: `outgoing-item-${index}`,
@@ -23,9 +25,9 @@ const addNewOutgoingRequest = (index: number, identity: number): void => {
     parent: `outgoing-item-${index}`,
     className: "w-[75%] flex items-center justify-start",
     content: `
-      <img src=${new playerDetails().avatar} class="w-[20%]" />
+      <img src=${user.avatar} class="w-[20%]" />
       <div class="ml-2 flex flex-col">
-        <p class="text-base font-semibold">${identity}</p>
+        <p class="text-base font-semibold">${user.name}</p>
       </div>
     `
   })
@@ -33,8 +35,8 @@ const addNewOutgoingRequest = (index: number, identity: number): void => {
     parent: `outgoing-item-${index}`,
     className: "w-[25%] h-[12.5%] hover:bg-blue-500 flex items-center justify-center",
     content: '🚫',
-    onClick: () => {
-      const response = cancelOutgoingFriendship(identity)
+    onClick: async () => {
+      const response = await cancelOutgoingFriendship(identity)
       if (!response) return
       request.remove()
       outgoingRequests.splice(index, 1)

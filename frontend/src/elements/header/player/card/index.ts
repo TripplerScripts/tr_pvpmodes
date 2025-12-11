@@ -3,20 +3,18 @@ import Button from "../../../../components/button"
 import unavailableNotice from "../../../../interactions/serviceUnavailable"
 import playerDetails from "../../../../modules/playerDetails"
 
+
 Button({
   parent: "player-details",
   id: "player-card",
   className: "w-[35%] h-[100%] bg-gray-700 flex justify-center items-center rounded-md overflow-hidden",
-  onClick: () => {
-    unavailableNotice()
-  }
+  onClick: () => unavailableNotice()
 })
 
-createElement({
+const avatarEl = createElement({
   parent: "player-card",
   id: "player-avatar",
-  className: "w-full h-full bg-stone-800 flex-[1] flex justify-center items-center p-1",
-  content: `<img src='${new playerDetails().getUserDetails().avatar}' class='rounded-sm'>`
+  className: "w-full h-full bg-stone-800 flex-[1] flex justify-center items-center p-1"
 })
 
 createElement({
@@ -25,8 +23,13 @@ createElement({
   className: "w-full h-full hover:bg-gray-600 flex flex-[4] px-2"
 })
 
-createElement({
+const nameEl = createElement({
   parent: "player-info",
-  className: "h-full text-white flex items-center",
-  content: `${new playerDetails().getUserDetails().avatar}`
+  className: "h-full text-white flex items-center"
 })
+
+export default async (identity: number) => {
+  const details = await new playerDetails().getUserDetails(identity)
+  avatarEl.innerHTML = `<img src='${details.avatar}' class='rounded-sm'>`
+  nameEl.innerHTML = details.name
+}

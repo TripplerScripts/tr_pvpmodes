@@ -22,7 +22,7 @@ export default ({
   if (onChange) input.addEventListener("input", onChange);
   if (onJoin) input.addEventListener("click", onJoin);
 
-  document.getElementById(parent).appendChild(input);
+  document.getElementById(parent)?.appendChild(input);
 
   return input;
 }

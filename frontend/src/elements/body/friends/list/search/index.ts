@@ -8,7 +8,7 @@ import playerDetails from "../../../../../modules/playerDetails"
 const container = document.getElementById("playersSearchContainer")
 const resultsBox = document.getElementById("playersResults")
 
-let players: Array<{ name: string, avatar: string }> = []
+let players: Awaited<ReturnType<playerDetails['getUserDetails']>>[]
 
 const searchInput = Input({
   parent: "playersSearchContainer",
@@ -16,11 +16,9 @@ const searchInput = Input({
   placeholder: "Search players by: <name>",
   onJoin: async () => {
     const playerIds = await getFriendablePlayers()
+
     players = await Promise.all(
-      playerIds.map(async id => {
-        const player = await playerDetails.getUserDetails(id)
-        return { name: player.name, avatar: player.friendAvatar }
-      })
+      playerIds.map(async id => new playerDetails().getUserDetails(id))
     )
   },
   onChange: () => {
@@ -53,7 +51,7 @@ const searchInput = Input({
           onClick: async (disable) => {
             btn.innerText = '💬'
             disable()
-            btn.innerText = await sendUserFriendInvitation(player.name) ? '✅' : '❌'
+            btn.innerText = await sendUserFriendInvitation(player.id) ? '✅' : '❌'
           }
         })
       })

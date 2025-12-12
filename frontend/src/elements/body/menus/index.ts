@@ -1,4 +1,10 @@
 import createElement from "../../../components/createElement"
+import Button from "../../../components/button"
+import settings from "../../../interactions/serviceUnavailable"
+
+const buttonsStyle = "text-xl text-white italic h-1/5"
+const buttonsContentsStyle = "hover:font-bold hover:text-2xl transition-all"
+const buttonsOnClick = settings
 
 createElement({
   parent: "body",
@@ -19,38 +25,47 @@ createElement({
 createElement({
   parent: "main-menu",
   id: "main-menu-block",
-  className: "flex flex-col justify-evenly overflow-hidden w-[75%]"
+  className: "flex flex-col justify-center overflow-hidden w-[75%]"
 })
 
+Button({
+  parent: "main-menu-block",
+  className: buttonsStyle,
+  content: `<span class="${buttonsContentsStyle}">Battlepass</span>`,
+  onClick: buttonsOnClick
+})
 
+Button({
+  parent: "main-menu-block",
+  className: buttonsStyle,
+  content: `<span class="${buttonsContentsStyle}">Settings</span>`,
+  onClick: buttonsOnClick
+})
 
-createElement({
+Button({
   parent: "main-menu-block",
-  className: "text-xl text-white italic hover:font-bold hover:text-2xl transition-all",
-  content: "Battlepass"
+  className: buttonsStyle,
+  content: `<span class="${buttonsContentsStyle}">Arsenal</span>`,
+  onClick: buttonsOnClick
 })
-createElement({
+
+Button({
   parent: "main-menu-block",
-  className: "text-xl text-white italic hover:font-bold hover:text-2xl transition-all",
-  content: "Settings"
+  className: buttonsStyle,
+  content: `<span class="${buttonsContentsStyle}">Store</span>`,
+  onClick: buttonsOnClick
 })
-createElement({
+
+Button({
   parent: "main-menu-block",
-  className: "text-xl text-white italic hover:font-bold hover:text-2xl transition-all",
-  content: "Arsenal"
+  className: buttonsStyle,
+  content: `<span class="${buttonsContentsStyle}">Style</span>`,
+  onClick: buttonsOnClick
 })
-createElement({
+
+Button({
   parent: "main-menu-block",
-  className: "text-xl text-white italic hover:font-bold hover:text-2xl transition-all",
-  content: "Store"
-})
-createElement({
-  parent: "main-menu-block",
-  className: "text-xl text-white italic hover:font-bold hover:text-2xl transition-all",
-  content: "Style"
-})
-createElement({
-  parent: "main-menu-block",
-  className: "text-xl text-white italic hover:font-bold hover:text-2xl transition-all",
-  content: "Play"
+  className: buttonsStyle,
+  content: `<span class="${buttonsContentsStyle}">Play</span>`,
+  onClick: buttonsOnClick
 })

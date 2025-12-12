@@ -1,6 +1,6 @@
 import closeDashboard from '../modules/closeGame'
 
-export default (): void => {
+export default () => {
   onNet('tr_competitive:client:shutDownDashboard', () => {
     closeDashboard()
   })

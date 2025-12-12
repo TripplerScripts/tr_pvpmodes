@@ -2,7 +2,7 @@ import createElement from "../../../../../components/createElement"
 import getPlayerFriends from "../../../../../APIs/getPlayerFriends"
 import createFriendItem from "../../../../../modules/createFriendItem"
 
-export default () => {
+(() => {
   createElement({
     parent: "friendsItems",
     id: "noFriendsFound",
@@ -12,7 +12,7 @@ export default () => {
     <p class="text-gray-400 text-xl font-bold">No friends were found</p>
     `
   })
-}
+})(),
 
 (async () => {
   const friendsItems = await getPlayerFriends()

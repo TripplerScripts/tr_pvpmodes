@@ -7,7 +7,7 @@ import playerDetails from "../../../../modules/playerDetails"
 Button({
   parent: "player-details",
   id: "player-card",
-  className: "w-[35%] h-[100%] bg-gray-700 flex justify-center items-center rounded-md overflow-hidden",
+  className: "w-[35%] h-full bg-gray-700 flex justify-center items-center rounded-md overflow-hidden",
   onClick: () => unavailableNotice()
 })
 

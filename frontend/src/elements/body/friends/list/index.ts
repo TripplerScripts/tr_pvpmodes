@@ -16,7 +16,8 @@ createElement({
 
 createElement({
   parent: "friendsList",
-  id: "friendsContainer"  
+  id: "friendsContainer" ,
+  className: "w-full h-[88%] flex flex-col justify-center items-center" 
 })
 
 createElement({

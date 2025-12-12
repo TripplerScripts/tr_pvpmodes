@@ -1,2 +1,2 @@
-callbacks , db , kit types
+callbacks, kit types
 handle failure error on ui

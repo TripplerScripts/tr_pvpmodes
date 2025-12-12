@@ -1,3 +1,1 @@
-export default (arg: object): void => {
-  SendNuiMessage(JSON.stringify(arg))
-}
+export default (arg: object) => SendNuiMessage(JSON.stringify(arg))

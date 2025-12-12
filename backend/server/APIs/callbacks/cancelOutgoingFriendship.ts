@@ -2,7 +2,7 @@ import lib from '../../lib'
 import { getSingleRow, updateRow } from '../../database'
 import getPlayerLicense from '../../utils/getPlayerLicense'
 
-export default () => lib.callback.register('cancelOutgoingFriendship', async (source: string, identity: number) => {
+const callback = async(source: string, identity: number) => {
   const license = getPlayerLicense(source)
   const senderResponse = await getSingleRow('outgoingInvitations', 'tr_competitive_users', 'license = ?', license)
   if (!senderResponse) return
@@ -18,4 +18,7 @@ export default () => lib.callback.register('cancelOutgoingFriendship', async (so
   const senderAffectedColumn = await updateRow('tr_competitive_users', 'outgoingInvitations', 'license = ?', JSON.stringify(senderRequests), license)
   const receiverAffectedColumn = await updateRow('tr_competitive_users', 'incomingInvitations', 'identity = ?', JSON.stringify(receiverRequests), identity) 
   return senderAffectedColumn && receiverAffectedColumn
-})
+}
+
+export default () => lib.callback.register('cancelOutgoingFriendship', (source: string, identity: number) => callback(source, identity))
+export type CancelOutgoingFriendship = typeof callback

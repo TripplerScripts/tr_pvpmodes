@@ -15,12 +15,12 @@ const callback = async (source: string, identity: number) => {
   senderRequests.push(identity)
   receiverRequests.push(senderId)
 
-  const senderAffectedColumn = updateRow('tr_competitive_users', 'friends', 'license = ?', JSON.stringify(senderRequests), license)
-  const receiverAffectedColumn = updateRow('tr_competitive_users', 'friends', 'identity = ?', JSON.stringify(receiverRequests), identity)
+  const senderAffectedColumn = await updateRow('tr_competitive_users', 'friends', 'license = ?', JSON.stringify(senderRequests), license)
+  const receiverAffectedColumn = await updateRow('tr_competitive_users', 'friends', 'identity = ?', JSON.stringify(receiverRequests), identity)
   return senderAffectedColumn && receiverAffectedColumn
 }
 
 export default () => lib.callback.register('acceptFriendship', async (source, identity: number) => {
   callback(source, identity)
 })
-export type AcceptFriendshipCallback = ReturnType<typeof callback>
+export type AcceptFriendship = ReturnType<typeof callback>

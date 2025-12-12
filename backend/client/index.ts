@@ -1,4 +1,4 @@
-import prepareNuiCallbacks from './callbacks/nui'
+import prepareNuiCallbacks from './callbacks'
 import openClosedWorldGame from './modules/openGame'
 import prepareEvents from './events'
 

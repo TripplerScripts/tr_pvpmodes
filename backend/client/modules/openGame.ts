@@ -1,6 +1,6 @@
 import nuiMessage from '../components/nuiMessage'
 import placePlayerInLobby from './placePlayer'
-import doesUserAlreadyExist from '../callbacks/nui/APIs/doesUserAlreadyExist'
+import doesUserAlreadyExist from '../APIs/callbacks/doesUserAlreadyExist'
 
 export default () => {
   setTimeout(async () => {

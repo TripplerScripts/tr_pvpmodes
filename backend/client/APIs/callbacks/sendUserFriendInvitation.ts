@@ -1,3 +1,3 @@
-import lib from '../../../lib'
+import lib from '../../lib'
 
 export default (timeout: number, name: string) => lib.callback.await('sendUserFriendInvitation', timeout, name)

@@ -29,7 +29,7 @@ export interface InputOptions {
 }
 
 export interface AlertOptions {
-  type: string
+  type: 'success' | 'error' | 'warn' | 'info'
   title: string
   message: string
   button?: string

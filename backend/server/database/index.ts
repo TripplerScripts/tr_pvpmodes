@@ -15,18 +15,18 @@ export const createDatabaseTable = async () => await exports.oxmysql.query_async
   `
 )
 
-export const getSingleRow = async (columns: string, table: string, conditions?: string, ...values: SQLValue[]) => await exports.oxmysql.single_async(
+export const getSingleRow = async (columns: string, table: string, conditions?: string, ...values: SQLValue[]): Promise<Record<string, any>> => await exports.oxmysql.single_async(
   `SELECT ${columns} FROM ${table}${conditions ? ` WHERE ${conditions}` : ''}`
 , values)
 
-export const getSingleColumn = async (column: string, table: string, conditions?: string, ...values: SQLValue[]) => await exports.oxmysql.executeSync(
+export const getSingleColumn = async (column: string, table: string, conditions?: string, ...values: SQLValue[]): Promise<Array<Record<string, any>>> => await exports.oxmysql.executeSync(
   `SELECT ${column} FROM ${table}${conditions ? ` WHERE ${conditions}` : ''}`
 , values)
 
-export const updateRow = async (table: string, column: string, conditions?: string, ...values: SQLValue[]) => await exports.oxmysql.update_async(
+export const updateRow = async (table: string, column: string, conditions?: string, ...values: SQLValue[]): Promise<number> => await exports.oxmysql.update_async(
   `UPDATE ${table} SET ${column} = ?${conditions ? ` WHERE ${conditions}` : ''}`
 , values)
 
-export const insertNewRow = async (table: string, columns: string, placeholders: string, ...values: SQLValue[]) => await exports.oxmysql.insert_async(
+export const insertNewRow = async (table: string, columns: string, placeholders: string, ...values: SQLValue[]): Promise<number> => await exports.oxmysql.insert_async(
   `INSERT INTO ${table} (${columns}) VALUES (${placeholders})`
 , values)

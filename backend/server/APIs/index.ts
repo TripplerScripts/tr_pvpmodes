@@ -11,7 +11,7 @@ import removePlayerFriendship from './callbacks/removePlayerFriendship'
 import sendUserFriendInvitation from './callbacks/sendUserFriendInvitation'
 import getUserProfile from './callbacks/getUserProfile'
 
-export default (): void => {
+export default () => {
   acceptFriendship()
   cancelOutgoingFriendship()
   createUser()

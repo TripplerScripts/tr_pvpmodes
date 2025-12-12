@@ -1,3 +1,3 @@
 import sendCallback from "../components/sendCallback"
 
-export default (playerName: string) => sendCallback<boolean>('sendUserFriendInvitation', playerName)
+export default (identity: number) => sendCallback<boolean>('sendUserFriendInvitation', identity)

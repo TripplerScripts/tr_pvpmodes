@@ -2,8 +2,8 @@ import createElement from "../../../components/createElement"
 import Button from "../../../components/button"
 import settings from "../../../interactions/serviceUnavailable"
 
-const buttonsStyle = "text-xl text-white italic h-1/5"
-const buttonsContentsStyle = "hover:font-bold hover:text-2xl transition-all"
+const buttonsStyle = "text-2xl text-white italic h-1/5"
+const buttonsContentsStyle = "hover:font-semibold hover:text-3xl transition-all"
 const buttonsOnClick = settings
 
 createElement({

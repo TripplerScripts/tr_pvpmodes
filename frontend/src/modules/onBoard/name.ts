@@ -6,7 +6,7 @@ import createElement from "../../components/createElement";
 const nameSetup = () => new Promise((resolve) => {
   const [setupElement, setupIndex] = Alert({
     type: "info",
-    title: "Name Setup",
+    title: "Profile Setup - Nickname",
     message: "Please set you display nickname, a nickname must be at least 4 characters long and at most 15 characters long"
   })
 

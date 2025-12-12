@@ -5,7 +5,7 @@ import Button from "../../components/button";
 const setupAvatar = () => new Promise((resolve) => {
   const [setupElement, alertIndex] = Alert({
     type: "info",
-    title: "Account Setup",
+    title: "Profile Setup - Avatar",
     message: "Please paste your valid avatar URL here, e.g. https://r2.fivemanage.com/COKMc8Wcmk9K5dp547rEw/Lenix_924.png"
   })
   

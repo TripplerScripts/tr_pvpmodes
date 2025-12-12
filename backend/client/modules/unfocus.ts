@@ -1,4 +1,4 @@
-import setCoords from '../components/setCoords'
+import setCoords from './setCoords'
 
 export default (lastCoords: number[], camHandle: number) => {
   SetNuiFocus(false, false)

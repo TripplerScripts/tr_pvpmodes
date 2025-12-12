@@ -2,15 +2,22 @@ fx_version 'cerulean'
 game 'gta5'
 dependencies {
   'tr_lib',
+  'tr_kit',
   'oxmysql',
-  --[[ MariaDB 8.0.13 ]]
+  --[[ MarDB 8.0.13 ]]
 }
 
 author 'Trippler'
 version '0.0.0'
 
-client_script 'backend/build/client.js'
-server_script 'backend/build/server.js'
+client_scripts {
+  'backend/build/client.js',
+  'backend/build/client.lua',
+}
+server_scripts {
+  'backend/build/server.js',
+  'backend/build/server.lua',
+}
 
 ui_page 'frontend/index.html'
 files {

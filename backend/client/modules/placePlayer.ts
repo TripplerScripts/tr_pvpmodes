@@ -1,5 +1,5 @@
-import setCoords from '../components/setCoords'
-import { lobby, cam } from '../config/lobby'
+import setCoords from './setCoords'
+import { lobby, cam } from './config/lobby'
 
 export default () => {
   const handle = exports.tr_kit.createCam({

@@ -1,6 +1,6 @@
 import prepareNuiCallbacks from './callbacks'
 import openClosedWorldGame from './modules/openGame'
-import prepareEvents from './events'
+import prepareEvents from './modules/events'
 
 prepareEvents()
 prepareNuiCallbacks()

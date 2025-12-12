@@ -1,3 +1,4 @@
+import { ServerProfile } from "../../../backend/client/types"
 import sendCallback from "../components/sendCallback"
 
-export default () => sendCallback<{ name: string, avatar: string }>('getServerProfile')
+export default () => sendCallback<ServerProfile>('getServerProfile')

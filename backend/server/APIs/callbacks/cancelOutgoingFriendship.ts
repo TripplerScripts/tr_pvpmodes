@@ -2,7 +2,7 @@ import lib from '../../lib'
 import { getSingleRow, updateRow } from '../../database'
 import getPlayerLicense from '../../utils/getPlayerLicense'
 
-const callback = async(source: string, identity: number) => {
+const callback = async (source: string, identity: number) => {
   const license = getPlayerLicense(source)
   const senderResponse = await getSingleRow<{ identity: number; outgoingInvitations: number[] }>('identity, outgoingInvitations', 'tr_competitive_users', 'license = ?', license)
   if (!senderResponse) return

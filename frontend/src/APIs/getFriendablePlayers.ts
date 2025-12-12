@@ -1,3 +1,4 @@
+import GetFriendablePlayers from "../../../backend/client/APIs/callbacks/getFriendablePlayers"
 import sendCallback from "../components/sendCallback"
 
-export default () => sendCallback<number[]>('getFriendablePlayers')
+export default () => sendCallback<ReturnType<typeof GetFriendablePlayers>>('getFriendablePlayers')

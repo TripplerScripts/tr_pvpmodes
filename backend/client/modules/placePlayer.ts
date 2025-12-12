@@ -1,7 +1,7 @@
 import setCoords from '../components/setCoords'
 import { lobby, cam } from '../config/lobby'
 
-export default (): number => {
+export default () => {
   const handle = exports.tr_kit.createCam({
     coords: cam,
     rotation: { vertical: 2.0, horizontal: 0.0 },

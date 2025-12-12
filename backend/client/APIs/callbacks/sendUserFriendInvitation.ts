@@ -1,3 +1,4 @@
 import lib from '../../lib'
+import { SendUserFriendInvitation } from '../../../server/APIs/callbacks/sendUserFriendInvitation'
 
-export default (timeout: number, name: string) => lib.callback.await('sendUserFriendInvitation', timeout, name)
+export default (timeout: number, name: string) => lib.callback.await<SendUserFriendInvitation>('sendUserFriendInvitation', timeout, name)

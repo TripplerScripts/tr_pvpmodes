@@ -21,4 +21,4 @@ const callback = async(source: string, identity: number) => {
 }
 
 export default () => lib.callback.register('cancelOutgoingFriendship', (source: string, identity: number) => callback(source, identity))
-export type CancelOutgoingFriendship = typeof callback
+export type CancelOutgoingFriendship = ReturnType<typeof callback>

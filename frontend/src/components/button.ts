@@ -1,7 +1,7 @@
 import { ButtonConfig } from '../types'
 import createElement from './createElement'
 
-const getSize = (size: string): string => {
+const getSize = (size: ButtonConfig['size']): string => {
   const sizes = {
     'xs': 'text-xs py-1 px-4',
     'sm': 'text-sm py-1 px-4',
@@ -17,17 +17,20 @@ const getSize = (size: string): string => {
     '8xl': 'text-8xl py-6 px-20',
     '9xl': 'text-9xl py-6 px-20'
   }
-  return sizes[size]
+  return sizes[size!]
 }
 
-const getType = (type: string, size: string): string => {
+const getType = (type: ButtonConfig['type'], size: ButtonConfig['size']): string | undefined => {
+  const sizeClass = getSize(size!)
+  const baseClasses = `${sizeClass} w-fit h-fit font-semibold rounded cursor-default transition-all whitespace-nowrap`
+  
   switch(type) {
     case 'primary':
-      return getSize(size) + ' w-fit h-fit font-semibold text-white rounded bg-blue-700 cursor-default transition-all hover:bg-blue-600 whitespace-nowrap'
+      return `${baseClasses} text-white bg-blue-700 hover:bg-blue-600`
     case 'secondary':
-      return getSize(size) + ' w-fit h-fit font-semibold text-white rounded bg-neutral-700 border border-stone-600 cursor-default transition-all hover:bg-stone-600/90 whitespace-nowrap'    
+      return `${baseClasses} text-white bg-neutral-700 border border-stone-600 hover:bg-stone-600/90`
     case 'soft':
-      return getSize(size) + ' w-fit h-fit font-semibold text-blue-500 rounded bg-blue-950/70 cursor-default transition-all hover:bg-blue-900/50 whitespace-nowrap'
+      return `${baseClasses} text-blue-500 bg-blue-950/70 hover:bg-blue-900/50`
     case 'none':
       return ''
   }
@@ -40,7 +43,7 @@ export default ({ parent, content, id, className, type, size, disableKey, onClic
   }
 
   const button = createElement({parent: parent, id: id, className: className, content: content})
-  button.className = getType(type, size) != undefined ? getType(type, size).trim().replace(/\s+/g, ' ') : className
+  button.className = getType(type, size) != undefined ? getType(type, size)?.trim().replace(/\s+/g, ' ')! : className!
 
   let isDisabled = false
 

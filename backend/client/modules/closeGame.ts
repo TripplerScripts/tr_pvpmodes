@@ -1,6 +1,6 @@
 import nuiMessage from '../components/nuiMessage'
 
-export default (): void => {
+export default () => {
   nuiMessage({
     action: 'close',
   })

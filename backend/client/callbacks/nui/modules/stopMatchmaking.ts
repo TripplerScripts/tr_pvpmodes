@@ -1,5 +1,5 @@
 import stopMatchmaking from '../../../modules/stopMatchmaking'
 
-export default () => RegisterNuiCallback('stopMatchmaking', (_data: Array<any>, callback: (response: any) => void) =>
+export default () => RegisterNuiCallback('stopMatchmaking', (_data, callback) =>
   callback(stopMatchmaking())
 )

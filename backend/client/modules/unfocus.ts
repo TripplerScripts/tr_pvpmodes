@@ -1,6 +1,6 @@
 import setCoords from '../components/setCoords'
 
-export default (lastCoords: number[], camHandle: number): void => {
+export default (lastCoords: number[], camHandle: number) => {
   SetNuiFocus(false, false)
   exports.tr_kit.destroyCam(camHandle)
   setTimeout(() => {

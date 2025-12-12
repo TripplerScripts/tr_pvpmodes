@@ -1,4 +1,4 @@
-type SQLValue = string | number | boolean | null
+import { SQLValue } from '../types'
 
 export const createDatabaseTable = async () => await exports.oxmysql.query_async(
   `
@@ -15,11 +15,11 @@ export const createDatabaseTable = async () => await exports.oxmysql.query_async
   `
 )
 
-export const getSingleRow = async (columns: string, table: string, conditions?: string, ...values: SQLValue[]): Promise<Record<string, any>> => await exports.oxmysql.single_async(
+export const getSingleRow = async <T extends Record<string, unknown>>(columns: string, table: string, conditions?: string, ...values: SQLValue[]): Promise<T | null> => await exports.oxmysql.single_async(
   `SELECT ${columns} FROM ${table}${conditions ? ` WHERE ${conditions}` : ''}`
 , values)
 
-export const getSingleColumn = async (column: string, table: string, conditions?: string, ...values: SQLValue[]): Promise<Array<Record<string, any>>> => await exports.oxmysql.executeSync(
+export const getSingleColumn = async <T extends Record<string, unknown>>(column: string, table: string, conditions?: string, ...values: SQLValue[]): Promise<Array<T>> => await exports.oxmysql.executeSync(
   `SELECT ${column} FROM ${table}${conditions ? ` WHERE ${conditions}` : ''}`
 , values)
 

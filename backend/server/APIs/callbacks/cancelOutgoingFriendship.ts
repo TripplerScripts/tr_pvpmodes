@@ -4,14 +4,14 @@ import getPlayerLicense from '../../utils/getPlayerLicense'
 
 const callback = async(source: string, identity: number) => {
   const license = getPlayerLicense(source)
-  const senderResponse = await getSingleRow('outgoingInvitations', 'tr_competitive_users', 'license = ?', license)
+  const senderResponse = await getSingleRow<{ identity: number; outgoingInvitations: number[] }>('identity, outgoingInvitations', 'tr_competitive_users', 'license = ?', license)
   if (!senderResponse) return
-  const receiverResponse = await getSingleRow('incomingInvitations', 'tr_competitive_users', 'identity = ?', identity)
+  const receiverResponse = await getSingleRow<{ incomingInvitations: number[] }>('incomingInvitations', 'tr_competitive_users', 'identity = ?', identity)
   if (!receiverResponse) return
 
   const senderId = senderResponse.identity
-  const senderRequests = JSON.parse(senderResponse.outgoingInvitations)
-  const receiverRequests = JSON.parse(receiverResponse.incomingInvitations)
+  const senderRequests = senderResponse.outgoingInvitations
+  const receiverRequests = receiverResponse.incomingInvitations
   senderRequests.splice(senderRequests.indexOf(identity), 1)
   receiverRequests.splice(receiverRequests.indexOf(senderId), 1)
   

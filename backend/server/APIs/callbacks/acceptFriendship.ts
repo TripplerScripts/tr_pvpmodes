@@ -4,14 +4,14 @@ import getPlayerLicense from '../../utils/getPlayerLicense'
 
 const callback = async (source: string, identity: number) => {
   const license = getPlayerLicense(source)
-  const senderResponse = await getSingleRow('identity, friends', 'tr_competitive_users', 'license = ?', license)
+  const senderResponse = await getSingleRow<{ identity: number; friends: number[] }>('identity, friends', 'tr_competitive_users', 'license = ?', license)
   if (!senderResponse) return
-  const receiverResponse = await getSingleRow('friends', 'tr_competitive_users', 'identity = ?', identity)
+  const receiverResponse = await getSingleRow<{ friends: number[] }>('friends', 'tr_competitive_users', 'identity = ?', identity)
   if (!receiverResponse) return
 
   const senderId = senderResponse.identity
-  const senderRequests = JSON.parse(senderResponse.friends)
-  const receiverRequests = JSON.parse(receiverResponse.friends)
+  const senderRequests = senderResponse.friends
+  const receiverRequests = receiverResponse.friends
   senderRequests.push(identity)
   receiverRequests.push(senderId)
 
@@ -20,7 +20,5 @@ const callback = async (source: string, identity: number) => {
   return senderAffectedColumn && receiverAffectedColumn
 }
 
-export default () => lib.callback.register('acceptFriendship', async (source, identity: number) => {
-  callback(source, identity)
-})
+export default () => lib.callback.register('acceptFriendship', async (source, identity: number) => callback(source, identity))
 export type AcceptFriendship = ReturnType<typeof callback>

@@ -2,20 +2,20 @@ import lib from '../../lib'
 import { getSingleRow, getSingleColumn } from '../../database'
 import getPlayerLicense from '../../utils/getPlayerLicense'
 
-export default () => lib.callback.register('getFriendablePlayers', async (source: string) => {
+const callback = async (source: string) => {
   const license = getPlayerLicense(source)
-  const senderRow = await getSingleRow('identity, friends, outgoingInvitations, incomingInvitations', 'tr_competitive_users', 'license = ?', license)
+  const senderRow = await getSingleRow<{ identity: number; friends: number[]; incomingInvitations: number[]; outgoingInvitations: number[] }>('identity, friends, outgoingInvitations, incomingInvitations', 'tr_competitive_users', 'license = ?', license)
   if (!senderRow) return
   const senderidentity = senderRow.identity
-  const senderFriends = JSON.parse(senderRow.friends)
-  const senderIncomingRequests = JSON.parse(senderRow.incomingInvitations)
-  const senderOutgoingRequests = JSON.parse(senderRow.outgoingInvitations)
+  const senderFriends = senderRow.friends
+  const senderIncomingRequests = senderRow.incomingInvitations
+  const senderOutgoingRequests = senderRow.outgoingInvitations
 
-  const serverUsers = await getSingleColumn('identity', 'tr_competitive_users')
+  const serverUsers = await getSingleColumn<{ identity: number }>('identity', 'tr_competitive_users')
   if (!serverUsers) return
 
-  let filteredPlayers: string[] = []
-  serverUsers.forEach((user: { identity: string }) => {
+  let filteredPlayers: number[] = []
+  serverUsers.forEach(user => {
     const notSelf = user.identity !== senderidentity
     const notFriend = !senderFriends.includes(user.identity)
     const notInIncoming = !senderIncomingRequests.includes(user.identity)
@@ -23,4 +23,7 @@ export default () => lib.callback.register('getFriendablePlayers', async (source
     if (notSelf && notFriend && notInIncoming && notInOutgoing) filteredPlayers.push(user.identity)
     })
   return filteredPlayers
-})
+}
+
+export default () => lib.callback.register('getFriendablePlayers', async (source: string) => callback(source))
+export type GetFriendablePlayers = ReturnType<typeof callback>

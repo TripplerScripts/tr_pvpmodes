@@ -52,7 +52,7 @@ export default ({ type, title, message, button, onClick }: AlertOptions): [typeo
     type: "soft",
     onClick: () => {
       index.remove(),
-      onClick()
+      onClick && onClick()
     }
   })  
   return [index, alerts.length]

@@ -1,2 +1,2 @@
-callbacks, kit types
+kit types
 handle failure error on ui

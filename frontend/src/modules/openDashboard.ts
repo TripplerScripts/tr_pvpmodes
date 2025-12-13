@@ -2,7 +2,7 @@ import initOnBoarding from './onBoard'
 import createUser from '../APIs/createUser'
 import playerDetails from './playerDetails'
 
-export default async (identity: number | boolean): Promise<void> => {
+export default async (identity: number | boolean) => {
   const root = document.getElementById('root')
   if (!identity) {
     const { userName, userAvatar } = await initOnBoarding()
@@ -11,5 +11,5 @@ export default async (identity: number | boolean): Promise<void> => {
   } else {
     new playerDetails().getUserDetails(identity as number, true)
   }
-  root.classList.remove('hidden')
+  root?.classList.remove('hidden')
 }

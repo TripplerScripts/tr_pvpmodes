@@ -1,21 +1,23 @@
 fx_version 'cerulean'
 game 'gta5'
 dependencies {
-    'ox_lib',
-    'qbx_core',
-    'ox_lib',
-    'spawnmanager',
-    'illenium-appearance'
+  'ox_lib',
 }
 
-author 'Trippler'
-version '1.0.2'
-
-shared_scripts {
-    '@ox_lib/init.lua',
-}
+author 'Lenix'
+version '2.0.0'
 
 client_scripts {
-    'client/bridge.lua',
-    'client/main.js',
+  'backend/build/client.js',
+  'backend/build/client.lua'
+}
+server_scripts {
+  'backend/build/server.js',
+  'backend/build/server.lua'
+}
+
+ui_page 'frontend/index.html'
+files {
+  'frontend/index.html',
+  'frontend/build/main.js'
 }

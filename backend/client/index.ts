@@ -1,12 +1,12 @@
 setImmediate(async () => {
     const checkSessionTick = setTick(async () => {
         if (NetworkIsSessionStarted()) {
-            clearTick(checkSessionTick);
-            initPlayer();
+            initPlayer()
+            clearTick(checkSessionTick)
         }
-        await new Promise(resolve => setTimeout(resolve, 1000));
-    });
-});
+        await new Promise(resolve => setTimeout(resolve, 1000))
+    })
+})
 
 async function createPlayer() {
     exports.spawnmanager.spawnPlayer({

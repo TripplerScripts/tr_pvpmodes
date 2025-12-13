@@ -12,7 +12,7 @@ import removePlayerFriendship from './nui/removePlayerFriendship'
 import sendUserFriendInvitation from './nui/sendUserFriendInvitation'
 import startMatchmaking from './nui/startMatchmaking'
 import stopMatchmaking from './nui/stopMatchmaking'
-import unFocus from './nui/unFocus'
+import unFocus from './nui/closeGame'
 
 export default (): void => {
   acceptFriendship()

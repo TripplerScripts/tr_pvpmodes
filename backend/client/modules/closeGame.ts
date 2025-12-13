@@ -1,7 +1,1 @@
-import nuiMessage from '../components/nuiMessage'
-
-export default () => {
-  nuiMessage({
-    action: 'close',
-  })
-}
+export default () => exports.tr_competitive.closeGame()

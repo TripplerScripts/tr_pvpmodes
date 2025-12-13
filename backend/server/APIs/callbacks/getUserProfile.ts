@@ -2,7 +2,7 @@ import lib from '../../lib'
 import { getSingleRow } from "../../database";
 
 const callback = async (identity: number) => {
-  const response = await getSingleRow('name, avatar', 'tr_competitive_users', 'identity = ?', identity)
+  const response = await getSingleRow<{ name: string, avatar: string }>('name, avatar', 'tr_competitive_users', 'identity = ?', identity)
   return response && { ...response }
 }
 

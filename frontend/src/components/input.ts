@@ -1,4 +1,13 @@
-import { InputOptions } from "../types";
+interface InputOptions {
+  parent: string
+  className?: string
+  defaultValue?: string
+  placeholder?: string
+  type?: string
+  onJoin?: () => void
+  onChange?: () => void
+  onSubmit?: () => void
+}
 
 export default ({
     parent,

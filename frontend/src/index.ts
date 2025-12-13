@@ -2,6 +2,8 @@ import './elements/init'
 import openDashboard from './modules/openDashboard'
 import closeDashboard from './modules/closeGame'
 
+
+
 let isDashboardOn = false
 
 window.addEventListener('message', async (event: MessageEvent<any>) => {

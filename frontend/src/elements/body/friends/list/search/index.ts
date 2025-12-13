@@ -1,6 +1,6 @@
 import createElement from "../../../../../components/createElement"
 import Button from "../../../../../components/button"
-import sendUserFriendInvitation from "../../../../../modules/sendUserFriendInvitation"
+import sendUserFriendInvitation from "../../../../../APIs/sendUserFriendInvitation"
 import Input from "../../../../../components/input"
 import getFriendablePlayers from "../../../../../APIs/getFriendablePlayers"
 import playerDetails from "../../../../../modules/playerDetails"
@@ -18,12 +18,14 @@ const searchInput = Input({
     const playerIds = await getFriendablePlayers()
 
     players = await Promise.all(
-      playerIds.map(async id => new playerDetails().getUserDetails(id))
+      playerIds ?
+        playerIds.map(async id => new playerDetails().getUserDetails(id))
+      : []
     )
   },
   onChange: () => {
     const text = searchInput.value.toLowerCase().trim()
-    resultsBox.innerHTML = ""
+    resultsBox ? resultsBox.innerHTML = "" : null
     if (!text) return
 
     players.filter(p => p.name.toLowerCase().includes(text)).forEach(player =>
@@ -58,4 +60,4 @@ const searchInput = Input({
   }
 })
 
-container.prepend(searchInput)
+container?.prepend(searchInput)

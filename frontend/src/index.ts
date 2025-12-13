@@ -1,8 +1,12 @@
+import { sendCallback } from '@lenixdev/ui_components'
 import openDashboard from './modules/openDashboard'
 
-window.addEventListener('message', (message) => {
-  const data = message.data
-  if (data.action === 'open') {
+window.addEventListener('message', (event) => {
+  if (event.data.action === 'open') {
     openDashboard()
   }
+})
+
+document.addEventListener('DOMContentLoaded', () => {
+  sendCallback('DOMContentLoaded')
 })

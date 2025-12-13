@@ -13,7 +13,7 @@ window.addEventListener('message', async (event: MessageEvent<any>) => {
     isDashboardOn = true
   } else {
     if (API.action === 'close') {
-      closeDashboard()
+      closeDashboard(true)
       isDashboardOn = false
     }
   }

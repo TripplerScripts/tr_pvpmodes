@@ -56,10 +56,10 @@ const addNewIncomingRequest = async (index: number, identity: number): Promise<v
     }
   })
   incomingRequests.push(request)
-  currentIncoming.appendChild(request)
+  currentIncoming?.appendChild(request)
 }
 
 (async () => {
   const incoming = await getIncomingFriends()
-  incoming.forEach((identity, index: number) => addNewIncomingRequest(index, identity))
+  incoming?.forEach((identity, index: number) => addNewIncomingRequest(index, identity))
 })()

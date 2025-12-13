@@ -10,8 +10,6 @@ import getUserProfile from './nui/getUserProfile'
 import removeIncomingRequest from './nui/removeIncomingRequest'
 import removePlayerFriendship from './nui/removePlayerFriendship'
 import sendUserFriendInvitation from './nui/sendUserFriendInvitation'
-import startMatchmaking from './nui/startMatchmaking'
-import stopMatchmaking from './nui/stopMatchmaking'
 import unFocus from './nui/closeGame'
 
 export default (): void => {
@@ -27,7 +25,5 @@ export default (): void => {
   removeIncomingRequest()
   removePlayerFriendship()
   sendUserFriendInvitation()
-  startMatchmaking()
-  stopMatchmaking()
   unFocus()
 }

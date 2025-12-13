@@ -1,7 +1,7 @@
 interface Library {
   callback: {
     register: <T extends (...args: any) => ReturnType<T>>(identity: string, Function: T) => boolean
-    await: <T = unknown | Promise<unknown>>(identity: string, timeout?: number, ...args: any[]) => T
+    await: <T = Promise<unknown>>(identity: string, timeout?: number, ...args: any[]) => T
   }
 }
 

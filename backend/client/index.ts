@@ -1,7 +1,7 @@
 import prepareNuiCallbacks from './callbacks'
-import prepareEvents from './events'
+// import prepareEvents from './events'
 import prepareExports from './exports'
 
-prepareEvents()
+// prepareEvents()
 prepareNuiCallbacks()
 prepareExports()

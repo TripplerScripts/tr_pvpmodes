@@ -43,7 +43,7 @@ const addNewOutgoingRequest = async (index: number, identity: number): Promise<v
     }
   })
   outgoingRequests.push(request)
-  currentOutgoing.appendChild(request)
+  currentOutgoing?.appendChild(request)
 }
 
 (async () => {

@@ -1,6 +1,6 @@
 import './elements/init'
 import openDashboard from './modules/openDashboard'
-import closeDashboard from './modules/closeDashboard'
+import closeDashboard from './modules/closeGame'
 
 let isDashboardOn = false
 

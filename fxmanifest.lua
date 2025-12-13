@@ -1,7 +1,7 @@
 fx_version 'cerulean'
 game 'gta5'
 dependencies {
-  'ox_lib',
+  'qbx_core',
 }
 
 author 'Lenix'

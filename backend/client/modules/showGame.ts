@@ -5,5 +5,5 @@ export default () => {
     action: 'show'
   })
   SetNuiFocus(true, true)
-  exports.tr_competitive.createCam(200, 200, 2000)
+  exports.tr_competitive.createCam(0, 0, 0)
 }

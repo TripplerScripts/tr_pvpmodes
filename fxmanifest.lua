@@ -8,12 +8,13 @@ author 'Lenix'
 version '2.0.0'
 
 client_scripts {
+  '@ox_lib/init.lua',
   'backend/build/client.js',
   'backend/build/client.lua'
 }
+
 server_scripts {
   'backend/build/server.js',
-  'backend/build/server.lua'
 }
 
 ui_page 'frontend/index.html'

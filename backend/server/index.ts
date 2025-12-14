@@ -1,5 +1,3 @@
-on('onResourceStop', (resourceName: string) => {
-  if (resourceName === GetCurrentResourceName()) {
-    exports.qbx_core.Logout(-1)
-  }
+onNet('tr_spawn.server.logoutPlayer', () => {
+  exports.qbx_core.Logout(source)
 })

@@ -8,6 +8,7 @@ exports('playerHasCharacter', async () => {
 })
 
 exports('startCharacterProcess', async (onCreationFinishCoords: [number, number, number, number], spawnCoords: [number, number, number, number], onClothingMenuOpen: Function, onSubmitOrCancel: Function) => {
+  const onCreationFinishDefaultCoords = [-2163.87, 1134.51, -24.37, 310.05]
   const citizenId = await exports.tr_spawn.playerHasCharacter()
   if (citizenId) {
     const [ clothes, model ] = await exports.tr_spawn.getCharacterPreviewData()
@@ -26,11 +27,11 @@ exports('startCharacterProcess', async (onCreationFinishCoords: [number, number,
 
     emitNet('QBCore:Server:OnPlayerLoaded')
     emit('QBCore:Client:OnPlayerLoaded')
-    onCreationFinishCoords && exports.spawnmanager.spawnPlayer({
-      x: onCreationFinishCoords[0],
-      y: onCreationFinishCoords[1],
-      z: onCreationFinishCoords[2],
-      heading: onCreationFinishCoords[3]
+    exports.spawnmanager.spawnPlayer({
+      x: onCreationFinishCoords[0] || onCreationFinishDefaultCoords[0],
+      y: onCreationFinishCoords[1] || onCreationFinishDefaultCoords[1],
+      z: onCreationFinishCoords[2] || onCreationFinishDefaultCoords[2],
+      heading: onCreationFinishCoords[3] || onCreationFinishDefaultCoords[3]
     })
   } else {
     const data = {

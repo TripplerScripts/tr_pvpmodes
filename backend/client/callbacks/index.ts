@@ -1,5 +1,6 @@
 import acceptFriendship from './nui/acceptFriendship'
 import cancelOutgoingFriendship from './nui/cancelOutgoingFriendship'
+import createNewCharacter from './nui/createNewCharacter'
 import createUser from './nui/createUser'
 import closeGame from './nui/closeGame'
 import getFriendablePlayers from './nui/getFriendablePlayers'
@@ -15,6 +16,7 @@ import sendUserFriendInvitation from './nui/sendUserFriendInvitation'
 export default (): void => {
   acceptFriendship()
   cancelOutgoingFriendship()
+  createNewCharacter()
   closeGame()
   createUser()
   getFriendablePlayers()

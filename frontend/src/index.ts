@@ -1,8 +1,8 @@
 import './elements/init'
 import openDashboard from './modules/openDashboard'
 import closeDashboard from './modules/closeGame'
-
-
+import hideDashboard from './modules/hideDashboard'
+import showDashboard from './modules/showDashboard'
 
 let isDashboardOn = false
 
@@ -17,6 +17,14 @@ window.addEventListener('message', async (event: MessageEvent<any>) => {
     if (API.action === 'close') {
       closeDashboard(true)
       isDashboardOn = false
+    } else {
+      if (API.action === 'hide') {
+        hideDashboard()
+      } else {
+        if (API.action === 'show') {
+          showDashboard()
+        }
+      }
     }
   }
 })

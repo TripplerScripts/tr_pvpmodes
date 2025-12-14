@@ -7,7 +7,7 @@ exports('playerHasCharacter', async () => {
   }
 })
 
-exports('startCharacterProcess', async (onCreationFinishCoords: [number, number, number, number], onClothingMenuOpen: Function, onSubmitOrCancel: Function) => {
+exports('startCharacterProcess', async (onCreationFinishCoords: [number, number, number, number], spawnCoords: [number, number, number, number], onClothingMenuOpen: Function, onSubmitOrCancel: Function) => {
   const citizenId = await exports.tr_spawn.playerHasCharacter()
   if (citizenId) {
     const [ clothes, model ] = await exports.tr_spawn.getCharacterPreviewData()
@@ -26,11 +26,11 @@ exports('startCharacterProcess', async (onCreationFinishCoords: [number, number,
 
     emitNet('QBCore:Server:OnPlayerLoaded')
     emit('QBCore:Client:OnPlayerLoaded')
-    exports.spawnmanager.spawnPlayer({
-      x: 298.5893,
-      y: -581.2991,
-      z: 43.260,
-      heading: 111.2940
+    onCreationFinishCoords && exports.spawnmanager.spawnPlayer({
+      x: onCreationFinishCoords[0],
+      y: onCreationFinishCoords[1],
+      z: onCreationFinishCoords[2],
+      heading: onCreationFinishCoords[3]
     })
   } else {
     const data = {
@@ -41,13 +41,19 @@ exports('startCharacterProcess', async (onCreationFinishCoords: [number, number,
       birthdate: 'not specified',
       cid: -1
     }
+    spawnCoords && exports.spawnmanager.spawnPlayer({
+      x: spawnCoords[0],
+      y: spawnCoords[1],
+      z: spawnCoords[2],
+      heading: spawnCoords[3]
+    })
     const newCreatedCharacter = await exports.tr_spawn.createNewCharacter(null, data)
     emitNet('QBCore:Server:OnPlayerLoaded')
     emit('QBCore:Client:OnPlayerLoaded')
 
     if (newCreatedCharacter) {
-      onClothingMenuOpen()
-      emit('qb-clothes:client:CreateFirstCharacter', onSubmitOrCancel(), onSubmitOrCancel())
+      onClothingMenuOpen && onClothingMenuOpen()
+      emit('qb-clothes:client:CreateFirstCharacter', onSubmitOrCancel, onSubmitOrCancel)
     }
   }
 })
@@ -74,5 +80,11 @@ const startSession = () => {
     cb(true)
   })
 }
+
+on('onResourceStop', (resourceName: string) => {
+  if (resourceName === GetCurrentResourceName()) {
+    emitNet('tr_spawn.server.logoutPlayer')
+  }
+})
 
 exports('startSession', startSession)

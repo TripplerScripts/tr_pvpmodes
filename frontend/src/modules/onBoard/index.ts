@@ -16,7 +16,7 @@ export default async (): Promise<{ userName: string, userAvatar: string }> => {
         button: "Get Started",
         onClick: () => {
           success.remove()
-          sendCallback('createNewCharacter')
+          sendCallback('startCharacterProcess')
           resolve({ userName, userAvatar })
         }
       })

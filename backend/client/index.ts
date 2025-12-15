@@ -7,10 +7,10 @@ exports('playerHasCharacter', async () => {
   }
 })
 
-exports('startCharacterProcess', async (onCreationFinishCoords: [number, number, number, number], spawnCoords: [number, number, number, number], onClothingMenuOpen: Function, onSubmitOrCancel: Function) => {
+exports('startCharacterProcess', async (passedOnCreationFinishCoords: [number, number, number, number], passedSpawnCoords: [number, number, number, number], onClothingMenuOpen: Function, onSubmitOrCancel: Function) => {
   const citizenId = await exports.tr_spawn.playerHasCharacter()
   if (citizenId) {
-    const defaultSpawnCoords = [-2163.87, 1134.51, -24.37, 310.05]
+    const spawnCoords = passedSpawnCoords || [-2163.87, 1134.51, -24.37, 310.05]
     const [ clothes, model ] = await exports.tr_spawn.getCharacterPreviewData(citizenId)
     RequestModel(model)
     await new Promise<void>((resolve) => {
@@ -29,16 +29,16 @@ exports('startCharacterProcess', async (onCreationFinishCoords: [number, number,
     exports.tr_spawn.loadCharacter(citizenId)
 
     exports.spawnmanager.spawnPlayer({
-      x: spawnCoords[0] || defaultSpawnCoords[0],
-      y: spawnCoords[1] || defaultSpawnCoords[1],
-      z: spawnCoords[2] || defaultSpawnCoords[2],
-      heading: spawnCoords[3] || defaultSpawnCoords[3]
+      x: spawnCoords[0],
+      y: spawnCoords[1],
+      z: spawnCoords[2],
+      heading: spawnCoords[3]
     })
 
     emitNet('QBCore:Server:OnPlayerLoaded')
     emit('QBCore:Client:OnPlayerLoaded')
   } else {
-    const onCreationFinishDefaultCoords = [-2163.87, 1134.51, -24.37, 310.05]
+    const onCreationFinishCoords = passedOnCreationFinishCoords || [-2163.87, 1134.51, -24.37, 310.05]
     const data = {
       firstname: 'not specified',
       lastname: 'not specified',
@@ -48,10 +48,10 @@ exports('startCharacterProcess', async (onCreationFinishCoords: [number, number,
       cid: -1
     }
     exports.spawnmanager.spawnPlayer({
-      x: onCreationFinishCoords[0] || onCreationFinishDefaultCoords[0],
-      y: onCreationFinishCoords[1] || onCreationFinishDefaultCoords[1],
-      z: onCreationFinishCoords[2] || onCreationFinishDefaultCoords[2],
-      heading: onCreationFinishCoords[3] || onCreationFinishDefaultCoords[3]
+      x: onCreationFinishCoords[0],
+      y: onCreationFinishCoords[1],
+      z: onCreationFinishCoords[2],
+      heading: onCreationFinishCoords[3]
     })
     const newCreatedCharacter = await exports.tr_spawn.createNewCharacter(null, data)
     emitNet('QBCore:Server:OnPlayerLoaded')
@@ -62,30 +62,40 @@ exports('startCharacterProcess', async (onCreationFinishCoords: [number, number,
       emit('qb-clothes:client:CreateFirstCharacter', onSubmitOrCancel, onSubmitOrCancel)
     }
   }
+  return true
 })
 
+setImmediate(() => {
+  const interval = setInterval(() => {
+    if (NetworkIsSessionStarted()) {
+      exports.tr_spawn.startSession()
+      clearInterval(interval)
+    }
+  }, 1000)
+})
 const startSession = () => {
-  RegisterNuiCallback('DOMContentLoaded', (data: any[], cb: Function) => {
-    SendNuiMessage(JSON.stringify({
-      action: 'open'
-    }))
-    SetNuiFocus(true, true)
+  SendNuiMessage(JSON.stringify({
+    action: 'open'
+  }))
+  SetNuiFocus(true, true)
 
-    RegisterNuiCallback('startPlay', (data: any[], cb: Function) => {
-      SetNuiFocus(false, false)
-      if (data[0] === 'competitive') {
-        exports.tr_competitive.start()
+  RegisterNuiCallback('startPlay', (data: any[], cb: Function) => {
+    SetNuiFocus(false, false)
+    if (data[0] === 'competitive') {
+      exports.tr_competitive.start()
+      cb(true)
+    } else {
+      if (data[0] === 'freeroam') {
+        exports.tr_freeroam.start()
         cb(true)
-      } else {
-        if (data[0] === 'freeroam') {
-          exports.tr_freeroam.start()
-          cb(true)
-        } else throw new Error('Invalid game mode invoked')
-      }
-    })
-    cb(true)
+      } else throw new Error('Invalid game mode invoked')
+    }
   })
 }
+
+onNet('tr_spawn/client/logout', () => {
+  startSession()
+})
 
 on('onResourceStop', (resourceName: string) => {
   if (resourceName === GetCurrentResourceName()) {

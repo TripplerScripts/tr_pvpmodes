@@ -14,14 +14,13 @@ const closeDashboard = () => {
 export default () => {
   createElement({
     parent: "body",
-    id: "root", 
-    className: "bg-[url(./src/assets/bg.jpg)]"   
+    id: "root"
   })
 
   createElement({
     parent: "root",
     id: "dashboard",
-    className: "w-[100vw] h-[100vh] flex items-end justify-center py-52 bg-stone-900/20",    
+    className: "w-[100vw] h-[100vh] flex items-end justify-center py-52 bg-stone-900/20 bg-[url(./src/assets/bg.jpg)] bg-cover bg-center"
   })
 
   createElement({

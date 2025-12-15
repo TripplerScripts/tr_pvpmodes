@@ -12,9 +12,15 @@ window.addEventListener('message', async (event: MessageEvent<any>) => {
   const identity: number = API.identity
 
   if (API.action === 'open') {
-    openDashboard(identity)
-    isDashboardOn = true
-    if (typeof identity === 'number') sendCallback('startCharacterProcess')
+    if (typeof identity === 'number') {
+      const response = await sendCallback<boolean>('startCharacterProcess')
+      if (!response) return
+      openDashboard(identity)
+      isDashboardOn = true
+    } else {
+      openDashboard(identity)
+      isDashboardOn = true
+    }
   } else {
     if (API.action === 'close') {
       closeDashboard(true)

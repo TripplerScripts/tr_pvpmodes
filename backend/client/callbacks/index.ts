@@ -1,6 +1,6 @@
 import acceptFriendship from './nui/acceptFriendship'
 import cancelOutgoingFriendship from './nui/cancelOutgoingFriendship'
-import createNewCharacter from './nui/createNewCharacter'
+import createNewCharacter from './nui/startCharacterProcess'
 import createUser from './nui/createUser'
 import closeGame from './nui/closeGame'
 import getFriendablePlayers from './nui/getFriendablePlayers'

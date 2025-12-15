@@ -1,6 +1,8 @@
-import prepareCallbacks from './callbacks'
+import prepareCallbacks from './callbacks/index'
 import startSession from './modules/startSession'
+import prepareExports from './exports'
 
+prepareExports()
 prepareCallbacks()
 
 let DOMContentLoaded = false
@@ -23,5 +25,4 @@ setImmediate(() => {
     }
   }, 1000)
 })
-
 export default (state: boolean) => DOMContentLoaded = state

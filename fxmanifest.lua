@@ -7,9 +7,6 @@ dependencies {
 author 'Lenix'
 version '2.0.0'
 
-ui_page 'frontend/index.html'
-file 'frontend/**'
-
 client_scripts {
   '@ox_lib/init.lua',
   'backend/build/client.js',
@@ -19,3 +16,6 @@ client_scripts {
 server_scripts {
   'backend/build/server.js',
 }
+
+ui_page 'frontend/index.html'
+file 'frontend/**'

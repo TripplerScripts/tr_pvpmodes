@@ -84,7 +84,7 @@ const startSession = () => {
 
 on('onResourceStop', (resourceName: string) => {
   if (resourceName === GetCurrentResourceName()) {
-    emitNet('tr_spawn.server.logoutPlayer')
+    emitNet('tr_spawn/server/logoutPlayer')
   }
 })
 

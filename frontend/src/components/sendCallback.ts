@@ -6,5 +6,5 @@ export default async <T = unknown>(callback: string, ...args: any[]): Promise<T>
     },
     body: JSON.stringify(args),
   })
-  return response.json()
+  return await response.json()
 }

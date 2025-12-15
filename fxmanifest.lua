@@ -18,7 +18,4 @@ server_scripts {
 }
 
 ui_page 'frontend/index.html'
-files {
-  'frontend/index.html',
-  'frontend/build/index.js'
-}
+file 'frontend/**'

@@ -1,26 +1,18 @@
 import prepareCallbacks from './callbacks/index'
-import startSession from './modules/startSession'
+import openMainMenu from './modules/openMainMenu'
 import prepareExports from './exports'
+import prepareEvents from './events'
 
 prepareExports()
 prepareCallbacks()
+prepareEvents()
 
 let DOMContentLoaded = false
-
-onNet('tr_spawn/client/logout', () => {
-  startSession()
-})
-
-on('onResourceStop', (resourceName: string) => {
-  if (resourceName === GetCurrentResourceName()) {
-    emitNet('tr_spawn/server/logout')
-  }
-})
 
 setImmediate(() => {
   const interval = setInterval(() => {
     if (NetworkIsSessionStarted() && DOMContentLoaded) {
-      startSession()
+      openMainMenu()
       clearInterval(interval)
     }
   }, 1000)

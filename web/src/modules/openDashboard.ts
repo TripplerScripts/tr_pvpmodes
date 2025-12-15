@@ -1,30 +1,30 @@
 import { Button, createElement, sendCallback } from '@lenixdev/ui_components'
 
 const selectGameMode = async (mode: string) => {
-  const response = await sendCallback<boolean>('startPlay', mode)
+  const response = await sendCallback<boolean>('selectGameMode', mode)
   if (response) {
-    closeDashboard()
+    closeStartingMenu()
   }
 }
 
-const closeDashboard = () => {
-  document.getElementById('root')?.remove()
+const closeStartingMenu = () => {
+  document.getElementById('startingMenu')?.classList.add('hidden')
 }
+
+createElement({
+  parent: "body",
+  id: "root"
+})
 
 export default () => {
   createElement({
-    parent: "body",
-    id: "root"
-  })
-
-  createElement({
     parent: "root",
-    id: "dashboard",
+    id: "startingMenu",
     className: "w-[100vw] h-[100vh] flex items-end justify-center py-52 bg-stone-900/20 bg-[url(./src/assets/bg.jpg)] bg-cover bg-center"
   })
 
   createElement({
-    parent: "dashboard",
+    parent: "startingMenu",
     id: "dashboard-content",
     className: "flex flex-col items-center gap-5"    
   })

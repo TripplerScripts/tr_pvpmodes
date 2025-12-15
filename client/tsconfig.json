@@ -1,8 +1,8 @@
 {
-  "extends": "../../tsconfig.json",
+  "extends": "../tsconfig.json",
   "compilerOptions": {
     "outDir": "./build",
     "rootDir": "./",
-    "types": ["@citizenfx/server"]
+    "types": ["@citizenfx/client"]
   }
 }

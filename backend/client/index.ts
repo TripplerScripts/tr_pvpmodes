@@ -13,10 +13,13 @@ exports('startCharacterProcess', async (onCreationFinishCoords: [number, number,
     const defaultSpawnCoords = [-2163.87, 1134.51, -24.37, 310.05]
     const [ clothes, model ] = await exports.tr_spawn.getCharacterPreviewData(citizenId)
     RequestModel(model)
-    const interval = setInterval(() => {
-      if (HasModelLoaded(model)) {
-        clearInterval(interval)
-      }
+    await new Promise<void>((resolve) => {
+      const interval = setInterval(() => {
+        if (HasModelLoaded(model)) {
+          clearInterval(interval)
+          resolve()
+        }
+      }, 1000)
     })
 
     SetPlayerModel(PlayerId(), model)
@@ -25,14 +28,15 @@ exports('startCharacterProcess', async (onCreationFinishCoords: [number, number,
 
     exports.tr_spawn.loadCharacter(citizenId)
 
-    emitNet('QBCore:Server:OnPlayerLoaded')
-    emit('QBCore:Client:OnPlayerLoaded')
     exports.spawnmanager.spawnPlayer({
       x: spawnCoords[0] || defaultSpawnCoords[0],
       y: spawnCoords[1] || defaultSpawnCoords[1],
       z: spawnCoords[2] || defaultSpawnCoords[2],
       heading: spawnCoords[3] || defaultSpawnCoords[3]
     })
+
+    emitNet('QBCore:Server:OnPlayerLoaded')
+    emit('QBCore:Client:OnPlayerLoaded')
   } else {
     const onCreationFinishDefaultCoords = [-2163.87, 1134.51, -24.37, 310.05]
     const data = {
@@ -85,7 +89,7 @@ const startSession = () => {
 
 on('onResourceStop', (resourceName: string) => {
   if (resourceName === GetCurrentResourceName()) {
-    emitNet('tr_spawn/server/logoutPlayer')
+    emitNet('tr_spawn/server/logout')
   }
 })
 

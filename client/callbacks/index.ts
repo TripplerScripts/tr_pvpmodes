@@ -1,5 +1,6 @@
-import DOMContentLoaded from './nui/DOMContentLoaded'
+import DOMContentLoaded from '..'
 
-export default () => {
-  DOMContentLoaded()
-}
+RegisterNuiCallback('DOMContentLoaded', (_data: any, callback: Function) => {
+  DOMContentLoaded(true)
+  callback({})
+})

@@ -4,15 +4,15 @@ export default () => {
   }))
   SetNuiFocus(true, true)
 
-  RegisterNuiCallback('selectGameMode', (data: any[], cb: Function) => {
+  RegisterNuiCallback('selectGameMode', (data, cb: Function) => {
     SetNuiFocus(false, false)
     if (data[0] === 'competitive') {
       exports.tr_competitive.start()
-      cb(true)
+      cb({})
     } else {
       if (data[0] === 'freeroam') {
         exports.tr_freeroam.start()
-        cb(true)
+        cb({})
       } else throw new Error('Invalid game mode invoked')
     }
   })

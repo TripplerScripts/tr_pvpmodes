@@ -1,11 +1,7 @@
-import prepareCallbacks from './callbacks/index'
+import './callbacks/index'
+import './exports'
+import './events'
 import openMainMenu from './modules/openMainMenu'
-import prepareExports from './exports'
-import prepareEvents from './events'
-
-prepareExports()
-prepareCallbacks()
-prepareEvents()
 
 let DOMContentLoaded = false
 

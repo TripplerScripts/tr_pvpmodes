@@ -1,0 +1,14 @@
+import { Button } from "@lenixdev/ui_components"
+import { useFriendsPanel } from "../../../../hooks/useFriendsPanel"
+
+Button({
+  parent: "player-details",
+  id: "friendsButton",
+  className: "w-[10%] h-[80%] bg-blue-700 flex items-center justify-center",
+  size: "base",
+  content: "👥 | 0",
+  type: "secondary",
+  onClick: () => {
+    useFriendsPanel()
+  }
+})

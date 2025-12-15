@@ -1,0 +1,2 @@
+import './friendship'
+import './user'

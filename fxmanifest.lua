@@ -11,16 +11,16 @@ author 'Trippler'
 version '0.0.0'
 
 client_scripts {
-  'backend/build/client.js',
-  'backend/build/client.lua',
+  'build/client.js',
+  'build/client.lua',
 }
 server_scripts {
-  'backend/build/server.js',
-  'backend/build/server.lua',
+  'build/server.js',
+  'build/server.lua',
 }
 
-ui_page 'frontend/index.html'
+ui_page 'web/public/index.html'
 files {
-  'frontend/index.html',
-  'frontend/build/index.js'
+  'web/public/index.html',
+  'build/web.js'
 }

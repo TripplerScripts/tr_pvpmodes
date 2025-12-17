@@ -1,10 +1,10 @@
 import openMainMenu from '../modules/openMainMenu'
 
-onNet('tr_spawn/client/logout', () => {
+onNet('tr_onboarding/client/logout', () => {
   openMainMenu()
 })
 on('onResourceStop', (resourceName: string) => {
   if (resourceName === GetCurrentResourceName()) {
-    emitNet('tr_spawn/server/logout')
+    emitNet('tr_onboarding/server/logout')
   }
 })

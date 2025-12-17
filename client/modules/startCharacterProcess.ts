@@ -1,8 +1,8 @@
 export default async (passedOnCreationFinishCoords: [number, number, number, number], passedSpawnCoords: [number, number, number, number], onClothingMenuOpen: Function, onSubmitOrCancel: Function) => {
-  const citizenId = await exports.tr_spawn.playerHasCharacter()
+  const citizenId = await exports.tr_onboarding.playerHasCharacter()
   if (citizenId) {
     const spawnCoords = passedSpawnCoords || [-2163.87, 1134.51, -24.37, 310.05]
-    const [ clothes, model ] = await exports.tr_spawn.getCharacterPreviewData(citizenId)
+    const [ clothes, model ] = await exports.tr_onboarding.getCharacterPreviewData(citizenId)
     RequestModel(model)
     await new Promise<void>((resolve) => {
       const interval = setInterval(() => {
@@ -17,7 +17,7 @@ export default async (passedOnCreationFinishCoords: [number, number, number, num
     exports['illenium-appearance'].setPedAppearance(PlayerPedId(), JSON.parse(clothes))
     SetModelAsNoLongerNeeded(model)
 
-    exports.tr_spawn.loadCharacter(citizenId)
+    exports.tr_onboarding.loadCharacter(citizenId)
 
     exports.spawnmanager.spawnPlayer({
       x: spawnCoords[0],
@@ -44,7 +44,7 @@ export default async (passedOnCreationFinishCoords: [number, number, number, num
       z: onCreationFinishCoords[2],
       heading: onCreationFinishCoords[3]
     })
-    const newCreatedCharacter = await exports.tr_spawn.createNewCharacter(null, data)
+    const newCreatedCharacter = await exports.tr_onboarding.createNewCharacter(null, data)
     emitNet('QBCore:Server:OnPlayerLoaded')
     emit('QBCore:Client:OnPlayerLoaded')
 

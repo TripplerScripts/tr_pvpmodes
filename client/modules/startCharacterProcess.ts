@@ -3,6 +3,7 @@ export default async (passedOnCreationFinishCoords: [number, number, number, num
   if (citizenId) {
     const spawnCoords = passedSpawnCoords || [-2163.87, 1134.51, -24.37, 310.05]
     const [ clothes, model ] = await exports.tr_onboarding.getCharacterPreviewData(citizenId)
+
     RequestModel(model)
     await new Promise<void>((resolve) => {
       const interval = setInterval(() => {
@@ -25,7 +26,6 @@ export default async (passedOnCreationFinishCoords: [number, number, number, num
       z: spawnCoords[2],
       heading: spawnCoords[3]
     })
-
     emitNet('QBCore:Server:OnPlayerLoaded')
     emit('QBCore:Client:OnPlayerLoaded')
   } else {

@@ -4,7 +4,6 @@ import { PlayerObject } from "../../../shared/constants/config"
 import { messagesFadeDuration } from "../../../shared/constants/config"
 
 export default (message: string, player: PlayerObject) => {
-  console.log(player)
   createElement({
     parent: 'messages',
     id: 'message-' + setMessagesCount(messageCount + 1),
@@ -19,7 +18,7 @@ export default (message: string, player: PlayerObject) => {
 
   createElement({
     parent: "message-" + messageCount,
-    className: "text-" + player.role.color + " text-lg shrink-0",
+    className: "text-[" + player.role.color + "] text-lg shrink-0",
     content: ' (' + player.role.name + '): '
   })
 

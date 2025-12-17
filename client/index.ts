@@ -1,4 +1,4 @@
-const lib = exports.tr_lib.init()
+const lib = globalThis.exports.tr_lib.init()
 
 lib.control.onDisabled('T', () => {
   SendNuiMessage(JSON.stringify({ action: 'open' }))
@@ -15,10 +15,13 @@ RegisterNuiCallback("closeChat", (_data: [string], callback: Function) => {
   callback({})
 })
 
-lib.callback.register('createNewMessage', (message: string) => {
+lib.callback.register('createNewMessage', async (message: string, userDiscordId: string) => {
+  if (!userDiscordId) return false
+  const userRole = await lib.callback.await('getDiscordUserRole', null, userDiscordId)
   SendNuiMessage(JSON.stringify({
     action: 'createNewMessage',
-    message
+    message,
+    userRole,
   }))
 })
 

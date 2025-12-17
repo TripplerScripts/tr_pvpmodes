@@ -1,10 +1,9 @@
 import useUnfocus from "../../hooks/useUnfocus"
 
 const block = document.getElementById('block')
-const outside = document.getElementById('root') || document.getElementById('container')
 
-outside?.addEventListener('mousedown', (e) => {
-  if (!block?.contains(e.target as Node)) {
+document.addEventListener('mousedown', (e) => {
+  if (block && !block.contains(e.target as Node)) {
     useUnfocus()
   }
 })

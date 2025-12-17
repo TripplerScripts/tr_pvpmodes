@@ -44,11 +44,13 @@ export default async (userId: string) => {
       member.roles.includes(role.id)
     )
     
-    userRoles.forEach((role: { name: string; id: string, colors: { primary_color: number }, hoist: boolean }) => {
-      if (role.hoist) {
-        return [ role.name, integerToHexadecimal(role.colors.primary_color) ]
-      }
+    const hoistedRole = userRoles.find((role: { name: string; id: string, color: number, hoist: boolean }) => {
+      return role.hoist
     })
+
+    if (hoistedRole) {
+      return {name: member.user.global_name, role: {name: hoistedRole.name, color: integerToHexadecimal(hoistedRole.color)}}
+    }
     return false
   } catch (error) {
     if (axios.isAxiosError(error)) {

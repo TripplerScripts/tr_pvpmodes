@@ -21,7 +21,7 @@ createElement({
 createElement({
   parent: 'container',
   id: 'block',
-  className: "w-[30%] h-[50%] flex flex-col p-1 gap-1"
+  className: "w-[30%] h-[50%] flex flex-col p-1 gap-1 rounded-md border-stone-800/50"
 })
 
 createElement({
@@ -39,7 +39,7 @@ createElement({
 createElement({
   parent: 'block',
   id: 'input',
-  className: 'w-full h-fit bg-stone-600 flex items-center gap-1 px-1 opacity-0',
+  className: 'w-full h-fit bg-stone-600 flex items-center gap-1 px-1 opacity-0 rounded-md',
 })
 
 export const input = Input({

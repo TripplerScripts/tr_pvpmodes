@@ -2,6 +2,7 @@ import { maxTextLength, messagesCooldown, messagesFadeDuration } from "../../../
 import useCooldown from "../hooks/useCooldown"
 import { input } from "../features/chat"
 import { sendCallback } from "@lenixdev/ui_components"
+import { setInCooldown } from ".."
 
 let canSend = true
 
@@ -16,6 +17,7 @@ export default (message: string) => {
     const bar = document.getElementById('cooldown-bar')
     canSend = true
     bar?.classList.add('hidden')
+    setInCooldown(false)
   }, messagesCooldown * 1000);
   
   input.value = ''

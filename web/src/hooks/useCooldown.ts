@@ -1,7 +1,11 @@
+import { setInCooldown } from ".."
+
 export default () => {
   const bar = document.getElementById('cooldown-bar')
   if (bar) {
-    bar.classList.remove('hidden')
+    setInCooldown(true)
+    bar.classList.remove('opacity-0')
+    bar.classList.add('opacity-100')
     bar.style.transition = 'none'
     bar.style.width = '100%'
     

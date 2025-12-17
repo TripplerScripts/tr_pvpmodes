@@ -1,6 +1,6 @@
 import { doesUserAlreadyExist } from './api/user' 
 import { showGame, hideGame } from './game'
 
-exports('doesUserAlreadyExist', doesUserAlreadyExist)
-exports('showGame', showGame)
-exports('hideGame', hideGame)
+globalThis.exports('doesUserAlreadyExist', doesUserAlreadyExist)
+globalThis.exports('showGame', showGame)
+globalThis.exports('hideGame', hideGame)

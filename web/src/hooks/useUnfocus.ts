@@ -1,3 +1,4 @@
+import { sendCallback } from '@lenixdev/ui_components'
 import { pendingMessageForFadeCount, setFocus } from '../index'
 import { messageCount } from '../index'
 
@@ -10,8 +11,10 @@ export default () => {
   cooldown?.add('opacity-0')
   input?.add('opacity-0')
   input?.remove('opacity-100')
-  block?.remove('bg-stone-700')
-  messages?.remove('bg-stone-900')
+  block?.remove('blured-20')
+  messages?.remove('blured-20')
+  ;(window as any).refreshBlurElements?.()
+  
   const inputElement = document.querySelector('.input') as HTMLInputElement
   inputElement?.blur()
   for (let i = 1; i <= messageCount; i++) {
@@ -26,4 +29,5 @@ export default () => {
       message?.add('opacity-0')
     }
   }
+  sendCallback<void>('closeChat')
 }

@@ -1,9 +1,8 @@
-
-export const player = {
-  name: 'LenixDev',
+export type PlayerObject = {
+  name: string,
   role: {
-    name: 'Developer',
-    color: 'red-700',
+    name: string,
+    color: string,
   }
 }
 export const maxTextLength = 128

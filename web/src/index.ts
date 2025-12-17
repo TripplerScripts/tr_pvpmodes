@@ -1,13 +1,12 @@
 import { sendCallback } from '@lenixdev/ui_components'
-import openDashboard from './modules/openDashboard'
-import openClosingMenu from './modules/openClosingMenu'
+import './features'
+import useMainIntrance from './hooks/useMainIntrance'
 
 window.addEventListener('message', (event) => {
   if (event.data.action === 'open') {
-    openDashboard()
+    useMainIntrance(true)
   } else {
     if (event.data.action === 'close') {
-      openClosingMenu()
     }
   }
 })

@@ -1,4 +1,4 @@
-import { messageCount, setFocus } from '..'
+import { inCooldown, messageCount, setFocus } from '..'
 
 export default () => {
   setFocus(true)
@@ -9,7 +9,9 @@ export default () => {
   const block = document.getElementById('block')?.classList
   const messages = document.getElementById('messages')?.classList
   const cooldown = document.getElementById('cooldown-bar')?.classList
-  cooldown?.remove('opacity-0')
+  if (inCooldown) {
+    cooldown?.remove('opacity-0')
+  }
   input?.add('opacity-100')
   input?.remove('opacity-0')
   block?.add('blured-20')

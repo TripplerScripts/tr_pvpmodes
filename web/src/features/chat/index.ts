@@ -15,7 +15,7 @@ createElement({
 createElement({
   parent: 'root',
   id: 'container',
-  className: 'w-full h-[80vh] flex items-end justify-start mx-2'
+  className: 'w-full h-[80vh] flex items-end justify-start px-2'
 })
 
 createElement({

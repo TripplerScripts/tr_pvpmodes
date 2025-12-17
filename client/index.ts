@@ -1,21 +1,27 @@
 const lib = exports.tr_lib.init()
 
-lib.keybind.onPress('lalt', () => {
-  console.log('lalt pressed')
+lib.control.onDisabled('T', () => {
+  SendNuiMessage(JSON.stringify({ action: 'open' }))
+  SetNuiFocus(true, true)
 })
 
 RegisterNuiCallback("createNewMessageRequest", (data: [string], callback: Function) => {
-  const response = lib.callback.await("createNewMessageRequest", data[0])  
+  const response = lib.callback.await("createNewMessageRequest", null, data[0])  
   callback({response})
+})
+
+RegisterNuiCallback("closeChat", (_data: [string], callback: Function) => {
+  SetNuiFocus(false, false)
+  callback({})
 })
 
 lib.callback.register('createNewMessage', (message: string) => {
   SendNuiMessage(JSON.stringify({
     action: 'createNewMessage',
-    message: message
+    message
   }))
 })
-console.log(true)
+
 on('onResourceStop', (resourceName: string) => {
   if (resourceName === GetCurrentResourceName()) {
     emitNet('tr_onboarding/server/logout')

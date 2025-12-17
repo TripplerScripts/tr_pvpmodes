@@ -15,6 +15,8 @@ export default () => {
   input?.add('opacity-100')
   input?.remove('opacity-0')
   block?.add('blured-20')
+  block?.add('shadow-md')
+  block?.add('border')
   messages?.add('blured-20')
   ;(window as any).refreshBlurElements?.()
   

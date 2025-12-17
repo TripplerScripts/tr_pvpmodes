@@ -4,7 +4,7 @@ export default () => {
   }))
   SetNuiFocus(true, true)
 
-  RegisterNuiCallback('selectGameMode', (data, cb: Function) => {
+  RegisterNuiCallback('selectMode', (data, cb: Function) => {
     SetNuiFocus(false, false)
     if (data[0] === 'competitive') {
       exports.tr_competitive.start()

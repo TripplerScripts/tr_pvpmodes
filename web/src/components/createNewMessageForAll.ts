@@ -1,10 +1,10 @@
 import { createElement } from "@lenixdev/ui_components"
 import { isFocused, messageCount, pendingMessageForFadeCount, setMessagesCount, setPendingMessageForFadeCount } from ".."
-import { player } from "../../../shared/constants/config"
+import { PlayerObject } from "../../../shared/constants/config"
 import { messagesFadeDuration } from "../../../shared/constants/config"
 
-
-export default (message: string) => {
+export default (message: string, player: PlayerObject) => {
+  console.log(player)
   createElement({
     parent: 'messages',
     id: 'message-' + setMessagesCount(messageCount + 1),

@@ -62,7 +62,7 @@ Button({
 createElement({
   parent: 'block',
   id: 'cooldown-bar',
-  className: `h-[1%] bg-blue-500 transition-[width] duration-[${messagesCooldown}s] ease-linear hidden`,
+  className: `h-[1%] bg-blue-500 transition-[width] duration-[${messagesCooldown}s] ease-linear opacity-0`,
 })
 
 createElement({

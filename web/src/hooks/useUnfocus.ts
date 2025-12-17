@@ -9,6 +9,7 @@ export default () => {
   const messages = document.getElementById('messages')?.classList
   const cooldown = document.getElementById('cooldown-bar')?.classList
   cooldown?.add('opacity-0')
+  cooldown?.remove('opacity-100')
   input?.add('opacity-0')
   input?.remove('opacity-100')
   block?.remove('blured-20')

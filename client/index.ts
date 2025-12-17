@@ -1,6 +1,5 @@
-import './callbacks/index'
+import './api'
 import './exports'
-import './events'
 import openMainMenu from './modules/openMainMenu'
 
 let DOMContentLoaded = false
@@ -13,4 +12,14 @@ setImmediate(() => {
     }
   }, 1000)
 })
+
+onNet('tr_onboarding/client/logout', () => {
+  openMainMenu()
+})
+on('onResourceStop', (resourceName: string) => {
+  if (resourceName === GetCurrentResourceName()) {
+    emitNet('tr_onboarding/server/logout')
+  }
+})
+
 export default (state: boolean) => DOMContentLoaded = state

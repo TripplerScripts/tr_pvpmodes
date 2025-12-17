@@ -9,13 +9,13 @@ version '2.0.0'
 
 client_scripts {
   '@ox_lib/init.lua',
-  'backend/build/client.js',
-  'backend/build/client.lua'
+  'build/client.js',
+  'build/client.lua'
 }
 
 server_scripts {
-  'backend/build/server.js',
+  'build/server.js',
 }
 
-ui_page 'frontend/index.html'
-file 'frontend/**'
+ui_page 'web/index.html'
+file 'web/**'

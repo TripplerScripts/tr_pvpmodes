@@ -45,13 +45,14 @@ export default async (passedOnCreationFinishCoords: [number, number, number, num
       heading: onCreationFinishCoords[3]
     })
     const newCreatedCharacter = await exports.tr_onboarding.createNewCharacter(null, data)
+    // if (!newCreatedCharacter) {
+    //   lib.console.trace('Lenix got no idea why this is failing')
+    // }
     emitNet('QBCore:Server:OnPlayerLoaded')
     emit('QBCore:Client:OnPlayerLoaded')
 
-    if (newCreatedCharacter) {
-      onClothingMenuOpen && onClothingMenuOpen()
-      emit('qb-clothes:client:CreateFirstCharacter', onSubmitOrCancel, onSubmitOrCancel)
-    }
+    onClothingMenuOpen && onClothingMenuOpen()
+    emit('qb-clothes:client:CreateFirstCharacter', onSubmitOrCancel, onSubmitOrCancel)
   }
   return true
 }

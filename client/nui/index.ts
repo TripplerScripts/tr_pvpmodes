@@ -1,3 +1,5 @@
+import './friendship'
+import './user'
 import { closeGame } from '../game'
 import { profile } from '../../shared/constants/config'
 import startCharacterProcess from '../game/spawn'

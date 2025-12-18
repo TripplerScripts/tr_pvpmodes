@@ -14,9 +14,7 @@ export default (message: string) => {
   useCooldown()
   canSend = false
   setTimeout(() => {
-    const bar = document.getElementById('cooldown-bar')
     canSend = true
-    bar?.classList.add('hidden')
     setInCooldown(false)
   }, messagesCooldown * 1000);
   

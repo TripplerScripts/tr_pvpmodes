@@ -2,7 +2,12 @@ const lib = globalThis.exports.tr_lib.init()
 
 lib.control.onDisabled('T', () => {
   SendNuiMessage(JSON.stringify({ action: 'open' }))
+  SetNuiFocus(true, false)
+})
+
+RegisterNuiCallback("focus", (_data: [string], callback: Function) => {
   SetNuiFocus(true, true)
+  callback({})
 })
 
 RegisterNuiCallback("createNewMessageRequest", (data: [string], callback: Function) => {

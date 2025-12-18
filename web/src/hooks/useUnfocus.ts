@@ -8,6 +8,7 @@ export default () => {
   const block = document.getElementById('block')?.classList
   const messages = document.getElementById('messages')?.classList
   const cooldown = document.getElementById('cooldown-bar')?.classList
+  const charactersLeft = document.getElementById('characters-left')?.classList
   cooldown?.add('opacity-0')
   cooldown?.remove('opacity-100')
   input?.add('opacity-0')
@@ -15,6 +16,9 @@ export default () => {
   block?.remove('blured-20')
   block?.remove('shadow-md')
   block?.remove('border')
+  block?.remove('bg-stone-900/80')
+  charactersLeft?.add('opacity-0')
+  charactersLeft?.remove('opacity-100')
   messages?.remove('blured-20')
   ;(window as any).refreshBlurElements?.()
   

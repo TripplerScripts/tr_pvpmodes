@@ -20,7 +20,7 @@ export default (message: string) => {
   
   input.value = ''
 
-  const characterLeftElement = document.getElementById('character-left')
+  const characterLeftElement = document.getElementById('characters-left')
   characterLeftElement?.classList.add('hidden')
 
   sendCallback('createNewMessageRequest', message)

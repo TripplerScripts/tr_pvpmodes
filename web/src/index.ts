@@ -2,6 +2,7 @@ import './features'
 import './utils/dom/chat'
 import useFocus from "./hooks/useFocus"
 import createNewMessageForAll from './components/createNewMessageForAll'
+import { sendCallback } from '@lenixdev/ui_components'
 
 window.addEventListener('message', (event) => {
   if (event.data.action === 'open' && !isFocused) {
@@ -10,6 +11,12 @@ window.addEventListener('message', (event) => {
     if (event.data.action === 'createNewMessage') {
       createNewMessageForAll(event.data.message, event.data.userRole)
     }
+  }
+})
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'F11') {
+    sendCallback('focus')
   }
 })
 

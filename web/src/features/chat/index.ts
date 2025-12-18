@@ -68,5 +68,18 @@ createElement({
 createElement({
   parent: 'block',
   className: 'w-full h-[10%] text-lg text-stone-200 px-1 hidden',
-  id: 'character-left',
+  id: 'characters-left',
 })
+
+
+const styles = document.createElement('style')
+styles.innerHTML = `
+  #messages {
+    scrollbar-width: none; /* Firefox */
+  }
+
+  #messages::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Edge */
+  }
+`
+document.head.appendChild(styles)

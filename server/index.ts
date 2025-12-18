@@ -1,10 +1,10 @@
 import './api'
 const lib = globalThis.exports.tr_lib.init()
-const playersSources: number[] = []
+const playersSources: number[] = [1, 2]
 
-lib.callback.register('createNewMessageRequest', (source: number, message: string) => {
+lib.callback.register('createNewMessageRequest', (senderSource: number, message: string) => {
   playersSources.forEach(source => {
-    const discordId = GetPlayerIdentifierByType(source as any, 'discord')
+    const discordId = GetPlayerIdentifierByType(senderSource as any, 'discord')
     const userDiscordId = lib.split(discordId, ':')[1]
     lib.callback.await('createNewMessage', null, source, message, userDiscordId)
   });

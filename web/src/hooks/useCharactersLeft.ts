@@ -1,7 +1,7 @@
 import { maxTextLength } from '../../../shared/constants/config'
 
 export default (inputLength: number) => {
-  const characterLeftElement = document.getElementById('character-left')!
+  const characterLeftElement = document.getElementById('characters-left')!
   characterLeftElement.textContent = (maxTextLength - inputLength).toString()
   if (inputLength >= (maxTextLength) - maxTextLength / 4) {
     characterLeftElement.classList.remove('hidden')

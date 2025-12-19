@@ -6,6 +6,7 @@
   },
   "include": [
     "./**/*",
-    "../../backend/client/**/*"
-, "../../backend/build/config"  ]
+    "../../backend/client/**/*", 
+    "../../backend/build/config"
+  ]
 }

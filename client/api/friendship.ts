@@ -1,4 +1,4 @@
-import lib from '../lib'
+import { triggerPromise } from '@trippler/tr_lib/client'
 import {
   AcceptFriendship,
   CancelOutgoingFriendship,
@@ -11,12 +11,12 @@ import {
   SendUserFriendInvitation
 } from '../../shared/types/callback'
 
-export const acceptFriendship = (timeout: number | undefined, name: string) => lib.callback.await<AcceptFriendship>('acceptFriendship', timeout, name)
-export const getPlayerFriends = (timeout?: number) => lib.callback.await<GetPlayerFriends>('getPlayerFriends', timeout)
-export const getIncomingFriends = (timeout?: number) => lib.callback.await<GetIncomingFriends>('getIncomingFriends', timeout)
-export const getOutgoingFriends = (timeout?: number) => lib.callback.await<GetOutgoingFriends>('getOutgoingFriends', timeout)
-export const getFriendablePlayers = (timeout?: number) => lib.callback.await<GetFriendablePlayers>('getFriendablePlayers', timeout)
-export const removeIncomingRequest = (timeout: number | undefined, name: string) => lib.callback.await<RemoveIncomingRequest>('removeIncomingRequest', timeout, name)
-export const removePlayerFriendship = (timeout: number | undefined, name: string) => lib.callback.await<RemovePlayerFriendship>('removePlayerFriendship', timeout, name)
-export const cancelOutgoingFriendship = (timeout: number | undefined, name: string) => lib.callback.await<CancelOutgoingFriendship>('cancelOutgoingFriendship', timeout, name)
-export const sendUserFriendInvitation = (timeout: number | undefined, name: string) => lib.callback.await<SendUserFriendInvitation>('sendUserFriendInvitation', timeout, name)
+export const acceptFriendship = (name: string) => triggerPromise<AcceptFriendship>('acceptFriendship', name)
+export const getPlayerFriends = () => triggerPromise<GetPlayerFriends>('getPlayerFriends')
+export const getIncomingFriends = () => triggerPromise<GetIncomingFriends>('getIncomingFriends')
+export const getOutgoingFriends = () => triggerPromise<GetOutgoingFriends>('getOutgoingFriends')
+export const getFriendablePlayers = () => triggerPromise<GetFriendablePlayers>('getFriendablePlayers')
+export const removeIncomingRequest = (name: string) => triggerPromise<RemoveIncomingRequest>('removeIncomingRequest', name)
+export const removePlayerFriendship = (name: string) => triggerPromise<RemovePlayerFriendship>('removePlayerFriendship', name)
+export const cancelOutgoingFriendship = (name: string) => triggerPromise<CancelOutgoingFriendship>('cancelOutgoingFriendship', name)
+export const sendUserFriendInvitation = (name: string) => triggerPromise<SendUserFriendInvitation>('sendUserFriendInvitation', name)

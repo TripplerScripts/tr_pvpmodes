@@ -1,7 +1,7 @@
 import { getSingleRow, insertNewRow } from '../database'
 import getPlayerLicense from '../utils/getPlayerLicense'
 
-export const doesUserAlreadyExist = async (source: string) => {
+export const doesUserAlreadyExist = async (source: number) => {
   const response = await getSingleRow<{ identity: number }>('identity', 'tr_competitive_users', 'license = ?', getPlayerLicense(source))
   return response && response.identity
 }

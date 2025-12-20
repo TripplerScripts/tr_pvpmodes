@@ -1,1 +1,1 @@
-export default (source: string) => GetPlayerIdentifierByType(source, 'license')
+export default (source: number) => GetPlayerIdentifierByType(source, 'license')

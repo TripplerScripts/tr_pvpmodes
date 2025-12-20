@@ -1,4 +1,4 @@
-import { getSingleRow, insertNewRow } from '../database'
+import { getSingleRow, insertNewRow } from '../database/queries'
 import getPlayerLicense from '../utils/getPlayerLicense'
 
 export const doesUserAlreadyExist = async (source: number) => {

@@ -1,4 +1,4 @@
-import lib from '../lib'
+import { onPromise } from '@trippler/tr_lib/server'
 import { getSingleRow, updateRow, getSingleColumn } from '../database'
 import getPlayerLicense from '../utils/getPlayerLicense'
 
@@ -20,8 +20,7 @@ export const acceptFriendshipCB = async (source: string, identity: number) => {
   return senderAffectedColumn && receiverAffectedColumn
 }
 
-lib.callback.register('acceptFriendship', async (source, identity: number) => acceptFriendshipCB(source, identity))
-
+onPromise('acceptFriendship', async (source, identity: number) => acceptFriendshipCB(source, identity))
 
 export const cancelOutgoingFriendshipCB = async (source: string, identity: number) => {
   const license = getPlayerLicense(source)
@@ -41,8 +40,7 @@ export const cancelOutgoingFriendshipCB = async (source: string, identity: numbe
   return senderAffectedColumn && receiverAffectedColumn
 }
 
-lib.callback.register('cancelOutgoingFriendship', (source: string, identity: number) => cancelOutgoingFriendshipCB(source, identity))
-
+onPromise('cancelOutgoingFriendship', (source: string, identity: number) => cancelOutgoingFriendshipCB(source, identity))
 
 export const getFriendablePlayersCB = async (source: string) => {
   const license = getPlayerLicense(source)
@@ -67,30 +65,28 @@ export const getFriendablePlayersCB = async (source: string) => {
   return filteredPlayers
 }
 
-lib.callback.register('getFriendablePlayers', async (source: string) => getFriendablePlayersCB(source))
+onPromise('getFriendablePlayers', async (source: string) => getFriendablePlayersCB(source))
 
 export const getOutgoingFriendsCB = async (source: string) => {
   const response = await getSingleRow<{ outgoingInvitations: string }>('outgoingInvitations', 'tr_competitive_users', 'license = ?', getPlayerLicense(source))
   return response ? JSON.parse(response.outgoingInvitations) as number[] : []
 }
 
-lib.callback.register('getOutgoingFriends', async (source: string) => getOutgoingFriendsCB(source))
-
+onPromise('getOutgoingFriends', async (source: string) => getOutgoingFriendsCB(source))
 
 export const getPlayerFriendsCB = async (source: string) => {
   const response = await getSingleRow<{ friends: string }>('friends', 'tr_competitive_users', 'license = ?', getPlayerLicense(source))
   return response ? JSON.parse(response.friends) as number[] : []
 }
 
-lib.callback.register('getPlayerFriends', async (source: string) => getPlayerFriendsCB(source))
+onPromise('getPlayerFriends', async (source: string) => getPlayerFriendsCB(source))
 
 export const getIncomingFriendsCB = async (source: string) => {
   const response = await getSingleRow<{ incomingInvitations: string }>('incomingInvitations', 'tr_competitive_users', 'license = ?', getPlayerLicense(source))
   return response ? JSON.parse(response.incomingInvitations) as number[] : []
 }
 
-lib.callback.register('getIncomingFriends', getIncomingFriendsCB)
-
+onPromise('getIncomingFriends', getIncomingFriendsCB)
 
 export const removeIncomingRequestCB = async (source: string, identity: number) => {
   const license = getPlayerLicense(source)
@@ -110,8 +106,7 @@ export const removeIncomingRequestCB = async (source: string, identity: number) 
   return senderAffectedColumn && receiverAffectedColumn
 }
 
-lib.callback.register('removeIncomingRequest', async (source: string, identity: number) => removeIncomingRequestCB(source, identity))
-
+onPromise('removeIncomingRequest', async (source: string, identity: number) => removeIncomingRequestCB(source, identity))
 
 export const removePlayerFriendshipCB = async (source: string, identity: number) => {
   const license = getPlayerLicense(source)
@@ -131,8 +126,7 @@ export const removePlayerFriendshipCB = async (source: string, identity: number)
   return senderAffectedColumn && receiverAffectedColumn
 }
 
-lib.callback.register('removePlayerFriendship', async (source: string, identity: number) => removePlayerFriendshipCB(source, identity))
-
+onPromise('removePlayerFriendship', async (source: string, identity: number) => removePlayerFriendshipCB(source, identity))
 
 export const sendUserFriendInvitationCB = async (source: string, identity: number) => {
   const senderLicense = getPlayerLicense(source)
@@ -154,4 +148,4 @@ export const sendUserFriendInvitationCB = async (source: string, identity: numbe
   return outgoingUpdated && incomingUpdated
 }
 
-lib.callback.register('sendUserFriendInvitation', async (source, identity: number) => sendUserFriendInvitationCB(source, identity))
+onPromise('sendUserFriendInvitation', async (source, identity: number) => sendUserFriendInvitationCB(source, identity))

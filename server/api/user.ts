@@ -1,4 +1,4 @@
-import lib from '../lib'
+import { onPromise } from '@trippler/tr_lib/server'
 import { createUserIntoTheDatabase, doesUserAlreadyExist } from '../services/userService'
 import { getSingleRow } from "../database";
 import getPlayerLicense from '../utils/getPlayerLicense'
@@ -8,6 +8,6 @@ export const getUserProfileCB = async (identity: number) => {
   return response && { ...response }
 }
 
-lib.callback.register('createUser', (source: string, name: string, avatar: string) => createUserIntoTheDatabase(getPlayerLicense(source), name, avatar))
-lib.callback.register('doesUserAlreadyExist', (source: string) => doesUserAlreadyExist(source))
-lib.callback.register('getUserProfile', async (_source: string, identity: number) => getUserProfileCB(identity))
+onPromise('createUser', (source, name: string, avatar: string) => createUserIntoTheDatabase(getPlayerLicense(source), name, avatar))
+onPromise('doesUserAlreadyExist', (source) => doesUserAlreadyExist(source))
+onPromise('getUserProfile', async (_source, identity: number) => getUserProfileCB(identity))

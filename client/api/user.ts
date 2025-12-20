@@ -1,6 +1,6 @@
-import lib from '../lib'
-import { CreateUser, DoesUserAlreadyExist, GetUserProfile } from '../../shared/types/user'
+import { triggerPromise } from '@trippler/tr_lib/client'
+import { CreateUserIntoTheDatabase, DoesUserAlreadyExist, GetUserProfile } from '../../shared/types/user'
 
-export const getUserProfile = (timeout: number | undefined, identity: number) => lib.callback.await<GetUserProfile>('getUserProfile', timeout, identity)
-export const doesUserAlreadyExist = (timeout?: number) => lib.callback.await<DoesUserAlreadyExist>('doesUserAlreadyExist', timeout)
-export const createUser = (timeout: number | undefined, name: string, avatar: string) => lib.callback.await<CreateUser>('createUser', timeout, name, avatar)
+export const getUserProfile = (identity: number) => triggerPromise<GetUserProfile>('getUserProfile', identity)
+export const doesUserAlreadyExist = () => triggerPromise<DoesUserAlreadyExist>('doesUserAlreadyExist')
+export const createUser = (name: string, avatar: string) => triggerPromise<CreateUserIntoTheDatabase>('createUser', name, avatar)

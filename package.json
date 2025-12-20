@@ -13,6 +13,7 @@
   },
   "devDependencies": {
     "@lenixdev/ui_components": "latest",
+    "@trippler/tr_lib": "latest",
     "typescript": "^5.0.0",
     "@types/node": "^20.0.0",
     "@citizenfx/client": "latest",

@@ -1,7 +1,6 @@
 fx_version 'cerulean'
 game 'gta5'
 dependencies {
-  'tr_lib',
   'tr_kit',
   'oxmysql',
   --[[ MarDB 8.0.13 ]]

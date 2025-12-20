@@ -1,7 +1,6 @@
+import { onPromise } from '@trippler/tr_lib/server'
 import fetchDiscordServer from '../services'
 
-const lib = globalThis.exports.tr_lib.init()
-
-lib.callback.register('getDiscordUserRole', async (source: string, discordUserId: string) => {
+onPromise('getDiscordUserRole', async (source: string, discordUserId: string) => {
   return await fetchDiscordServer(discordUserId)
 })

@@ -1,12 +1,12 @@
+import { onPromise, triggerPromise } from '@trippler/tr_lib/server'
 import './api'
-const lib = globalThis.exports.tr_lib.init()
 const playersSources: number[] = [1, 2]
 
-lib.callback.register('createNewMessageRequest', (senderSource: number, message: string) => {
+onPromise('createNewMessageRequest', (senderSource: number, message: string) => {
   playersSources.forEach(source => {
     const discordId = GetPlayerIdentifierByType(senderSource as any, 'discord')
-    const userDiscordId = lib.split(discordId, ':')[1]
-    lib.callback.await('createNewMessage', null, source, message, userDiscordId)
+    const userDiscordId = exports.tr_lib.init().split(discordId, ':')[1]
+    triggerPromise('createNewMessage', null, source, message, userDiscordId)
   });
   return true
 })

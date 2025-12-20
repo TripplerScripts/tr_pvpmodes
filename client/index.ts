@@ -1,6 +1,6 @@
-const lib = globalThis.exports.tr_lib.init()
+import { onPromise, triggerPromise } from '@trippler/tr_lib/client'
 
-lib.control.onDisabled('T', () => {
+exports.tr_lib.init().control.onDisabled('T', () => {
   SendNuiMessage(JSON.stringify({ action: 'open' }))
   SetNuiFocus(true, false)
 })
@@ -10,8 +10,8 @@ RegisterNuiCallback("focus", (_data: [string], callback: Function) => {
   callback({})
 })
 
-RegisterNuiCallback("createNewMessageRequest", (data: [string], callback: Function) => {
-  const response = lib.callback.await("createNewMessageRequest", null, data[0])  
+RegisterNuiCallback("createNewMessageRequest", async (data: [string], callback: Function) => {
+  const response = await triggerPromise("createNewMessageRequest", null, data[0])  
   callback({response})
 })
 
@@ -20,9 +20,9 @@ RegisterNuiCallback("closeChat", (_data: [string], callback: Function) => {
   callback({})
 })
 
-lib.callback.register('createNewMessage', async (message: string, userDiscordId: string) => {
+onPromise('createNewMessage', async (message: string, userDiscordId: string) => {
   if (!userDiscordId) return false
-  const userRole = await lib.callback.await('getDiscordUserRole', null, userDiscordId)
+  const userRole = await triggerPromise('getDiscordUserRole', null, userDiscordId)
   SendNuiMessage(JSON.stringify({
     action: 'createNewMessage',
     message,

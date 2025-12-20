@@ -1,4 +1,4 @@
-import { createDatabaseTable } from './database'
+import { createDatabaseTable } from './database/schema'
 import './api/'
 
 setImmediate(async () => {

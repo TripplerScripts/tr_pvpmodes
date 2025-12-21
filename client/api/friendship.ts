@@ -11,12 +11,12 @@ import {
   SendUserFriendInvitation
 } from '../../shared/types/callback'
 
-export const acceptFriendship = (name: string) => triggerPromise<AcceptFriendship>('acceptFriendship', name)
+export const acceptFriendship = (identity: number) => triggerPromise<AcceptFriendship>('acceptFriendship', identity)
 export const getPlayerFriends = () => triggerPromise<GetPlayerFriends>('getPlayerFriends')
 export const getIncomingFriends = () => triggerPromise<GetIncomingFriends>('getIncomingFriends')
 export const getOutgoingFriends = () => triggerPromise<GetOutgoingFriends>('getOutgoingFriends')
 export const getFriendablePlayers = () => triggerPromise<GetFriendablePlayers>('getFriendablePlayers')
-export const removeIncomingRequest = (name: string) => triggerPromise<RemoveIncomingRequest>('removeIncomingRequest', name)
-export const removePlayerFriendship = (name: string) => triggerPromise<RemovePlayerFriendship>('removePlayerFriendship', name)
-export const cancelOutgoingFriendship = (name: string) => triggerPromise<CancelOutgoingFriendship>('cancelOutgoingFriendship', name)
-export const sendUserFriendInvitation = (name: string) => triggerPromise<SendUserFriendInvitation>('sendUserFriendInvitation', name)
+export const removeIncomingRequest = (identity: number) => triggerPromise<RemoveIncomingRequest>('removeIncomingRequest', identity)
+export const removePlayerFriendship = (identity: number) => triggerPromise<RemovePlayerFriendship>('removePlayerFriendship', identity)
+export const cancelOutgoingFriendship = (identity: number) => triggerPromise<CancelOutgoingFriendship>('cancelOutgoingFriendship', identity)
+export const sendUserFriendInvitation = (identity: number) => triggerPromise<SendUserFriendInvitation>('sendUserFriendInvitation', identity)

@@ -1,6 +1,6 @@
 import { onPromise } from '@trippler/tr_lib/server'
 import { createUserIntoTheDatabase, doesUserAlreadyExist } from '../services/userService'
-import { getSingleRow } from "../database";
+import { getSingleRow } from "../database/queries";
 import getPlayerLicense from '../utils/getPlayerLicense'
 
 export const getUserProfileCB = async (identity: number) => {

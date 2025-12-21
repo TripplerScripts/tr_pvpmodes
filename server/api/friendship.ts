@@ -1,5 +1,5 @@
 import { onPromise } from '@trippler/tr_lib/server'
-import { getSingleRow, updateRow, getSingleColumn } from '../database'
+import { getSingleRow, updateRow, getSingleColumn } from '../database/queries'
 import getPlayerLicense from '../utils/getPlayerLicense'
 
 export const acceptFriendshipCB = async (source: string, identity: number) => {

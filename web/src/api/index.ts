@@ -1,3 +1,4 @@
-import { sendCallback } from "@lenixdev/ui_components"
 import { ServerProfile } from "../../../shared/types"
-export const getServerProfile = () => sendCallback<ServerProfile>('getServerProfile')
+import { triggerNuiCallback } from "@trippler/tr_lib/web"
+
+export const getServerProfile = () => triggerNuiCallback<ServerProfile>('getServerProfile')

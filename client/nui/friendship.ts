@@ -1,3 +1,4 @@
+import { onNuiCallback } from '@trippler/tr_lib/client'
 import {
   acceptFriendship,
   cancelOutgoingFriendship,
@@ -8,14 +9,14 @@ import {
   removeIncomingRequest,
   removePlayerFriendship,
   sendUserFriendInvitation
- } from '../api/friendship'
+} from '../api/friendship'
 
-RegisterNuiCallback('acceptFriendship', async (data, callback) => callback(await acceptFriendship(data[0])))
-RegisterNuiCallback('cancelOutgoingFriendship', async (data, callback) => callback(await cancelOutgoingFriendship(data[0])))
-RegisterNuiCallback('getFriendablePlayers', async (_data, callback) => callback(await getFriendablePlayers()))
-RegisterNuiCallback('getIncomingFriends', async (_data, callback) => callback(await getIncomingFriends()))
-RegisterNuiCallback('getOutgoingFriends', async (_data, callback) => callback(await getOutgoingFriends()))
-RegisterNuiCallback('getPlayerFriends', async (_data, callback) => callback(await getPlayerFriends()))
-RegisterNuiCallback('removeIncomingRequest', async (data, callback) => callback(await removeIncomingRequest(data[0])))
-RegisterNuiCallback('removePlayerFriendship', async (data, callback) => callback(await removePlayerFriendship(data[0])))
-RegisterNuiCallback('sendUserFriendInvitation', async (data, callback) => callback(await sendUserFriendInvitation(data[0])))
+onNuiCallback<{ identity: number }>('acceptFriendship', async (data, callback) => callback(await acceptFriendship(data.identity)))
+onNuiCallback<{ identity: number }>('cancelOutgoingFriendship', async (data, callback) => callback(await cancelOutgoingFriendship(data.identity)))
+onNuiCallback<{ identity: number }>('removeIncomingRequest', async (data, callback) => callback(await removeIncomingRequest(data.identity)))
+onNuiCallback<{ identity: number }>('removePlayerFriendship', async (data, callback) => callback(await removePlayerFriendship(data.identity)))
+onNuiCallback<{ identity: number }>('sendUserFriendInvitation', async (data, callback) => callback(await sendUserFriendInvitation(data.identity)))
+onNuiCallback<null>('getPlayerFriends', async (_data, callback) => callback(await getPlayerFriends()))
+onNuiCallback<null>('getIncomingFriends', async (_data, callback) => callback(await getIncomingFriends()))
+onNuiCallback<null>('getOutgoingFriends', async (_data, callback) => callback(await getOutgoingFriends()))
+onNuiCallback<null>('getFriendablePlayers', async (_data, callback) => callback(await getFriendablePlayers()))

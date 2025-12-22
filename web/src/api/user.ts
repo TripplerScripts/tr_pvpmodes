@@ -1,10 +1,10 @@
-import { sendCallback } from "@lenixdev/ui_components"
 import {
   CreateUser,
   GetUserProfile,
   RemovePlayerFriendship
 } from "../../../shared/types/callback"
+import { triggerNuiCallback } from "@trippler/tr_lib/web"
 
-export const createUser =  (name: string, avatar: string) => sendCallback<Awaited<CreateUser>>('createUser', { name, avatar })
-export const getUserProfile = (identity: number) => sendCallback<GetUserProfile>('getUserProfile', { identity })
-export const removePlayerFriendship = (identity: number) => sendCallback<RemovePlayerFriendship>('removePlayerFriendship', identity)
+export const createUser =  (name: string, avatar: string) => triggerNuiCallback<Awaited<CreateUser>>('createUser', { name, avatar })
+export const getUserProfile = (identity: number) => triggerNuiCallback<GetUserProfile>('getUserProfile', { identity })
+export const removePlayerFriendship = (identity: number) => triggerNuiCallback<RemovePlayerFriendship>('removePlayerFriendship', identity)

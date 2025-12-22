@@ -2,7 +2,7 @@ import { onPromise } from '@trippler/tr_lib/server'
 import { getSingleRow, updateRow, getSingleColumn } from '../database/queries'
 import getPlayerLicense from '../utils/getPlayerLicense'
 
-export const acceptFriendshipCB = async (source: string, identity: number) => {
+export const acceptFriendshipCB = async (source: number, identity: number) => {
   const license = getPlayerLicense(source)
   const senderResponse = await getSingleRow<{ identity: number; friends: number[] }>('identity, friends', 'tr_competitive_users', 'license = ?', license)
   if (!senderResponse) return
@@ -22,7 +22,7 @@ export const acceptFriendshipCB = async (source: string, identity: number) => {
 
 onPromise('acceptFriendship', async (source, identity: number) => acceptFriendshipCB(source, identity))
 
-export const cancelOutgoingFriendshipCB = async (source: string, identity: number) => {
+export const cancelOutgoingFriendshipCB = async (source: number, identity: number) => {
   const license = getPlayerLicense(source)
   const senderResponse = await getSingleRow<{ identity: number; outgoingInvitations: number[] }>('identity, outgoingInvitations', 'tr_competitive_users', 'license = ?', license)
   if (!senderResponse) return
@@ -40,9 +40,9 @@ export const cancelOutgoingFriendshipCB = async (source: string, identity: numbe
   return senderAffectedColumn && receiverAffectedColumn
 }
 
-onPromise('cancelOutgoingFriendship', (source: string, identity: number) => cancelOutgoingFriendshipCB(source, identity))
+onPromise('cancelOutgoingFriendship', (source, identity: number) => cancelOutgoingFriendshipCB(source, identity))
 
-export const getFriendablePlayersCB = async (source: string) => {
+export const getFriendablePlayersCB = async (source: number) => {
   const license = getPlayerLicense(source)
   const senderRow = await getSingleRow<{ identity: number; friends: number[]; incomingInvitations: number[]; outgoingInvitations: number[] }>('identity, friends, outgoingInvitations, incomingInvitations', 'tr_competitive_users', 'license = ?', license)
   if (!senderRow) return
@@ -65,30 +65,30 @@ export const getFriendablePlayersCB = async (source: string) => {
   return filteredPlayers
 }
 
-onPromise('getFriendablePlayers', async (source: string) => getFriendablePlayersCB(source))
+onPromise('getFriendablePlayers', async (source) => getFriendablePlayersCB(source))
 
-export const getOutgoingFriendsCB = async (source: string) => {
+export const getOutgoingFriendsCB = async (source: number) => {
   const response = await getSingleRow<{ outgoingInvitations: string }>('outgoingInvitations', 'tr_competitive_users', 'license = ?', getPlayerLicense(source))
   return response ? JSON.parse(response.outgoingInvitations) as number[] : []
 }
 
-onPromise('getOutgoingFriends', async (source: string) => getOutgoingFriendsCB(source))
+onPromise('getOutgoingFriends', async (source) => getOutgoingFriendsCB(source))
 
-export const getPlayerFriendsCB = async (source: string) => {
+export const getPlayerFriendsCB = async (source: number) => {
   const response = await getSingleRow<{ friends: string }>('friends', 'tr_competitive_users', 'license = ?', getPlayerLicense(source))
   return response ? JSON.parse(response.friends) as number[] : []
 }
 
-onPromise('getPlayerFriends', async (source: string) => getPlayerFriendsCB(source))
+onPromise('getPlayerFriends', async (source) => getPlayerFriendsCB(source))
 
-export const getIncomingFriendsCB = async (source: string) => {
+export const getIncomingFriendsCB = async () => {
   const response = await getSingleRow<{ incomingInvitations: string }>('incomingInvitations', 'tr_competitive_users', 'license = ?', getPlayerLicense(source))
   return response ? JSON.parse(response.incomingInvitations) as number[] : []
 }
 
 onPromise('getIncomingFriends', getIncomingFriendsCB)
 
-export const removeIncomingRequestCB = async (source: string, identity: number) => {
+export const removeIncomingRequestCB = async (source: number, identity: number) => {
   const license = getPlayerLicense(source)
   const senderResponse = await getSingleRow<{ identity: number; incomingInvitations: number[] }>('identity, incomingInvitations', 'tr_competitive_users', 'license = ?', license)
   if (!senderResponse) return
@@ -106,9 +106,9 @@ export const removeIncomingRequestCB = async (source: string, identity: number) 
   return senderAffectedColumn && receiverAffectedColumn
 }
 
-onPromise('removeIncomingRequest', async (source: string, identity: number) => removeIncomingRequestCB(source, identity))
+onPromise('removeIncomingRequest', async (source, identity: number) => removeIncomingRequestCB(source, identity))
 
-export const removePlayerFriendshipCB = async (source: string, identity: number) => {
+export const removePlayerFriendshipCB = async (source: number, identity: number) => {
   const license = getPlayerLicense(source)
   const senderResponse = await getSingleRow<{ identity: number; friends: number[] }>('identity, friends', 'tr_competitive_users', 'license = ?', license)
   if (!senderResponse) return
@@ -126,9 +126,9 @@ export const removePlayerFriendshipCB = async (source: string, identity: number)
   return senderAffectedColumn && receiverAffectedColumn
 }
 
-onPromise('removePlayerFriendship', async (source: string, identity: number) => removePlayerFriendshipCB(source, identity))
+onPromise('removePlayerFriendship', async (source, identity: number) => removePlayerFriendshipCB(source, identity))
 
-export const sendUserFriendInvitationCB = async (source: string, identity: number) => {
+export const sendUserFriendInvitationCB = async (source: number, identity: number) => {
   const senderLicense = getPlayerLicense(source)
 
   const senderRow = await getSingleRow<{ identity: number; outgoingInvitations: number[] }>('identity, outgoingInvitations', 'tr_competitive_users', 'license = ?', senderLicense)

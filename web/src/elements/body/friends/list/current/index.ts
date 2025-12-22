@@ -14,7 +14,7 @@ import createFriendItem from "../../../../../modules/createFriendItem"
   })
 })(),
 
-(async () => {
+setTimeout(async () => {
   const friendsItems = await getPlayerFriends()
   friendsItems?.forEach((identity) => createFriendItem(identity))
-})()
+}, 0)

@@ -1,8 +1,8 @@
-import { sendCallback } from "@lenixdev/ui_components"
+import { triggerNuiCallback } from "@trippler/tr_lib/web"
 
 export default async (fromEvent?: boolean) => {
   if (!fromEvent) {
-    const response = await sendCallback<boolean>('closeGame')
+    const response = await triggerNuiCallback<boolean>('closeGame')
     if (!response) return
   }
   const root = document.getElementById('root')

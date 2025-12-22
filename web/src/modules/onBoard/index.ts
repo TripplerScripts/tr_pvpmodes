@@ -1,7 +1,7 @@
 import nameSetup from "./name"
 import avatarSetup from "./avatar"
-import { sendCallback } from "@lenixdev/ui_components"
 import Alert from "../../components/alert"
+import { triggerNuiCallback } from "@trippler/tr_lib/web"
 
 export default async (): Promise<{ userName: string, userAvatar: string }> => {
   const userName = await nameSetup()
@@ -16,7 +16,7 @@ export default async (): Promise<{ userName: string, userAvatar: string }> => {
         button: "Get Started",
         onClick: () => {
           success.remove()
-          sendCallback('startCharacterProcess')
+          triggerNuiCallback('startCharacterProcess')
           resolve({ userName, userAvatar })
         }
       })

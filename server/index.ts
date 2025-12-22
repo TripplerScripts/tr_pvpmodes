@@ -1,5 +1,5 @@
+import './api'
 import { createDatabaseTable } from './database/schema'
-import './api/'
 import { fatal } from '@trippler/tr_lib/server'
 
 setImmediate(async () => {

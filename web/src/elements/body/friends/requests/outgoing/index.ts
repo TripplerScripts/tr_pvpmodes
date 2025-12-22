@@ -44,7 +44,7 @@ const addNewOutgoingRequest = async (index: number, identity: number): Promise<v
   currentOutgoing?.appendChild(request)
 }
 
-(async () => {
+setTimeout(async () => {
   const outgoing = await getOutgoingFriends()
   outgoing.forEach((identity, index: number) => addNewOutgoingRequest(index, identity))
-})()
+}, 0)

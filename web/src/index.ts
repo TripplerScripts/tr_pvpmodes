@@ -3,7 +3,7 @@ import openDashboard from './modules/openDashboard'
 import closeDashboard from './modules/closeGame'
 import hideDashboard from './modules/hideDashboard'
 import showDashboard from './modules/showDashboard'
-import { sendCallback } from '@lenixdev/ui_components'
+import { triggerNuiCallback } from '@trippler/tr_lib/web'
 
 let isDashboardOn = false
 
@@ -13,7 +13,7 @@ window.addEventListener('message', async (event: MessageEvent<any>) => {
 
   if (API.action === 'open') {
     if (typeof identity === 'number') {
-      const response = await sendCallback<boolean>('startCharacterProcess')
+      const response = await triggerNuiCallback<boolean>('startCharacterProcess')
       if (!response) return
       openDashboard(identity)
       isDashboardOn = true

@@ -2,6 +2,7 @@ import nuiMessage from ".."
 import createCam, { lastCamHandle } from './camera'
 import { lobbyCoords, openDelay } from "../../shared/constants/config"
 import { doesUserAlreadyExist } from "../api/user"
+import { destroyCam } from "@trippler/tr_kit/client"
 
 let lastPlayerCoords: number[] = []
 
@@ -47,7 +48,7 @@ export const placePlayerInLobby = () => {
 export const closeGame = () => {
   nuiMessage({ action: 'close' })
   SetNuiFocus(false, false)
-  exports.tr_kit.destroyCam({handle: lastCamHandle})
+  destroyCam({handle: lastCamHandle})
   Wait(200)
   setCoords(lastPlayerCoords)
   FreezeEntityPosition(PlayerPedId(), false)

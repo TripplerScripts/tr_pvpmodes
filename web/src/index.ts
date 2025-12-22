@@ -1,6 +1,6 @@
-import { sendCallback } from '@lenixdev/ui_components'
 import './features'
 import useMainIntrance from './hooks/useMainIntrance'
+import { triggerNuiCallback } from '@trippler/tr_lib/web'
 
 window.addEventListener('message', (event) => {
   if (event.data.action === 'open') {
@@ -12,5 +12,5 @@ window.addEventListener('message', (event) => {
 })
 
 document.addEventListener('DOMContentLoaded', () => {
-  sendCallback('DOMContentLoaded')
+  triggerNuiCallback('DOMContentLoaded')
 })

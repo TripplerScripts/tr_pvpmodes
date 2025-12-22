@@ -1,8 +1,8 @@
-import nuiMessage from ".."
 import createCam, { lastCamHandle } from './camera'
 import { lobbyCoords, openDelay } from "../../shared/constants/config"
 import { doesUserAlreadyExist } from "../api/user"
 import { destroyCam } from "@trippler/tr_kit/client"
+import { triggerNuiCallback } from '@trippler/tr_lib/client'
 
 let lastPlayerCoords: number[] = []
 
@@ -17,19 +17,19 @@ export const openGame = () => {
   placePlayerInLobby()
   setTimeout(() => {
     const identity = doesUserAlreadyExist()
-    nuiMessage({ action: 'open', identity})
+    triggerNuiCallback({ action: 'open', identity})
     SetNuiFocus(true, true)
   }, openDelay)
 }
 
 export const hideGame = () => {
-  nuiMessage({
+  triggerNuiCallback({
     action: 'hide'
   })
   SetNuiFocus(false, false)
 }
 export const showGame = () => {
-  nuiMessage({
+  triggerNuiCallback({
     action: 'show'
   })
   SetNuiFocus(true, true)
@@ -46,7 +46,7 @@ export const placePlayerInLobby = () => {
 }
 
 export const closeGame = () => {
-  nuiMessage({ action: 'close' })
+  triggerNuiCallback({ action: 'close' })
   SetNuiFocus(false, false)
   destroyCam({handle: lastCamHandle})
   Wait(200)

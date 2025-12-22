@@ -1,5 +1,6 @@
 import './nui'
 import './exports'
+import { triggerNuiCallback } from '@trippler/tr_lib/client'
 
 on('onResourceStop', (resourceName: string) => {
   if (resourceName === GetCurrentResourceName()) {
@@ -7,4 +8,4 @@ on('onResourceStop', (resourceName: string) => {
   }
 })
 
-export default (arg: object) => SendNuiMessage(JSON.stringify(arg))
+export default (arg: object) => triggerNuiCallback(arg)

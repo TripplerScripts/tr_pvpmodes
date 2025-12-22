@@ -15,8 +15,8 @@ const setCoords = (coords: number[]) => {
 
 export const openGame = () => {
   placePlayerInLobby()
-  setTimeout(() => {
-    const identity = doesUserAlreadyExist()
+  setTimeout(async () => {
+    const identity = await doesUserAlreadyExist()
     triggerNuiCallback({ action: 'open', identity})
     SetNuiFocus(true, true)
   }, openDelay)

@@ -1,15 +1,6 @@
-import { onPromise, triggerPromise } from '@trippler/tr_lib/server'
+import { fatal } from '@trippler/tr_lib/server'
 import './api'
-const playersSources: number[] = [1, 2]
-
-onPromise('createNewMessageRequest', (senderSource: number, message: string) => {
-  playersSources.forEach(source => {
-    const discordId = GetPlayerIdentifierByType(senderSource as any, 'discord')
-    const userDiscordId = exports.tr_lib.init().split(discordId, ':')[1]
-    triggerPromise('createNewMessage', null, source, message, userDiscordId)
-  });
-  return true
-})
+export const playersSources: number[] = []
 
 on("playerDropped", (_reason: string, _resourceName: string, _clientDropReason: number) => {
   playersSources.splice(playersSources.indexOf(source), 1)
@@ -18,3 +9,7 @@ on("playerDropped", (_reason: string, _resourceName: string, _clientDropReason: 
 on("playerJoining", (_source: number, oldID: string) => {
   playersSources.push(source)
 });
+
+on("onResourceStop", () => {
+  fatal("tr_freeroam caught stopping, please restart your server")
+})

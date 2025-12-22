@@ -1,7 +1,7 @@
-import { maxTextLength, messagesCooldown, messagesFadeDuration } from "../../../shared/constants/config"
+import { maxTextLength, messagesCooldown } from "../../../shared/constants/config"
 import useCooldown from "../hooks/useCooldown"
 import { input } from "../features/chat"
-import { sendCallback } from "@lenixdev/ui_components"
+import { triggerNuiCallback } from "@trippler/tr_lib/web"
 import { setInCooldown } from ".."
 
 let canSend = true
@@ -23,5 +23,8 @@ export default (message: string) => {
   const characterLeftElement = document.getElementById('characters-left')
   characterLeftElement?.classList.add('hidden')
 
-  sendCallback('createNewMessageRequest', message)
+ const response = triggerNuiCallback<boolean>('createNewMessageRequest', { message })
+ if (!response) {
+  throw new Error("Failed to create new message")
+ }
 }

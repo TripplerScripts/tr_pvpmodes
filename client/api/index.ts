@@ -1,4 +1,10 @@
-RegisterNuiCallback('getDiscordUserRole', async (data: any[], callback: Function) => {
-  const response = await lib.callback.await('getDiscordUserRole', null, data[0])
-  callback({response})
+import { onPromise, triggerNuiCallback } from "@trippler/tr_lib/client"
+import { PlayerObject } from "../../shared/constants/config"
+
+onPromise('createNewMessage', async (message: string, userRole: PlayerObject) => {
+  triggerNuiCallback({
+    action: 'createNewMessage',
+    message,
+    userRole,
+  })
 })

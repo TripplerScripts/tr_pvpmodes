@@ -1,7 +1,8 @@
 import './api'
 import './nui'
 import './exports'
-import openMainMenu from './modules/openMainMenu'
+import openMainMenu from './nui/openMainMenu'
+import openEscapeMenu from './nui/openEscapeMenu'
 
 let DOMContentLoaded = false
 
@@ -12,6 +13,10 @@ setImmediate(() => {
       clearInterval(interval)
     }
   }, 1000)
+})
+
+globalThis.exports.tr_lib.onDisabled('ESC', () => {
+  openEscapeMenu()
 })
 
 onNet('tr_onboarding/client/logout', () => {

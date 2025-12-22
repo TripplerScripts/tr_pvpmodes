@@ -1,7 +1,10 @@
+import { trace } from "@trippler/tr_lib/client"
+import { defaultSpawnCoords } from "../../shared/constants/config"
+
 export default async (passedOnCreationFinishCoords: [number, number, number, number], passedSpawnCoords: [number, number, number, number], onClothingMenuOpen: Function, onSubmitOrCancel: Function) => {
   const citizenId = await exports.tr_onboarding.playerHasCharacter()
   if (citizenId) {
-    const spawnCoords = passedSpawnCoords || [-2163.87, 1134.51, -24.37, 310.05]
+    const spawnCoords = passedSpawnCoords || defaultSpawnCoords
     const [ clothes, model ] = await exports.tr_onboarding.getCharacterPreviewData(citizenId)
 
     RequestModel(model)
@@ -29,7 +32,7 @@ export default async (passedOnCreationFinishCoords: [number, number, number, num
     emitNet('QBCore:Server:OnPlayerLoaded')
     emit('QBCore:Client:OnPlayerLoaded')
   } else {
-    const onCreationFinishCoords = passedOnCreationFinishCoords || [-2163.87, 1134.51, -24.37, 310.05]
+    const onCreationFinishCoords = passedOnCreationFinishCoords || defaultSpawnCoords
     const data = {
       firstname: 'not specified',
       lastname: 'not specified',
@@ -45,9 +48,9 @@ export default async (passedOnCreationFinishCoords: [number, number, number, num
       heading: onCreationFinishCoords[3]
     })
     const newCreatedCharacter = await exports.tr_onboarding.createNewCharacter(null, data)
-    // if (!newCreatedCharacter) {
-    //   lib.console.trace('Lenix got no idea why this is failing')
-    // }
+    if (!newCreatedCharacter) {
+      trace('Lenix got no idea why this is failing')
+    }
     emitNet('QBCore:Server:OnPlayerLoaded')
     emit('QBCore:Client:OnPlayerLoaded')
 

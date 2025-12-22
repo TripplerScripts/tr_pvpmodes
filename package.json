@@ -12,6 +12,7 @@
     "watch:web": "esbuild web/src/index.ts --bundle --platform=browser --target=es2020 --watch --outfile=build/web.js"
   },
   "devDependencies": {
+    "@trippler/tr_lib": "latest",
     "@lenixdev/ui_components": "latest",
     "typescript": "^5.0.0",
     "@types/node": "^20.0.0",

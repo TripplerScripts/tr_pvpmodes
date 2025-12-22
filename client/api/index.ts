@@ -1,6 +1,7 @@
 import DOMContentLoaded from '..'
+import { onNuiCallback } from '@trippler/tr_lib/client'
 
-RegisterNuiCallback('DOMContentLoaded', (_data: any, callback: Function) => {
+onNuiCallback('DOMContentLoaded', (_data, callback) => {
   DOMContentLoaded(true)
   callback({})
 })

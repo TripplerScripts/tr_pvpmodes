@@ -10,7 +10,7 @@ createElement({
 createElement({
   parent: "root",
   id: "main-intrance",
-  className: "w-[100vw] h-[100vh] flex items-end justify-center py-52 bg-stone-900/20 bg-[url(./src/assets/bg.jpg)] bg-cover bg-center"
+  className: "w-[100vw] h-[100vh] flex items-end justify-center py-52 bg-stone-900/20 bg-[url(./images/bg.jpg)] bg-cover bg-center"
 })
 
 createElement({

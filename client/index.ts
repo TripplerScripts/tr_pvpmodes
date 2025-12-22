@@ -1,4 +1,5 @@
 import './api'
+import './nui'
 import './exports'
 import openMainMenu from './modules/openMainMenu'
 

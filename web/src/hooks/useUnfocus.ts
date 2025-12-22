@@ -1,6 +1,6 @@
-import { sendCallback } from '@lenixdev/ui_components'
 import { pendingMessageForFadeCount, setFocus } from '../index'
 import { messageCount } from '../index'
+import { triggerNuiCallback } from '@trippler/tr_lib/web'
 
 export default () => {
   setFocus(false)
@@ -36,5 +36,5 @@ export default () => {
       message?.add('opacity-0')
     }
   }
-  sendCallback<void>('closeChat')
+  triggerNuiCallback<void>('closeChat')
 }

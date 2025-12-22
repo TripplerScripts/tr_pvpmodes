@@ -2,7 +2,7 @@ import './features'
 import './utils/dom/chat'
 import useFocus from "./hooks/useFocus"
 import createNewMessageForAll from './components/createNewMessageForAll'
-import { sendCallback } from '@lenixdev/ui_components'
+import { triggerNuiCallback } from '@trippler/tr_lib/web'
 
 window.addEventListener('message', (event) => {
   if (event.data.action === 'open' && !isFocused) {
@@ -16,7 +16,7 @@ window.addEventListener('message', (event) => {
 
 document.addEventListener('keydown', (e) => {
   if (e.key === 'F11') {
-    sendCallback('focus')
+    triggerNuiCallback('focus')
   }
 })
 

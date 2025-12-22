@@ -1,4 +1,4 @@
-import { maxTextLength, messagesCooldown } from "../../../shared/constants/config"
+import { maxTextLength, messagesCooldown } from "../../../shared/constants"
 import useCooldown from "../hooks/useCooldown"
 import { input } from "../features/chat"
 import { triggerNuiCallback } from "@trippler/tr_lib/web"

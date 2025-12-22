@@ -1,7 +1,7 @@
 import { createElement } from "@lenixdev/ui_components"
 import { isFocused, messageCount, pendingMessageForFadeCount, setMessagesCount, setPendingMessageForFadeCount } from ".."
-import { PlayerObject } from "../../../shared/constants/config"
-import { messagesFadeDuration } from "../../../shared/constants/config"
+import { PlayerObject } from "../../../shared/constants"
+import { messagesFadeDuration } from "../../../shared/constants"
 
 export default (message: string, player: PlayerObject) => {
   createElement({

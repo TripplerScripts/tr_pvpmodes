@@ -16,7 +16,7 @@ window.addEventListener('message', (event) => {
 
 document.addEventListener('keydown', (e) => {
   if (e.key === 'F11') {
-    triggerNuiCallback('focus')
+    triggerNuiCallback<unknown>('focus')
   }
 })
 

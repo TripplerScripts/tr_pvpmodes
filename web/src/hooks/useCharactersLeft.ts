@@ -1,4 +1,4 @@
-import { maxTextLength } from '../../../shared/constants/config'
+import { maxTextLength } from '../../../shared/constants'
 
 export default (inputLength: number) => {
   const characterLeftElement = document.getElementById('characters-left')!

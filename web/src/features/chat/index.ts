@@ -1,5 +1,5 @@
 import { createElement, Input, Button } from '@lenixdev/ui_components'
-import { messagesCooldown } from '../../../../shared/constants/config'
+import { messagesCooldown } from '../../../../shared/constants'
 import useCharacterLeft from '../../hooks/useCharactersLeft'
 import createNewMessage from '../../components/createNewMessage'
 

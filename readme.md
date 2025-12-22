@@ -9,3 +9,6 @@ RegisterNetEvent("qb-clothes:client:CreateFirstCharacter", function(onSubmit, on
     end)
 end)
 ```
+
+# TODO
+escape menub

@@ -68,22 +68,22 @@ export const getFriendablePlayersCB = async (source: number) => {
 onPromise('getFriendablePlayers', async (source) => getFriendablePlayersCB(source))
 
 export const getOutgoingFriendsCB = async (source: number) => {
-  const response = await getSingleRow<{ outgoingInvitations: string }>('outgoingInvitations', 'tr_competitive_users', 'license = ?', getPlayerLicense(source))
-  return response ? JSON.parse(response.outgoingInvitations) as number[] : []
+  const response = await getSingleRow<{ outgoingInvitations: number[] }>('outgoingInvitations', 'tr_competitive_users', 'license = ?', getPlayerLicense(source))
+  return response ? response.outgoingInvitations : []
 }
 
 onPromise('getOutgoingFriends', async (source) => getOutgoingFriendsCB(source))
 
 export const getPlayerFriendsCB = async (source: number) => {
-  const response = await getSingleRow<{ friends: string }>('friends', 'tr_competitive_users', 'license = ?', getPlayerLicense(source))
-  return response ? JSON.parse(response.friends) as number[] : []
+  const response = await getSingleRow<{ friends: number[] }>('friends', 'tr_competitive_users', 'license = ?', source)
+  return response ? response.friends : []
 }
 
 onPromise('getPlayerFriends', async (source) => getPlayerFriendsCB(source))
 
 export const getIncomingFriendsCB = async () => {
-  const response = await getSingleRow<{ incomingInvitations: string }>('incomingInvitations', 'tr_competitive_users', 'license = ?', getPlayerLicense(source))
-  return response ? JSON.parse(response.incomingInvitations) as number[] : []
+  const response = await getSingleRow<{ incomingInvitations: number[] }>('incomingInvitations', 'tr_competitive_users', 'license = ?', getPlayerLicense(source))
+  return response ? response.incomingInvitations : []
 }
 
 onPromise('getIncomingFriends', getIncomingFriendsCB)

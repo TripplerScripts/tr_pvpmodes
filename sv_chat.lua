@@ -6,7 +6,7 @@ RegisterServerEvent('chat:removeSuggestion')
 RegisterServerEvent('_chat:messageEntered')
 RegisterServerEvent('chat:clear')
 RegisterServerEvent('__cfx_internal:commandFallback')
-
+print('hi lenix')
 -- this is a built-in event, but somehow needs to be registered
 RegisterNetEvent('playerJoining')
 

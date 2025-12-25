@@ -1,7 +1,8 @@
 import { triggerNuiCallback } from '@trippler/tr_lib/client'
 import { fatal } from '@trippler/tr_lib/shared'
+import { Message, Suggestion } from '../shared/types'
 
-const addMessage = (message: string) => {
+const addMessage = (message: Message) => {
   if (typeof message !== 'string') {
     fatal(`expected string at #2, got ${typeof message}`)
     return
@@ -12,7 +13,7 @@ const addMessage = (message: string) => {
   })
 }
 
-const addSuggestion = (name: string, help: string, params: string[]) => {
+const addSuggestion = (name: Suggestion['name'], help: Suggestion['help'], params: Suggestion['params']) => {
   if (typeof name !== 'string') {
     fatal(`expected string at #2, got ${typeof name}`)
     return
@@ -28,7 +29,7 @@ const addSuggestion = (name: string, help: string, params: string[]) => {
   })
 }
 
-const addSuggestions = (suggestions: string[]) => {
+const addSuggestions = (suggestions: Suggestion[]) => {
   if (!Array.isArray(suggestions)) {
     fatal(`expected array at #2, got ${typeof suggestions}`)
     return

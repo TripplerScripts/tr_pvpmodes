@@ -1,6 +1,6 @@
 import { createElement } from "@lenixdev/ui_components"
 import { CommandName, recentCommands, suggestionsCount } from "../../../shared/constants/config"
-import { findClosest, getCommandArguments, getCommandLastIndex, getFirstArgumentText, isInShowRecentCommandsPosition, isTextInCommandSyntax } from "../utils"
+import { findClosest, getCommandArguments, getPassedArgumentsLastIndex, getPassedArgumentsFirstString, isInShowRecentCommandsPosition, isTextInCommandSyntax } from "../utils"
 import { currentItemSelected, useClearCommandSelection } from "./useCommandSelection"
 import { preventPlaceholderDuplication } from "../utils/dom"
 
@@ -37,19 +37,19 @@ export default (typedText: string) => {
         resultsFound++
         if (!closestRelative) {
           closestRelative = recentCommands[i]
-          createCommand(`chat-suggestion-item-${i}`, recentCommands[i], getCommandLastIndex(typedText))
+          createCommand(`chat-suggestion-item-${i}`, recentCommands[i], getPassedArgumentsLastIndex(typedText))
         } else {
-          createCommand(`chat-suggestion-item-${i}`, recentCommands[i], getCommandLastIndex(typedText))
+          createCommand(`chat-suggestion-item-${i}`, recentCommands[i], getPassedArgumentsLastIndex(typedText))
         }
       } else {
-        const commandSuggested = findClosest(getFirstArgumentText(typedText))[i]
+        const commandSuggested = findClosest(getPassedArgumentsFirstString(typedText))[i]
         if (commandSuggested) {
           resultsFound++
           if (!closestRelative) {
             closestRelative = commandSuggested
-            createCommand(`chat-suggestion-item-${i}`, commandSuggested, getCommandLastIndex(typedText))
+            createCommand(`chat-suggestion-item-${i}`, commandSuggested, getPassedArgumentsLastIndex(typedText))
           } else {
-            createCommand(`chat-suggestion-item-${i}`, commandSuggested, getCommandLastIndex(typedText))
+            createCommand(`chat-suggestion-item-${i}`, commandSuggested, getPassedArgumentsLastIndex(typedText))
           }
         } else {
           commandItem.textContent = ``

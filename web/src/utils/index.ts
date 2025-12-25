@@ -3,7 +3,7 @@ import { CommandName, registeredCommands } from "../../../shared/constants/confi
 const getCommands = () => Object.keys(registeredCommands) as (CommandName)[]
 
 export const getCommandArguments = (command: CommandName) => {
-  return registeredCommands[command]
+  return registeredCommands[command] || null
 }
 
 export const findClosest = (input: string) => {
@@ -18,7 +18,7 @@ export const findClosest = (input: string) => {
   return command
 }
 
-export const getFirstArgumentText = (characters: string) => {
+export const getPassedArgumentsFirstString = (characters: string) => {
   let filteredString = characters.slice(1)
   for (let i = 0; i < characters.length; i++) {
     if (characters[i] === ` `) {
@@ -26,10 +26,10 @@ export const getFirstArgumentText = (characters: string) => {
       break
     }
   }
-  return filteredString
+  return filteredString as CommandName
 }
 
-export const getCommandLastIndex = (characters: string) => {
+export const getPassedArgumentsLastIndex = (characters: string) => {
   let index = 0
   for (let i = 0; i < characters.length; i++) {
     if (characters[i] === ` ` && characters[i - 1] !== ` `) {
@@ -45,4 +45,19 @@ export const isInShowRecentCommandsPosition = (characters: string) => {
 
 export const isTextInCommandSyntax = (characters: string) => {
   return characters[0] === '/' && characters[1] !== ` `
+}
+
+export const getArrayfiedPassedCharacters = (characters: string) => {
+  let command: string[] = []
+  let word = ''
+  for (let i = 0; i < characters.length; i++) {
+    if (characters[i] !== ` ` && characters[i] !== `/`) {
+      word += characters[i]
+    } else if (word) {
+      command.push(word)
+      word = ''
+    }
+  }
+  if (word) command.push(word)
+  return command
 }

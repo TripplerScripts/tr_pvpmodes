@@ -1,5 +1,6 @@
 import { suggestionsCount } from "../../../shared/constants/config"
 import { input } from "../features/input"
+import useChangeBorderColor from "./useChangeBorderColor"
 
 export let currentItemSelected: HTMLElement | Element | null | undefined
 
@@ -46,4 +47,5 @@ export const useClearCommandSelection = () => {
   currentItemSelected?.classList.remove('border')
   currentItemSelected?.classList.remove('border-white')
   currentItemSelected = null
+  useChangeBorderColor()
 }

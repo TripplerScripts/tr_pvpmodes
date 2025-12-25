@@ -13,6 +13,11 @@ const addMessage = (message: string) => {
 }
 
 const addSuggestion = (name: string, help: string, params: string[]) => {
+  if (typeof name !== 'string') {
+    fatal(`expected string at #2, got ${typeof name}`)
+    return
+  }
+
   triggerNuiCallback({
     type: 'suggestion',
     suggestion: {
@@ -24,15 +29,20 @@ const addSuggestion = (name: string, help: string, params: string[]) => {
 }
 
 const addSuggestions = (suggestions: string[]) => {
+  if (!Array.isArray(suggestions)) {
+    fatal(`expected array at #2, got ${typeof suggestions}`)
+    return
+  }
   for (let i = 0; i < suggestions.length; i++) {
-    triggerNuiCallback({
-      type: 'suggestion',
-      suggestion: suggestions[i]
-    })
+    addSuggestion(suggestions[i]?.name, suggestions[i]?.help, suggestions[i]?.params)
   }
 }
 
 const removeSuggestion = (name: string) => {
+  if (typeof name !== 'string') {
+    fatal(`expected string at #2, got ${typeof name}`)
+    return
+  }
   triggerNuiCallback({
     type: 'remove_suggestion',
     name

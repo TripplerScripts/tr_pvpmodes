@@ -1,9 +1,11 @@
 import { fatal, info } from '@trippler/tr_lib/shared'
 
-if (GetResourceState('chat') !== 'missing') {
-  info("the resource 'chat' was detected, stopping 'chat'...")
-  StopResource('chat')
-}
+(() => {
+  if (GetResourceState('chat') !== 'missing') {
+    info("the resource 'chat' was detected, stopping 'chat' ...")
+    StopResource('chat')
+  }
+})
 
 const addMessage = (target: number, message: string) => {
   if (!message) {

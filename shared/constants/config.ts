@@ -1,5 +1,5 @@
 export const registeredCommands = {
-  setjob: ['id', 'job', 'rank'],
+  setjob: ['id', 'job', 'rank',],
   vector3: ['id', 'job', 'rank'],
   vector4: ['id', 'job', 'rank'],
   vec2: ['id', 'job', 'rank'],

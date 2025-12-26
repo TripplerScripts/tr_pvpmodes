@@ -6,7 +6,7 @@ document.body.id = `body`
 createElement({
   parent: `body`,
   id: `root`,
-  className: `w-full h-[100vh]`
+  className: `w-full h-[100vh] hidden`
 })
 
 createElement({

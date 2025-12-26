@@ -1,8 +1,8 @@
 import { createElement, Input } from '@lenixdev/ui_components'
 import useUpdateSuggetions from '../../hooks/useUpdateSuggetions'
 import { suggestionsCount } from '../../../../shared/constants/config'
-import useChangeBorderColor from '../../hooks/useChangeBorderColor'
-import { getArrayfiedPassedCharacters } from '../../utils'
+import { useChangeBorderColor } from '../../hooks/useChangeBorderColor'
+import { passCommand } from '../../api'
 
 createElement({
   parent: `chat-container`,
@@ -13,14 +13,16 @@ createElement({
 export const input = Input({
   parent: `chat-input`,
   placeholder: `use / to start a command`,
-  className: `w-full bg-stone-700 p-2 outline-none text-white transition-all`,
+  className: `input w-full bg-stone-700 p-2 outline-none text-white transition-all`,
   onChange: () => {
     useUpdateSuggetions(input.value)
     useChangeBorderColor(input.value)
   },
   onSubmit: () => {
-    getArrayfiedPassedCharacters(input.value)
-  }
+    passCommand(input.value)
+    useUpdateSuggetions(``)
+    input.value = ``
+  },
 })
 
 createElement({
@@ -34,7 +36,7 @@ setTimeout(() => {
     createElement({
       parent: `chat-suggestions-items`,
       id: `chat-suggestion-item-${index}`,
-      className: `w-full h-[25%] bg-inherit text-stone-300 flex gap-1`,
+      className: `w-full h-fit bg-inherit text-stone-300 flex flex-col gap-1`,
     })
   })
 })

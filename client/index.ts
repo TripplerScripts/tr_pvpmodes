@@ -15,7 +15,7 @@ setImmediate(() => {
   }, 1000)
 })
 
-globalThis.exports.tr_lib.onDisabled('ESC', () => {
+globalThis.exports.tr_lib.init().control.onDisabled('ESC', () => {
   openEscapeMenu()
 })
 

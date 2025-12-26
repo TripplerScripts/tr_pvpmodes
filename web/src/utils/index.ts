@@ -1,14 +1,33 @@
-import { CommandName, registeredCommands } from "../../../shared/constants/config"
+import { suggestions } from ".."
+import { CommandName } from "../../../shared/types"
 
-const getCommands = () => Object.keys(registeredCommands) as (CommandName)[]
+const getCommandNames = () => {
+  let commandNames: string[] = []
+  for (const key in suggestions) {
+    commandNames.push(suggestions[key].name)
+  }
+  return commandNames
+}
+
+export const getCommandHelp = (command: CommandName) => {
+  for (const key in suggestions) {
+    if (suggestions[key].name === command) {
+      return suggestions[key].help
+    }
+  }
+}
 
 export const getCommandArguments = (command: CommandName) => {
-  return registeredCommands[command] || null
+  for (const key in suggestions) {
+    if (suggestions[key].name === command) {
+      return suggestions[key].params
+    }
+  }
 }
 
 export const findClosest = (input: string) => {
   const lower = input.toLowerCase()
-  const command = getCommands().filter(word => word.toLowerCase().includes(lower)).sort((a, b) => {
+  const command = getCommandNames().filter(word => word.toLowerCase().includes(lower)).sort((a, b) => {
     const aStarts = a.toLowerCase().startsWith(lower)
     const bStarts = b.toLowerCase().startsWith(lower)
     if (aStarts && !bStarts) return -1
@@ -60,4 +79,18 @@ export const getArrayfiedPassedCharacters = (characters: string) => {
   }
   if (word) command.push(word)
   return command
+}
+
+export const isCharNumber = (character: string) => {
+  return /^\d+$/.test(character)
+}
+
+export const getPassedBlocksCount = (characters: string) => {
+  let index = 0
+  for (let i = 0; i < characters.length; i++) {
+    if (characters[i] !== ` ` && characters[i - 1] === ` `) {
+      index++
+    }
+  }
+  return index
 }

@@ -10,6 +10,7 @@ on("playerJoining", (_source: number, oldID: string) => {
   playersSources.push(source)
 });
 
-on("onResourceStop", () => {
+on("onResourceStop", (resourceName: string) => {
+  if (GetCurrentResourceName() !== resourceName) return
   fatal("tr_freeroam caught stopping, please restart your server")
 })

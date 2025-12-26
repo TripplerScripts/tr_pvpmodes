@@ -1,7 +1,8 @@
 fx_version 'cerulean'
 game 'gta5'
 dependencies {
-  'tr_kit'
+  'tr_kit',
+  'tr_lib'
 }
 
 author 'Lenix'

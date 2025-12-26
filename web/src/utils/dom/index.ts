@@ -1,3 +1,4 @@
+import { hideChat } from "../.."
 import { input } from "../../features/input"
 import useAcceptSuggetion from "../../hooks/useAcceptSuggetion"
 import { currentItemSelected, useClearCommandSelection, useCommandSelection } from "../../hooks/useCommandSelection"
@@ -9,7 +10,7 @@ document.addEventListener('keydown', (event) => {
     useAcceptSuggetion(closestRelative)
   }
   if (event.key === 'Enter') {
-    useAcceptSuggetion(currentItemSelected?.firstElementChild?.innerHTML?.slice(1))
+    useAcceptSuggetion(currentItemSelected?.firstElementChild?.firstElementChild?.innerHTML?.slice(1))
   }
   if (event.key === 'ArrowUp') {
     useCommandSelection('up')
@@ -19,6 +20,7 @@ document.addEventListener('keydown', (event) => {
   }
   if (event.key === 'Escape') {
     useClearCommandSelection()
+    hideChat()
   }
 })
 

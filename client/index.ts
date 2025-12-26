@@ -1,4 +1,4 @@
-import { triggerNuiCallback } from '@trippler/tr_lib/client'
+import { onNuiCallback, triggerNuiCallback } from '@trippler/tr_lib/client'
 import { fatal } from '@trippler/tr_lib/shared'
 import { Message, Suggestion } from '../shared/types'
 
@@ -44,11 +44,29 @@ const removeSuggestion = (name: string) => {
     fatal(`expected string at #2, got ${typeof name}`)
     return
   }
+
   triggerNuiCallback({
     type: 'remove_suggestion',
     name
   })
 }
+
+globalThis.exports.tr_lib.init().control.onDisabled('T', () => {
+  triggerNuiCallback({
+    type: 'open'
+  })
+  SetNuiFocus(true, false)
+})
+
+onNuiCallback<{ command: string[] }>('onCommand', (data, callback) => {
+  ExecuteCommand(data.command.join(' '))
+  SetNuiFocus(false, false)
+  callback(true)
+})
+
+on(`__cfx_export_chat_addMessage`, (cb: Function) => {
+  cb(addMessage)
+})
 
 onNet('chat:addMessage', addMessage)
 onNet('chat:addSuggestion', addSuggestion)

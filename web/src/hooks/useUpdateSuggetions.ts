@@ -1,25 +1,93 @@
 import { createElement } from "@lenixdev/ui_components"
-import { CommandName, recentCommands, suggestionsCount } from "../../../shared/constants/config"
-import { findClosest, getCommandArguments, getPassedArgumentsLastIndex, getPassedArgumentsFirstString, isInShowRecentCommandsPosition, isTextInCommandSyntax } from "../utils"
+import { recentCommands, suggestionsCount } from "../../../shared/constants/config"
+import { findClosest, getCommandArguments, getPassedArgumentsLastIndex, getPassedArgumentsFirstString, isInShowRecentCommandsPosition, isTextInCommandSyntax, getCommandHelp, isCharNumber, getPassedBlocksCount } from "../utils"
 import { currentItemSelected, useClearCommandSelection } from "./useCommandSelection"
 import { preventPlaceholderDuplication } from "../utils/dom"
+import { CommandName, Suggestion } from "../../../shared/types"
+import { changeBorderColor } from "./useChangeBorderColor"
 
 export let closestRelative: string | undefined
 export let resultsFound: number = 0
 
-const createCommand = (parent: string, command: CommandName, lastIndex: number) => {
+const createArgument = ({
+  commandIndex,
+  argumentIndex,
+  lastIndex,
+  typedText,
+  argumentsLength,
+  ...param
+}: {
+  commandIndex: number
+  argumentIndex: number
+  lastIndex: number,
+  typedText: string,
+  argumentsLength: number,
+} & Suggestion['params'][number]) => {
+  let className: string | undefined
+  if (typedText[typedText.length - 1] !== ` ` && param.type) {
+    const isStringValidNumber = (param.type === 'number' || param.type === 'playerId') && isCharNumber(typedText[typedText.length - 1])
+    const isStringValidString = param.type === 'string' && !isCharNumber(typedText[typedText.length - 1])
+
+    if (isStringValidNumber || isStringValidString) {
+      if (argumentsLength === getPassedBlocksCount(typedText)) {
+        setTimeout(() => {
+          changeBorderColor(`ring-green-600/60`)
+        }, 0)
+      }
+      className = `${lastIndex === argumentIndex + 1 ? 'text-green-300' : 'text-stone-400'}`
+    } else {
+      className = `${lastIndex === argumentIndex + 1 ? 'text-red-300' : 'text-stone-400'}`
+    }
+  } else {
+    className = `${lastIndex === argumentIndex + 1 ? 'text-stone-300' : 'text-stone-400'}`
+  }
   createElement({
-    parent,
-    id: `chat-suggestion-item-command`,
-    className: `${lastIndex === 0 ? 'text-stone-300' : 'text-stone-400'}`,
+    parent: `chat-suggestion-item-${commandIndex}-arguments`,
+    id: `chat-suggestion-item-${argumentIndex + 1}-argument`,
+    className,
+    content: param.name
+  })
+  if (lastIndex === argumentIndex + 1) {
+    createElement({
+      parent: `chat-suggestion-item-${commandIndex}`,
+      id: `chat-suggestion-item-${commandIndex}-help`,
+      content: `${param.help ? `${param.help}` : ''}${param.type ? `[type: ${param.type}]` : ''}${param.optional ? '(optional)' : ''}`
+    })
+  }
+}
+
+const createCommand = (commandIndex: number, command: CommandName, lastIndex: number, typedText: string) => {
+  createElement({
+    parent: `chat-suggestion-item-${commandIndex}`,
+    id: `chat-suggestion-item-${commandIndex}-arguments`,
+    className: `flex gap-1`
+  })
+  createElement({
+    parent: `chat-suggestion-item-${commandIndex}-arguments`,
+    id: `chat-suggestion-item-0-argument`,
     content: `/${command}`
   })
-  for (let i = 0; i < getCommandArguments(command).length; i++) {
+  if (lastIndex === 0) {
+    const commandHelp = getCommandHelp(command)
     createElement({
-      parent,
-      id: `chat-suggestion-item-argument-${i}`,
-      className: `${lastIndex === i + 1 ? 'text-stone-300' : 'text-stone-400'}`,
-      content: `${getCommandArguments(command)[i]}`
+      parent: `chat-suggestion-item-${commandIndex}`,
+      id: `chat-suggestion-item-${commandIndex}-help`,
+      content: commandHelp
+    })
+  }
+  const argumentsObject = getCommandArguments(command)
+  for (let i = 0; i < (argumentsObject ?? [])?.length; i++) {
+    if (!argumentsObject?.[i]) continue
+    createArgument({
+      commandIndex,
+      argumentIndex: i,
+      lastIndex,
+      typedText,
+      argumentsLength: argumentsObject.length - 1,
+      name: argumentsObject[i].name,
+      help: argumentsObject[i].help,
+      type: argumentsObject[i].type, 
+      optional: argumentsObject[i].optional
     })
   }
 }
@@ -37,9 +105,9 @@ export default (typedText: string) => {
         resultsFound++
         if (!closestRelative) {
           closestRelative = recentCommands[i]
-          createCommand(`chat-suggestion-item-${i}`, recentCommands[i], getPassedArgumentsLastIndex(typedText))
+          createCommand(i, recentCommands[i], getPassedArgumentsLastIndex(typedText), typedText)
         } else {
-          createCommand(`chat-suggestion-item-${i}`, recentCommands[i], getPassedArgumentsLastIndex(typedText))
+          createCommand(i, recentCommands[i], getPassedArgumentsLastIndex(typedText), typedText)
         }
       } else {
         const commandSuggested = findClosest(getPassedArgumentsFirstString(typedText))[i]
@@ -47,9 +115,9 @@ export default (typedText: string) => {
           resultsFound++
           if (!closestRelative) {
             closestRelative = commandSuggested
-            createCommand(`chat-suggestion-item-${i}`, commandSuggested, getPassedArgumentsLastIndex(typedText))
+            createCommand(i, commandSuggested, getPassedArgumentsLastIndex(typedText), typedText)
           } else {
-            createCommand(`chat-suggestion-item-${i}`, commandSuggested, getPassedArgumentsLastIndex(typedText))
+            createCommand(i, commandSuggested, getPassedArgumentsLastIndex(typedText), typedText)
           }
         } else {
           commandItem.textContent = ``
@@ -58,6 +126,7 @@ export default (typedText: string) => {
           }
         }
       }
+      console.log(closestRelative)
     } else {
       commandItem.textContent = ``
       useClearCommandSelection()

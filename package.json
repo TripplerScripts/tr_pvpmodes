@@ -15,11 +15,11 @@
     "@lenixdev/ui_components": "latest",
     "@trippler/tr_kit": "latest",
     "@trippler/tr_lib": "latest",
-    "typescript": "^5.0.0",
-    "@types/node": "^20.0.0",
+    "typescript": "^5.9.3",
+    "@types/node": "^25.0.3",
     "@citizenfx/client": "latest",
     "@citizenfx/server": "latest",
-    "esbuild": "^0.24.2",
-    "concurrently": "^8.2.0"
+    "esbuild": "^0.27.2",
+    "concurrently": "^9.2.1"
   }
 }

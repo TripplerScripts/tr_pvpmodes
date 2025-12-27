@@ -1,10 +1,11 @@
 import { createElement } from "@lenixdev/ui_components"
-import { recentCommands, suggestionsCount } from "../../../shared/constants/config"
+import { suggestionsCount } from "../../../shared/constants/config"
 import { findClosest, getCommandArguments, getPassedArgumentsLastIndex, getPassedArgumentsFirstString, isInShowRecentCommandsPosition, isTextInCommandSyntax, getCommandHelp, isCharNumber, getPassedBlocksCount, getPassedSpacesCount } from "../utils"
 import { currentItemSelected, useClearCommandSelection } from "./useCommandSelection"
 import { preventPlaceholderDuplication } from "../utils/dom"
 import { CommandName, Suggestion } from "../../../shared/types"
 import { changeBorderColor } from "./useChangeBorderColor"
+import { getStoredFrequentlyUsedCommands } from "./useFrequentlyUsedCommands"
 
 export let closestRelative: string | undefined
 export let resultsFound: number = 0
@@ -29,7 +30,7 @@ const createArgument = ({
     const isStringValidString = param.type === 'string' && !isCharNumber(typedText[typedText.length - 1])
 
     if (isStringValidNumber || isStringValidString) {
-      if (argumentsLength === getPassedBlocksCount(typedText)) {
+      if (argumentsLength === getPassedBlocksCount(typedText) - 1) {
         setTimeout(() => {
           changeBorderColor(`ring-green-600/60`)
         }, 0)
@@ -51,7 +52,7 @@ const createArgument = ({
     createElement({
       parent: `chat-suggestion-item-${commandIndex}`,
       id: `chat-suggestion-item-${commandIndex}-help`,
-      content: `${param.help ? `${param.help}` : ''}${param.type ? `[type: ${param.type}]` : ''}${param.optional ? '(optional)' : ''}`
+      content: `${param.help ? `${param.help}` : ''}${param.type ? ` [type: ${param.type}]` : ''}${param.optional ? ' (optional)' : ''}`
     })
   }
 }
@@ -84,7 +85,7 @@ const createCommand = (commandIndex: number, command: CommandName, lastIndex: nu
       argumentIndex: i,
       lastIndex,
       typedText,
-      argumentsLength: argumentsObject.length - 1,
+      argumentsLength: argumentsObject.length,
       name: argumentsObject[i].name,
       help: argumentsObject[i].help,
       type: argumentsObject[i].type, 
@@ -94,6 +95,7 @@ const createCommand = (commandIndex: number, command: CommandName, lastIndex: nu
 }
 
 export default (typedText: string) => {
+  const recentCommands = getStoredFrequentlyUsedCommands()
   closestRelative = undefined
   resultsFound = 0
   for (let i = 0; i < suggestionsCount; i++) {

@@ -43,6 +43,7 @@ useButton({
   onClick: () => {
     clearStoredFrequentlyUsedCommands()
     useClearCommandSelection()
+    useUpdateSuggetions(``)
     input.value = ``
   }
 })

@@ -1,6 +1,6 @@
 import { createElement } from "@lenixdev/ui_components"
 import { recentCommands, suggestionsCount } from "../../../shared/constants/config"
-import { findClosest, getCommandArguments, getPassedArgumentsLastIndex, getPassedArgumentsFirstString, isInShowRecentCommandsPosition, isTextInCommandSyntax, getCommandHelp, isCharNumber, getPassedBlocksCount } from "../utils"
+import { findClosest, getCommandArguments, getPassedArgumentsLastIndex, getPassedArgumentsFirstString, isInShowRecentCommandsPosition, isTextInCommandSyntax, getCommandHelp, isCharNumber, getPassedBlocksCount, getPassedSpacesCount } from "../utils"
 import { currentItemSelected, useClearCommandSelection } from "./useCommandSelection"
 import { preventPlaceholderDuplication } from "../utils/dom"
 import { CommandName, Suggestion } from "../../../shared/types"
@@ -57,6 +57,7 @@ const createArgument = ({
 }
 
 const createCommand = (commandIndex: number, command: CommandName, lastIndex: number, typedText: string) => {
+  if (command !== getPassedArgumentsFirstString(typedText) && getPassedSpacesCount(typedText) >= 1) return
   createElement({
     parent: `chat-suggestion-item-${commandIndex}`,
     id: `chat-suggestion-item-${commandIndex}-arguments`,
@@ -126,7 +127,6 @@ export default (typedText: string) => {
           }
         }
       }
-      console.log(closestRelative)
     } else {
       commandItem.textContent = ``
       useClearCommandSelection()

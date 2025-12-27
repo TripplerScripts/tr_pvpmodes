@@ -1,9 +1,9 @@
+import { fatal, trace } from '@trippler/tr_lib/shared'
 import { triggerNuiCallback } from '@trippler/tr_lib/web'
 import { Suggestion } from '../../shared/types'
 import './features'
 
 const root = document.getElementById(`root`)
-
 export const suggestions: Suggestion[] = []
 
 export const removeSuggestion = (name: string) => {
@@ -13,7 +13,7 @@ export const removeSuggestion = (name: string) => {
       return
     }
   }
-  console.warn(`tried to remove suggestion '${name}' but it was not found`)
+  trace(`tried to remove suggestion '${name}' but it was not found`)
 }
 
 export const hideChat = () => {
@@ -42,10 +42,11 @@ window.addEventListener('message', (event) => {
           help: message.suggestion.help,
           params: message.suggestion.params
         })
+        console.log('web', message.suggestion.name)
       } else {
         if (message.type === 'remove_suggestion') {
           removeSuggestion(message.name[0] !== `/` ? message.name : message.name.slice(1))
-        } else throw new Error(`unexpected message type received ${message.type}`)
+        } else fatal(`unexpected message type received ${message.type}`)
       }
     }
   }

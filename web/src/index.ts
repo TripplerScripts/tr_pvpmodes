@@ -1,3 +1,4 @@
+import { triggerNuiCallback } from '@trippler/tr_lib/web'
 import { Suggestion } from '../../shared/types'
 import './features'
 
@@ -16,6 +17,7 @@ export const removeSuggestion = (name: string) => {
 }
 
 export const hideChat = () => {
+  triggerNuiCallback('loseKeyboard')
   if (root) root.classList.add('hidden')
 }
 
@@ -42,7 +44,7 @@ window.addEventListener('message', (event) => {
         })
       } else {
         if (message.type === 'remove_suggestion') {
-          removeSuggestion(message.name)
+          removeSuggestion(message.name[0] !== `/` ? message.name : message.name.slice(1))
         } else throw new Error(`unexpected message type received ${message.type}`)
       }
     }

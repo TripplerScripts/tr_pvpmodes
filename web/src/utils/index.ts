@@ -94,3 +94,7 @@ export const getPassedBlocksCount = (characters: string) => {
   }
   return index
 }
+
+export const getPassedSpacesCount = (characters: string) => {
+  return characters.split(' ').length - 1
+}

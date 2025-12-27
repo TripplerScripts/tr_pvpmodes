@@ -1,4 +1,5 @@
 import { hideChat } from "../.."
+import { grabCursor } from "../../api"
 import { input } from "../../features/input"
 import useAcceptSuggetion from "../../hooks/useAcceptSuggetion"
 import { currentItemSelected, useCommandSelection } from "../../hooks/useCommandSelection"
@@ -27,6 +28,13 @@ document.addEventListener('keydown', (event) => {
   if (event.key === 'Escape') {
     enteredSelections = false
     hideChat()
+  }
+  if (event.key === 'Escape') {
+    enteredSelections = false
+    hideChat()
+  }
+  if (event.key === 'F11') {
+    grabCursor()
   }
 })
 

@@ -14,7 +14,7 @@ export const useCommandSelection = (direction: string) => {
       currentItemSelected?.previousElementSibling?.classList.remove('border-white')
     } else {
       if (!currentItemSelected) {
-        currentItemSelected = document.getElementById(`chat-suggestions-items`)?.firstElementChild
+        currentItemSelected = document.getElementById(`chat-suggestions-items`)?.firstElementChild?.nextElementSibling?.nextElementSibling
         currentItemSelected?.classList.add('border')
         currentItemSelected?.classList.add('border-white')
       }

@@ -19,7 +19,6 @@ document.addEventListener('keydown', (event) => {
     useCommandSelection('down')
   }
   if (event.key === 'Escape') {
-    useClearCommandSelection()
     hideChat()
   }
 })

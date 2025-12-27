@@ -60,6 +60,10 @@ globalThis.exports.tr_lib.init().control.onDisabled('T', () => {
 
 onNuiCallback<{ command: string[] }>('onCommand', (data, callback) => {
   ExecuteCommand(data.command.join(' '))
+  callback(true)
+})
+
+onNuiCallback<null>('loseKeyboard', (_data, callback) => {
   SetNuiFocus(false, false)
   callback(true)
 })

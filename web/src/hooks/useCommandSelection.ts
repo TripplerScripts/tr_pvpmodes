@@ -3,47 +3,67 @@ import { input } from "../features/input"
 
 export let currentItemSelected: HTMLElement | Element | null | undefined
 
+const isTrashButton = (el: Element | null | undefined) => 
+  el?.innerHTML?.trim() === `<i class="fas fa-trash"></i>`
+
+const isValidItem = (el: Element | null | undefined) => {
+  if (!el) return false
+  const html = el.innerHTML?.trim()
+  return html && html !== `<i class="fas fa-trash"></i>`
+}
+
+const getNextValid = (el: Element | null | undefined): Element | null | undefined => {
+  let current = el
+  while (current && !isValidItem(current)) {
+    current = current.nextElementSibling
+  }
+  return current
+}
+
+const getPrevValid = (el: Element | null | undefined): Element | null | undefined => {
+  let current = el
+  while (current && !isValidItem(current)) {
+    current = current.previousElementSibling
+  }
+  return current
+}
+
 export const useCommandSelection = (direction: string) => {
   if (input.value.length === 0) return
+
   if (direction === 'down') {
-    if (currentItemSelected?.nextElementSibling?.innerHTML) {
-      currentItemSelected = currentItemSelected?.nextElementSibling
-      currentItemSelected?.classList.add('border')
-      currentItemSelected?.classList.add('border-white')
-      currentItemSelected?.previousElementSibling?.classList.remove('border')
-      currentItemSelected?.previousElementSibling?.classList.remove('border-white')
+    currentItemSelected?.classList.remove('border', 'border-white')
+    
+    if (!currentItemSelected) {
+      const container = document.getElementById('chat-suggestions-items')
+      currentItemSelected = getNextValid(container?.firstElementChild)
     } else {
-      if (!currentItemSelected) {
-        currentItemSelected = document.getElementById(`chat-suggestions-items`)?.firstElementChild?.nextElementSibling?.nextElementSibling
-        currentItemSelected?.classList.add('border')
-        currentItemSelected?.classList.add('border-white')
-      }
+      currentItemSelected = getNextValid(currentItemSelected.nextElementSibling)
     }
+    
+    currentItemSelected?.classList.add('border', 'border-white')
+  } else if (direction === 'up') {
+  currentItemSelected?.classList.remove('border', 'border-white')
+  
+  if (!currentItemSelected) {
+    const container = document.getElementById('chat-suggestions-items')
+    currentItemSelected = getPrevValid(container?.lastElementChild)
   } else {
-    if (direction === 'up') {
-      if (!currentItemSelected) {
-        for (let i = suggestionsCount; i >= 0; i--) {
-          if (document.getElementById(`chat-suggestion-item-${i}`)?.innerHTML) {
-            currentItemSelected = document.getElementById(`chat-suggestion-item-${i}`)
-            break
-          }
-        }
-        currentItemSelected?.classList.add('border')
-        currentItemSelected?.classList.add('border-white')
-        return
-      }
-      if (!currentItemSelected?.previousElementSibling?.innerHTML) return
-      currentItemSelected = currentItemSelected?.previousElementSibling
-      currentItemSelected?.classList.add('border')
-      currentItemSelected?.classList.add('border-white')
-      currentItemSelected?.nextElementSibling?.classList.remove('border')
-      currentItemSelected?.nextElementSibling?.classList.remove('border-white')
+    const prev = getPrevValid(currentItemSelected.previousElementSibling)
+    if (!prev) {
+      // Wrap to last valid element
+      const container = document.getElementById('chat-suggestions-items')
+      currentItemSelected = getPrevValid(container?.lastElementChild)
+    } else {
+      currentItemSelected = prev
     }
   }
+  
+  currentItemSelected?.classList.add('border', 'border-white')
+}
 }
 
 export const useClearCommandSelection = () => {
-  currentItemSelected?.classList.remove('border')
-  currentItemSelected?.classList.remove('border-white')
+  currentItemSelected?.classList.remove('border', 'border-white')
   currentItemSelected = null
 }

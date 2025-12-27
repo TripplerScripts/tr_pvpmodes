@@ -18,12 +18,14 @@ const addSuggestion = (name: Suggestion['name'], help: Suggestion['help'], param
     fatal(`expected string at #2, got ${typeof name}`)
     return
   }
+
   let optionalFound = false
   for (const param of params) {
     if (param.optional) {
       optionalFound = true
     } else if (optionalFound) fatal(`A required parameter cannot be after an optional parameter`)
   }
+  console.log('client', name)
 
   triggerNuiCallback({
     type: 'suggestion',
@@ -57,11 +59,9 @@ const removeSuggestion = (name: string) => {
   })
 }
 
-globalThis.exports.tr_lib.init().control.onDisabled('T', () => {
-  triggerNuiCallback({
-    type: 'open'
-  })
-  SetNuiFocus(true, false)
+onNuiCallback('grabCursor', (_data, callback) => {
+  SetNuiFocus(true, true)
+  callback(true)
 })
 
 onNuiCallback<{ command: string[] }>('onCommand', (data, callback) => {
@@ -77,6 +77,14 @@ onNuiCallback<null>('loseKeyboard', (_data, callback) => {
 on(`__cfx_export_chat_addMessage`, (cb: Function) => {
   cb(addMessage)
 })
+
+globalThis.exports.tr_lib.init().control.onDisabled('T', () => {
+  triggerNuiCallback({
+    type: 'open'
+  })
+  SetNuiFocus(true, false)
+})
+
 
 onNet('chat:addMessage', addMessage)
 onNet('chat:addSuggestion', addSuggestion)

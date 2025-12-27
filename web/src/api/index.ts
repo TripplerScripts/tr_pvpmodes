@@ -8,3 +8,7 @@ export const passCommand = (raw: string) => {
   changeBorderColor()
   hideChat()
 }
+
+export const grabCursor = () => {
+  triggerNuiCallback('grabCursor')
+}

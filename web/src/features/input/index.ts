@@ -12,7 +12,7 @@ createElement({
 
 export const input = Input({
   parent: `chat-input`,
-  placeholder: `use / to start a command`,
+  placeholder: `type / to start a command`,
   className: `input w-full bg-stone-700 p-2 outline-none text-white transition-all`,
   onChange: () => {
     useUpdateSuggetions(input.value)

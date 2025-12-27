@@ -18,6 +18,12 @@ const addSuggestion = (name: Suggestion['name'], help: Suggestion['help'], param
     fatal(`expected string at #2, got ${typeof name}`)
     return
   }
+  let optionalFound = false
+  for (const param of params) {
+    if (param.optional) {
+      optionalFound = true
+    } else if (optionalFound) fatal(`A required parameter cannot be after an optional parameter`)
+  }
 
   triggerNuiCallback({
     type: 'suggestion',

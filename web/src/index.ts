@@ -42,7 +42,6 @@ window.addEventListener('message', (event) => {
           help: message.suggestion.help,
           params: message.suggestion.params
         })
-        console.log('web', message.suggestion.name)
       } else {
         if (message.type === 'remove_suggestion') {
           removeSuggestion(message.name[0] !== `/` ? message.name : message.name.slice(1))

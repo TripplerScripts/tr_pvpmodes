@@ -4,11 +4,11 @@ import { hideChat } from ".."
 import { changeBorderColor } from "../hooks/useChangeBorderColor"
 
 export const passCommand = (raw: string) => {
-  triggerNuiCallback('onCommand', { command: getArrayfiedPassedCharacters(raw) })
+  triggerNuiCallback<boolean>('onCommand', { command: getArrayfiedPassedCharacters(raw) })
   changeBorderColor()
   hideChat()
 }
 
 export const grabCursor = () => {
-  triggerNuiCallback('grabCursor')
+  triggerNuiCallback<boolean>('grabCursor')
 }

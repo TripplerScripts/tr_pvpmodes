@@ -17,7 +17,7 @@ export const removeSuggestion = (name: string) => {
 }
 
 export const hideChat = () => {
-  triggerNuiCallback('loseKeyboard')
+  triggerNuiCallback<boolean>('loseKeyboard')
   if (root) root.classList.add('hidden')
 }
 
@@ -50,4 +50,8 @@ window.addEventListener('message', (event) => {
       }
     }
   }
+})
+
+document.addEventListener("DOMContentLoaded", () => {
+  triggerNuiCallback<boolean>('loaded')
 })

@@ -1,25 +1,25 @@
-import { Button, createElement } from '@lenixdev/ui_components'
+import { useDiv, useButton } from '@trippler/tr_kit/web'
 import useSelectMode from '../hooks/useSelectMode'
 
 document.body.id = 'body'
-createElement({
+useDiv({
   parent: "body",
   id: "root"
 })
 
-createElement({
+useDiv({
   parent: "root",
   id: "main-intrance",
   className: "w-[100vw] h-[100vh] flex items-end justify-center py-52 bg-stone-900/20 bg-[url(./images/bg.jpg)] bg-cover bg-center"
 })
 
-createElement({
+useDiv({
   parent: "main-intrance",
   id: "dashboard-content",
   className: "flex flex-col items-center gap-5"    
 })
 
-Button({
+useButton({
   parent: "dashboard-content",
   id: "dashboard-button",
   content: "Competitive",
@@ -28,7 +28,7 @@ Button({
   onClick: () => useSelectMode('competitive')
 })
 
-Button({
+useButton({
   parent: "dashboard-content",
   id: "dashboard-button",
   content: "Freeroam",

@@ -3,6 +3,7 @@ import './nui'
 import './exports'
 import openMainMenu from './nui/openMainMenu'
 import openEscapeMenu from './nui/openEscapeMenu'
+import { control } from '@trippler/tr_lib/client'
 
 let DOMContentLoaded = false
 
@@ -15,7 +16,7 @@ setImmediate(() => {
   }, 1000)
 })
 
-globalThis.exports.tr_lib.init().control.onDisabled('ESC', () => {
+control.onDisabled('ESC', () => {
   openEscapeMenu()
 })
 

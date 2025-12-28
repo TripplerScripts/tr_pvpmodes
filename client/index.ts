@@ -2,6 +2,9 @@ import { onNuiCallback, triggerNuiCallback } from '@trippler/tr_lib/client'
 import { fatal } from '@trippler/tr_lib/shared'
 import { Message, Suggestion } from '../shared/types'
 
+let DOMLoaded = false
+const earlySuggestionsInsertion: Suggestion[] = []
+
 const addMessage = (message: Message) => {
   if (typeof message !== 'string') {
     fatal(`expected string at #2, got ${typeof message}`)
@@ -13,19 +16,27 @@ const addMessage = (message: Message) => {
   })
 }
 
+const isIterable = (obj: any) => {
+  return obj != null && typeof obj[Symbol.iterator] === 'function'
+}
+
 const addSuggestion = (name: Suggestion['name'], help: Suggestion['help'], params: Suggestion['params']) => {
   if (typeof name !== 'string') {
     fatal(`expected string at #2, got ${typeof name}`)
     return
   }
 
-  let optionalFound = false
-  for (const param of params) {
-    if (param.optional) {
-      optionalFound = true
-    } else if (optionalFound) fatal(`A required parameter cannot be after an optional parameter`)
+  if (isIterable(params)) {
+    let optionalFound = false
+    for (const param of params) {
+      if (param.optional) {
+        optionalFound = true
+      } else if (optionalFound) fatal(`A required parameter cannot be after an optional parameter`)
+    }
   }
-  console.log('client', name)
+  if (!DOMLoaded) {
+    earlySuggestionsInsertion.push({name, help, params})
+  }
 
   triggerNuiCallback({
     type: 'suggestion',
@@ -42,6 +53,7 @@ const addSuggestions = (suggestions: Suggestion[]) => {
     fatal(`expected array at #2, got ${typeof suggestions}`)
     return
   }
+
   for (let i = 0; i < suggestions.length; i++) {
     addSuggestion(suggestions[i]?.name, suggestions[i]?.help, suggestions[i]?.params)
   }
@@ -71,6 +83,12 @@ onNuiCallback<{ command: string[] }>('onCommand', (data, callback) => {
 
 onNuiCallback<null>('loseKeyboard', (_data, callback) => {
   SetNuiFocus(false, false)
+  callback(true)
+})
+
+onNuiCallback<null>('loaded', (_data, callback) => {
+  DOMLoaded = true
+  addSuggestions(earlySuggestionsInsertion)
   callback(true)
 })
 

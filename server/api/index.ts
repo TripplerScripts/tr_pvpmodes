@@ -1,4 +1,5 @@
 import { fatal, onPromise, triggerPromise } from '@trippler/tr_lib/server'
+import { split } from '@trippler/tr_lib/shared'
 import fetchDiscordServer from '../services'
 import { playersSources } from '..'
 import { info } from 'console'
@@ -11,7 +12,7 @@ onPromise('createNewMessageRequest', (senderSource, message: string) => {
         info(`could not retrieve the sender ${GetPlayerName(senderSource)} [#id: ${senderSource}]'s discord Id`)
         return false
       }
-      const userDiscordId = exports.tr_lib.init().split(discordId, ':')[1]
+      const userDiscordId = split(discordId, ':')[1]
       const userRole = await fetchDiscordServer(userDiscordId)
       if (!userRole) {
         info(`could not retrieve the sender ${GetPlayerName(senderSource)} [#id: ${senderSource}]'s role`)

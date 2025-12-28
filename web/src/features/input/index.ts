@@ -24,8 +24,8 @@ export const input = useInput({
   },
   onSubmit: () => {
     passCommand(input.value)
+    input.value[0] === `/` && useStoreFrequentlyUsedCommands(getPassedArgumentsFirstString(input.value))
     useUpdateSuggetions(``)
-    useStoreFrequentlyUsedCommands(getPassedArgumentsFirstString(input.value))
     input.value = ``
   },
 })

@@ -1,4 +1,4 @@
-import { onNuiCallback, triggerNuiCallback } from '@trippler/tr_lib/client'
+import { control, onNuiCallback, triggerNuiCallback } from '@trippler/tr_lib/client'
 import { fatal } from '@trippler/tr_lib/shared'
 import { Message, Suggestion } from '../shared/types'
 
@@ -95,7 +95,7 @@ on(`__cfx_export_chat_addMessage`, (cb: Function) => {
   cb(addMessage)
 })
 
-globalThis.exports.tr_lib.init().control.onDisabled('T', () => {
+control.onDisabled('T', () => {
   triggerNuiCallback({
     type: 'open'
   })

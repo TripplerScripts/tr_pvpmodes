@@ -1,5 +1,4 @@
-import { createElement, Input } from '@lenixdev/ui_components'
-import { useButton, useInput } from '@trippler/tr_kit/web'
+import { useButton, useInput, useDiv } from '@trippler/tr_kit/web'
 import useUpdateSuggetions from '../../hooks/useUpdateSuggetions'
 import { suggestionsCount } from '../../../../shared/constants/config'
 import { useChangeBorderColor } from '../../hooks/useChangeBorderColor'
@@ -8,7 +7,7 @@ import { getPassedArgumentsFirstString } from '../../utils'
 import { clearStoredFrequentlyUsedCommands, getStoredFrequentlyUsedCommands, useStoreFrequentlyUsedCommands } from '../../hooks/useFrequentlyUsedCommands'
 import { useClearCommandSelection } from '../../hooks/useCommandSelection'
 
-createElement({
+useDiv({
   parent: `chat-container`,
   id: `chat-input`,
   className: `w-full h-[40%] bg-stone-600 flex flex-col gap-1`
@@ -30,7 +29,7 @@ export const input = useInput({
   },
 })
 
-createElement({
+useDiv({
   parent: `chat-input`,
   id: `chat-suggestions-items`,
   className: `relative w-full h-full bg-inherit flex flex-col justify-between`,
@@ -50,7 +49,7 @@ useButton({
 
 setTimeout(() => {
   [...Array(suggestionsCount)].forEach((_, index) => {
-    createElement({
+    useDiv({
       parent: `chat-suggestions-items`,
       id: `chat-suggestion-item-${index}`,
       className: `w-full h-fit bg-inherit text-stone-300 flex flex-col gap-1`,

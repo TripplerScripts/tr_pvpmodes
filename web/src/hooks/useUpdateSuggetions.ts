@@ -1,4 +1,4 @@
-import { createElement } from "@lenixdev/ui_components"
+import { useDiv } from "@trippler/tr_kit/web"
 import { suggestionsCount } from "../../../shared/constants/config"
 import { findClosest, getCommandArguments, getPassedArgumentsLastIndex, getPassedArgumentsFirstString, isInShowRecentCommandsPosition, isTextInCommandSyntax, getCommandHelp, isCharNumber, getPassedBlocksCount, getPassedSpacesCount } from "../utils"
 import { currentItemSelected, useClearCommandSelection } from "./useCommandSelection"
@@ -42,14 +42,14 @@ const createArgument = ({
   } else {
     className = `${lastIndex === argumentIndex + 1 ? 'text-stone-300' : 'text-stone-400'}`
   }
-  createElement({
+  useDiv({
     parent: `chat-suggestion-item-${commandIndex}-arguments`,
     id: `chat-suggestion-item-${argumentIndex + 1}-argument`,
     className,
     content: param.name
   })
   if (lastIndex === argumentIndex + 1) {
-    createElement({
+    useDiv({
       parent: `chat-suggestion-item-${commandIndex}`,
       id: `chat-suggestion-item-${commandIndex}-help`,
       content: `${param.help ? `${param.help}` : ''}${param.type ? ` [type: ${param.type}]` : ''}${param.optional ? ' (optional)' : ''}`
@@ -59,19 +59,19 @@ const createArgument = ({
 
 const createCommand = (commandIndex: number, command: CommandName, lastIndex: number, typedText: string) => {
   if (command !== getPassedArgumentsFirstString(typedText) && getPassedSpacesCount(typedText) >= 1) return
-  createElement({
+  useDiv({
     parent: `chat-suggestion-item-${commandIndex}`,
     id: `chat-suggestion-item-${commandIndex}-arguments`,
     className: `flex gap-1`
   })
-  createElement({
+  useDiv({
     parent: `chat-suggestion-item-${commandIndex}-arguments`,
     id: `chat-suggestion-item-0-argument`,
     content: `/${command}`
   })
   if (lastIndex === 0) {
     const commandHelp = getCommandHelp(command)
-    createElement({
+    useDiv({
       parent: `chat-suggestion-item-${commandIndex}`,
       id: `chat-suggestion-item-${commandIndex}-help`,
       content: commandHelp

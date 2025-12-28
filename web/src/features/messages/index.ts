@@ -1,6 +1,6 @@
-import { createElement } from '@lenixdev/ui_components'
+import { useDiv } from '@trippler/tr_kit/web'
 
-createElement({
+useDiv({
   parent: `chat-container`,
   id: `chat-messages`,
   className: `w-full h-full bg-stone-800`

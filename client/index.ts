@@ -6,10 +6,9 @@ let DOMLoaded = false
 const earlySuggestionsInsertion: Suggestion[] = []
 
 const addMessage = (message: Message) => {
-  if (typeof message !== 'string') {
-    fatal(`expected string at #2, got ${typeof message}`)
-    return
-  }
+  if (typeof message !== 'object') fatal(`expected object at #2, got ${typeof message}`)
+  if (message.template) return fatal(`template messages are not supported`)
+
   triggerNuiCallback({
     type: 'message',
     message

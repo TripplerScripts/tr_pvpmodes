@@ -1,27 +1,27 @@
-import { createElement, Button} from "@lenixdev/ui_components"
+import { useDiv, useButton} from "@trippler/tr_kit/web"
 import unavailableNotice from "../../../../components/serviceUnavailable"
 import playerDetails from "../../../../modules/playerDetails"
 
-Button({
+useButton({
   parent: "player-details",
   id: "player-card",
   className: "w-[35%] h-full bg-gray-700 flex justify-center items-center rounded-md overflow-hidden",
   onClick: () => unavailableNotice()
 })
 
-const avatarElement = createElement({
+const avatarElement = useDiv({
   parent: "player-card",
   id: "player-avatar",
   className: "w-full h-full bg-stone-800 flex-[1] flex justify-center items-center p-1"
 })
 
-createElement({
+useDiv({
   parent: "player-card",
   id: "player-info",
   className: "w-full h-full hover:bg-gray-600 flex flex-[4] px-2"
 })
 
-const nameElement = createElement({
+const nameElement = useDiv({
   parent: "player-info",
   className: "h-full text-white flex items-center"
 })

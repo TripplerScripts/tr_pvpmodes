@@ -1,7 +1,7 @@
-import { Button } from "@lenixdev/ui_components"
+import { useButton } from "@trippler/tr_kit/web"
 import unavailableNotice from "../../../../components/serviceUnavailable"
 
-Button({
+useButton({
   parent: "player-details",
   content: "🌟 | 3000/4500",
   size: "base",

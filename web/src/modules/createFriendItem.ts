@@ -1,4 +1,4 @@
-import { Button, createElement } from "@lenixdev/ui_components"
+import { useButton, useDiv } from "@trippler/tr_kit/web"
 import { removePlayerFriendship } from "../api/friendship"
 import playerDetails from "../modules/playerDetails"
 
@@ -9,13 +9,13 @@ export default async (identity: number): Promise<void> => {
   document.getElementById('noFriendsFound')?.remove()
   const user = await new playerDetails().getUserDetails(identity)
 
-  const friend = createElement({
+  const friend = useDiv({
     parent: "friendsItems",
     id: `friend-item-${friendsItems}`,
     className: "flex items-center justify-between hover:bg-stone-600 text-sm py-4 px-2"
   })
 
-  createElement({
+  useDiv({
     parent: `friend-item-${friendsItems}`,
     className: "w-[75%] flex items-center justify-between",
     content: `
@@ -28,7 +28,7 @@ export default async (identity: number): Promise<void> => {
     `
   })
   
-  const inviteBTN = Button({
+  const inviteBTN = useButton({
     parent: `friend-item-${friendsItems}`,
     className: "w-[16%] h-[12.5%] hover:bg-blue-500 flex items-center justify-center",
     content: '➕',
@@ -40,7 +40,7 @@ export default async (identity: number): Promise<void> => {
     }
   })
   
-  Button({
+  useButton({
     parent: `friend-item-${friendsItems}`,
     className: "w-[16%] h-[12.5%] hover:bg-red-500 flex items-center justify-center",
     content: '➖',

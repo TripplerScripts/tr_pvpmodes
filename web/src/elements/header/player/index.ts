@@ -1,6 +1,6 @@
-import { createElement } from "@lenixdev/ui_components"
+import { useDiv } from "@trippler/tr_kit/web"
 
-createElement({
+useDiv({
   parent: "header",
   id: "player-details",
   className: "w-[40%] h-[75%] flex items-center justify-around"

@@ -1,4 +1,4 @@
-import { createElement, Button} from "@lenixdev/ui_components";
+import { useDiv, useButton} from "@trippler/tr_kit/web";
 import { AlertOptions } from '../types'
 let alerts = []
 
@@ -13,38 +13,38 @@ export default ({ type, title, message, button, onClick }: AlertOptions): [typeo
   alerts.push(alerts.length)
   document.body.setAttribute('id', 'index')
   document.body.setAttribute('class', 'relative')
-  const index = createElement({
+  const index = useDiv({
     parent: "index",
     className: "absolute top-0 flex flex-col justify-center bg-stone-900/95 w-full h-[100vh]",
     id: "alert-" + alerts.length
   })
   
-  createElement({
+  useDiv({
     parent: "alert-" + alerts.length,
     id: "alert-content-block-" + alerts.length,
     className: "w-full h-[30%] bg-stone-800 flex flex-col items-center justify-around",
   })
 
-  createElement({
+  useDiv({
     parent: "alert-" + alerts.length,
     id: "alert-button-block-" + alerts.length,
     className: "w-full h-fit py-2 gap-1 bg-stone-700 flex flex-col items-center justify-center",
   })
   
-  createElement({
+  useDiv({
     parent: "alert-content-block-" + alerts.length,
     id: "alert-title",
     className: "text-white tracking-tighter text-center text-4xl italic font-extrabold flex gap-3 items-center",
     content: (types[type] || types['info']) + title.toUpperCase(),
   })
 
-  createElement({
+  useDiv({
     parent: "alert-content-block-" + alerts.length,
     className: "text-gray-300 max-w-[60%] text-center",
     content: message
   })
 
-  button != undefined && Button({
+  button != undefined && useButton({
     parent: "alert-button-block-" + alerts.length,
     content: button,
     size: "xl",

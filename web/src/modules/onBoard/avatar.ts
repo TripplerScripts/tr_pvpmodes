@@ -1,5 +1,5 @@
 import Alert from "../../components/alert";
-import { Input, Button } from "@lenixdev/ui_components";
+import { useInput, useButton } from "@trippler/tr_kit/web";
 
 const setupAvatar = () => new Promise((resolve) => {
   const [setupElement, alertIndex] = Alert({
@@ -8,13 +8,13 @@ const setupAvatar = () => new Promise((resolve) => {
     message: "Please paste your valid avatar URL here, e.g. https://r2.fivemanage.com/COKMc8Wcmk9K5dp547rEw/Lenix_924.png"
   })
   
-  const avatarInput = Input({
+  const avatarInput = useInput({
     parent: "alert-button-block-" + alertIndex,
     placeholder: "Paste your avatar URL here",
     defaultValue: "https://r2.fivemanage.com/COKMc8Wcmk9K5dp547rEw/trippler.png",
   })
   
-  Button({
+  useButton({
     parent: "alert-button-block-" + alertIndex,
     size: "xl",
     type: "primary",

@@ -1,5 +1,5 @@
 import Alert from "../../components/alert";
-import { Input, Button, createElement } from "@lenixdev/ui_components";
+import { useInput, useButton, useDiv } from "@trippler/tr_kit/web";
 
 const nameSetup = () => new Promise((resolve) => {
   const [setupElement, setupIndex] = Alert({
@@ -8,13 +8,13 @@ const nameSetup = () => new Promise((resolve) => {
     message: "Please set you display nickname, a nickname must be at least 4 characters long and at most 15 characters long"
   })
 
-  const nameInput = Input({
+  const nameInput = useInput({
     parent: "alert-button-block-" + setupIndex,
     placeholder: "Press tab to jump in",
     defaultValue: "",
   })
 
-  Button({
+  useButton({
     parent: "alert-button-block-" + setupIndex,
     size: "xl",
     type: "primary",
@@ -70,12 +70,12 @@ const nameSetup = () => new Promise((resolve) => {
       title: "Are you sure?",
       message: "Please be aware that once you set you name and confirm it, you won't be able to changed it again later, so double check that."
     })
-    createElement({
+    useDiv({
       parent: "alert-button-block-" + confimationIndex,
       id: "confirm-buttons-" + confimationIndex,
       className: "w-full flex justify-center gap-2"
     })
-    Button({
+    useButton({
       parent: "confirm-buttons-" + confimationIndex,
       content: "Return",
       onClick: () => {
@@ -85,7 +85,7 @@ const nameSetup = () => new Promise((resolve) => {
       size: "xl",
       type: "primary"
     })
-    Button({
+    useButton({
       parent: "confirm-buttons-" + confimationIndex,
       content: "Confirm",
       onClick: () => {

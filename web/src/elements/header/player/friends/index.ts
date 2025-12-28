@@ -1,7 +1,7 @@
-import { Button } from "@lenixdev/ui_components"
+import { useButton } from "@trippler/tr_kit/web"
 import { useFriendsPanel } from "../../../../hooks/useFriendsPanel"
 
-Button({
+useButton({
   parent: "player-details",
   id: "friendsButton",
   className: "w-[10%] h-[80%] bg-blue-700 flex items-center justify-center",

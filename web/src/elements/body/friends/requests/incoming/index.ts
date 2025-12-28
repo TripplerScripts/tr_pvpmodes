@@ -1,8 +1,8 @@
-import { createElement, Button } from "@lenixdev/ui_components"
+import { useDiv, useButton } from "@trippler/tr_kit/web"
 import { getIncomingFriends, removeIncomingRequest, acceptFriendship } from "../../../../../api/friendship"
 import playerDetails from "../../../../../modules/playerDetails"
 
-createElement({
+useDiv({
   parent: "friendsRequests",
   id: "incomingRequests",
   className: "w-full h-full overflow-auto [scrollbar-width:none]"
@@ -14,12 +14,12 @@ let incomingRequests: HTMLDivElement[] = []
 const addNewIncomingRequest = async (index: number, identity: number): Promise<void> => {
   const user = await new playerDetails().getUserDetails(identity)
 
-  const request = createElement({
+  const request = useDiv({
     parent: "incomingRequests",
     id: `incoming-item-${index}`,
     className: "flex items-center justify-between hover:bg-stone-600 text-sm py-2"
   })
-  createElement({
+  useDiv({
     parent: `incoming-item-${index}`,
     className: "w-[75%] flex items-center justify-start",
     content: `
@@ -29,7 +29,7 @@ const addNewIncomingRequest = async (index: number, identity: number): Promise<v
       </div>
     `
   })
-  Button({
+  useButton({
     parent: `incoming-item-${index}`,
     className: "w-[25%] h-[12.5%] hover:bg-blue-500 flex items-center justify-center",
     content: '✅',
@@ -41,7 +41,7 @@ const addNewIncomingRequest = async (index: number, identity: number): Promise<v
       incomingRequests.splice(index, 1)
     }
   })
-  Button({
+  useButton({
     parent: `incoming-item-${index}`,
     className: "w-[25%] h-[12.5%] hover:bg-blue-500 flex items-center justify-center",
     content: '❌',

@@ -1,45 +1,45 @@
-import { Button, createElement} from "@lenixdev/ui_components"
+import { useButton, useDiv} from "@trippler/tr_kit/web"
 
-createElement({
+useDiv({
   parent: "body",
   id: "invites",
   className: "w-[65%] h-[75%] flex justify-between items-center gap-[25%]"
 })
 
-createElement({
+useDiv({
   parent: "invites",
   id: "left-InviteSide",
   className: "w-full flex justify-around"
 })
 
-createElement({
+useDiv({
   parent: "invites",
   id: "right-InviteSide",
   className: "w-full flex justify-around"
 })
 
-Button({
+useButton({
   parent: "left-InviteSide",
   content: "+",
   size: "sm",
   type: "soft"
 })
 
-Button({
+useButton({
   parent: "left-InviteSide",
   content: "+",
   size: "sm",
   type: "soft"
 })
 
-Button({
+useButton({
   parent: "right-InviteSide",
   content: "+",
   size: "sm",
   type: "soft"
 })
 
-Button({
+useButton({
   parent: "right-InviteSide",
   content: "+",
   size: "sm",

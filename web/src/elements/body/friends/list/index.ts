@@ -1,55 +1,55 @@
-import { createElement, Button } from "@lenixdev/ui_components"
+import { useDiv, useButton } from "@trippler/tr_kit/web"
 import { useFriendsPanel  } from "../../../../hooks/useFriendsPanel"
 
-createElement({
+useDiv({
   parent: "friendsPanel",
   id: "friendsList",
   className: "w-full top-0 absolute h-[90%] flex flex-col justify-start transition-all"
 })
 
-createElement({
+useDiv({
   parent: "friendsList",
   id: "friendsHeader",
   className: "w-full blured-20 text-white bg-stone-900/20 h-[13%] flex justify-around gap-1 items-center"
 })
 
-createElement({
+useDiv({
   parent: "friendsList",
   id: "friendsContainer" ,
   className: "w-full h-[88%] flex flex-col justify-center items-center" 
 })
 
-createElement({
+useDiv({
   parent: "friendsContainer",
   id: "friendsItems",
   className: "w-full h-fit overflow-auto [scrollbar-width:none]"
 })
 
-createElement({
+useDiv({
   parent: "friendsContainer",
   id: "playersItems",
   className: "w-full hidden h-full overflow-auto [scrollbar-width:none]"
 })
 
-createElement({
+useDiv({
   parent: "playersItems",
   id: "playersSearchContainer",
   className: "w-full flex flex-col gap-2"
 });
 
-createElement({
+useDiv({
   parent: "playersSearchContainer",
   id: "playersResults",
   className: "w-full flex flex-col gap-2"
 });
 
-createElement({
+useDiv({
   parent: "friendsHeader",
   id: "friendsHeaderText",
   content: "Friends List"
 })
 
-Button({
+useButton({
   parent: "friendsHeader",
   content: "➕",
   size: "sm",

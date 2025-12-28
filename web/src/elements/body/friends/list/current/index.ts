@@ -1,9 +1,9 @@
-import { createElement } from "@lenixdev/ui_components"
+import { useDiv } from "@trippler/tr_kit/web"
 import { getPlayerFriends } from "../../../../../api/friendship"
 import createFriendItem from "../../../../../modules/createFriendItem"
 
 (() => {
-  createElement({
+  useDiv({
     parent: "friendsItems",
     id: "noFriendsFound",
     className: "w-full h-full flex flex-col items-center justify-center gap-2",

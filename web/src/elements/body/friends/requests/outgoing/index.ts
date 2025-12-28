@@ -1,8 +1,8 @@
-import { createElement, Button} from "@lenixdev/ui_components"
+import { useDiv, useButton} from "@trippler/tr_kit/web"
 import { cancelOutgoingFriendship, getOutgoingFriends } from "../../../../../api/friendship"
 import playerDetails from "../../../../../modules/playerDetails"
 
-createElement({
+useDiv({
   parent: "friendsRequests",
   id: "outgoingRequests",
   className: "w-full hidden h-full overflow-auto [scrollbar-width:none]"
@@ -14,12 +14,12 @@ let outgoingRequests: HTMLDivElement[] = []
 const addNewOutgoingRequest = async (index: number, identity: number): Promise<void> => {
   const user = await new playerDetails().getUserDetails(identity)
   
-  const request = createElement({
+  const request = useDiv({
     parent: "outgoingRequests",
     id: `outgoing-item-${index}`,
     className: "flex items-center justify-between hover:bg-stone-600 text-sm py-1"
   })
-  createElement({
+  useDiv({
     parent: `outgoing-item-${index}`,
     className: "w-[75%] flex items-center justify-start",
     content: `
@@ -29,7 +29,7 @@ const addNewOutgoingRequest = async (index: number, identity: number): Promise<v
       </div>
     `
   })
-  Button({
+  useButton({
     parent: `outgoing-item-${index}`,
     className: "w-[25%] h-[12.5%] hover:bg-blue-500 flex items-center justify-center",
     content: '🚫',

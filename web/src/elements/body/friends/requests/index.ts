@@ -1,4 +1,4 @@
-import { createElement, Button} from "@lenixdev/ui_components"
+import { useDiv, useButton} from "@trippler/tr_kit/web"
 import updateRequestBlockState from "../../../../hooks/useCollapse"
 import toggleRequestMode from "../../../../hooks/useCollapse"
 
@@ -7,13 +7,13 @@ friendsHeader?.addEventListener('click', () => {
   updateRequestBlockState(true)
 })
 
-createElement({
+useDiv({
   parent: "friendsPanel",
   id: "friendsRequests",
   className: "w-full -bottom-[80%] absolute h-[88.3%] flex flex-col justify-start transition-all"
 })
 
-Button({
+useButton({
   parent: "friendsRequests",
   // content: "",
   id: "requestsHeader",
@@ -23,13 +23,13 @@ Button({
   }
 })
 
-createElement({
+useDiv({
   parent: "requestsHeader",
   content: "Incoming Requests",
   id: "requestsHeaderText"
 })
 
-Button({
+useButton({
   parent: "requestsHeader",
   id: "requestSwitchButton",
   content: "🕜",

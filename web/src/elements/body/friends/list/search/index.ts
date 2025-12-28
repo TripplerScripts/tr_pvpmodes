@@ -1,4 +1,4 @@
-import { Button, createElement, Input } from "@lenixdev/ui_components"
+import { useButton, useDiv, useInput } from "@trippler/tr_kit/web"
 import { getFriendablePlayers, sendUserFriendInvitation } from "../../../../../api/friendship"
 import playerDetails from "../../../../../modules/playerDetails"
 
@@ -7,7 +7,7 @@ const resultsBox = document.getElementById("playersResults")
 
 let players: Awaited<ReturnType<playerDetails['getUserDetails']>>[]
 
-const searchInput = Input({
+const searchInput = useInput({
   parent: "playersSearchContainer",
   className: "w-full p-2 bg-stone-700 rounded text-white outline-none",
   placeholder: "Search players by: <name>",
@@ -27,13 +27,13 @@ const searchInput = Input({
 
     players.filter(p => p.name.toLowerCase().includes(text)).forEach(player =>
       {
-        createElement({
+        useDiv({
           parent: "playersResults",
           id: `player-item-${player.name}`,
           className: "flex items-center justify-between hover:bg-stone-600 text-sm py-1 px-2 rounded"
         })
 
-        Button({
+        useButton({
           parent: `player-item-${player.name}`,
           content: `
             <img src="${player.avatar}" class="w-[40px] h-[40px] rounded mr-2">
@@ -43,7 +43,7 @@ const searchInput = Input({
           onClick: () => event?.stopPropagation()
         })
 
-        const btn = Button({
+        const btn = useButton({
           parent: `player-item-${player.name}`,
           content: '➕',
           type: 'primary',

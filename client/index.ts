@@ -4,6 +4,8 @@ import './exports'
 import openMainMenu from './nui/openMainMenu'
 import openEscapeMenu from './nui/openEscapeMenu'
 import { control } from '@trippler/tr_lib/client'
+import playerHasCharacter from './game/playerHasCharacter'
+import startCharacterProcess from './game/startCharacterProcess'
 
 let DOMContentLoaded = false
 
@@ -31,3 +33,6 @@ on('onResourceStop', (resourceName: string) => {
 })
 
 export default (state: boolean) => DOMContentLoaded = state
+
+globalThis.exports('playerHasCharacter', playerHasCharacter)
+globalThis.exports('startCharacterProcess', startCharacterProcess)

@@ -1,31 +1,58 @@
-import './features'
-import './utils/dom/chat'
-import useFocus from "./hooks/useFocus"
-import createNewMessageForAll from './components/createNewMessageForAll'
+
+
+import { fatal, trace } from '@trippler/tr_lib/shared'
 import { triggerNuiCallback } from '@trippler/tr_lib/web'
+import { Suggestion } from '../../shared/types'
+import './features'
+
+const root = document.getElementById(`root`)
+export const suggestions: Suggestion[] = []
+
+export const removeSuggestion = (name: string) => {
+  for (const [key, value] of suggestions.entries()) {
+    if (value.name === name) {
+      suggestions.splice(key, 1)
+      return
+    }
+  }
+  trace(`tried to remove suggestion '${name}' but it was not found`)
+}
+
+export const hideChat = () => {
+  triggerNuiCallback<boolean>('loseKeyboard')
+  if (root) root.classList.add('hidden')
+}
+
+const openChat = () => {
+  if (!root)  return
+  root.classList.remove('hidden')
+  const inputElement = document.querySelector('.input') as HTMLInputElement
+  inputElement?.focus()
+}
 
 window.addEventListener('message', (event) => {
-  if (event.data.action === 'open' && !isFocused) {
-    useFocus()
+  const message = event.data
+  if (message.type === 'open') {
+    openChat()
   } else {
-    if (event.data.action === 'createNewMessage') {
-      createNewMessageForAll(event.data.message, event.data.userRole)
+    if (message.type === 'message') {
+      console.log(message.message)
+    } else {
+      if (message.type === 'suggestion') {
+        suggestions.push({ 
+          name: message.suggestion.name[0] !== `/` ? message.suggestion.name : message.suggestion.name.slice(1),
+          help: message.suggestion.help,
+          params: message.suggestion.params
+        })
+      } else {
+        if (message.type === 'remove_suggestion') {
+          removeSuggestion(message.name[0] !== `/` ? message.name : message.name.slice(1))
+        } else fatal(`unexpected message type received ${message.type}`)
+      }
     }
   }
 })
 
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'F11') {
-    triggerNuiCallback<unknown>('focus')
-  }
+document.addEventListener("DOMContentLoaded", () => {
+  triggerNuiCallback<boolean>('loaded')
 })
-
-export let inCooldown = false
-export let messageCount = 0
-export let isFocused = false
-export let pendingMessageForFadeCount: number[] = []
-
-export const setFocus = (state: boolean) => isFocused = state
-export const setMessagesCount = (count: number) => messageCount = count
-export const setPendingMessageForFadeCount = (count: number[]) => pendingMessageForFadeCount = count
-export const setInCooldown = (state: boolean) => inCooldown = state

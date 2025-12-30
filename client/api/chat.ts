@@ -1,11 +1,3 @@
-onPromise('createNewMessage', async (message: string, userRole: PlayerObject) => {
-  triggerNuiCallback({
-    action: 'createNewMessage',
-    message,
-    userRole,
-  })
-})
-
 on(`__cfx_export_chat_addMessage`, (cb: Function) => {
   cb(addMessage)
 })

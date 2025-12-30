@@ -2,7 +2,7 @@ import { onNuiCallback } from "@trippler/tr_lib/client"
 import { addSuggestions } from "../game/chat"
 import { earlySuggestionsInsertion, setDOMLoaded } from ".."
 
-onNuiCallback('chat/grabCursor', (_data, callback) => {
+onNuiCallback<null>('chat/grabCursor', (_data, callback) => {
   SetNuiFocus(true, true)
   callback(true)
 })

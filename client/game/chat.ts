@@ -5,6 +5,7 @@ import { isIterable } from "../utils"
 import { DOMLoaded, earlySuggestionsInsertion } from ".."
 
 control.onDisabled('T', () => {
+  if (globalThis.exports.tr_onboarding.modeSelected() !== 'freeroam') return 
   triggerNuiCallback('chat/open')
   SetNuiFocus(true, false)
 })

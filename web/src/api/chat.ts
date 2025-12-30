@@ -4,7 +4,7 @@ import { trace } from '@trippler/tr_lib/shared'
 import { suggestions } from "../hooks/chat"
 import { changeBorderColor } from "../hooks/chat/useChangeBorderColor"
 import { getArrayfiedPassedCharacters } from "../utils/chat"
-import { Suggestion } from "../../../shared/types"
+import { Message, Suggestion } from "../../../shared/types"
 
 const root = document.getElementById(`chat-root`)
 
@@ -15,7 +15,7 @@ onNuiCallback('chat/open', () => {
   inputElement?.focus()
 })
 
-onNuiCallback('chat/message', (message) => {
+onNuiCallback<[Message]>('chat/message', (message) => {
   console.log(message)
 })
 

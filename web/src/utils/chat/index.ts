@@ -1,5 +1,5 @@
-import { suggestions } from "../../../../../tr_chat/web/src"
-import { CommandName } from "../../../../../tr_chat/shared/types"
+import { CommandName } from "../../../../shared/types"
+import { suggestions } from "../../hooks/chat"
 
 const getCommandNames = () => {
   let commandNames: string[] = []

@@ -1,4 +1,4 @@
-import { input } from "../../features/chat/input"
+import { input } from "../../elements/chat/input"
 import { getCommandArguments, getPassedArgumentsFirstString, getPassedBlocksCount } from "../../utils/chat"
 
 let lastProperty: string

@@ -1,5 +1,5 @@
-import { input } from "../../features/chat/input"
-import { resultsFound } from "../../../../../tr_chat/web/src/hooks/useUpdateSuggetions"
+import { input } from "../../elements/chat/input"
+import { resultsFound } from "./useUpdateSuggetions"
 
 export default (suggestion: string | undefined) => {
   if (!suggestion || resultsFound < 1) return

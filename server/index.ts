@@ -1,7 +1,5 @@
-import { fatal } from '@trippler/tr_lib/server'
+import { info } from '@trippler/tr_lib/shared'
 import './api'
-
-import { fatal, info, trace } from '@trippler/tr_lib/shared'
 
 setTimeout(() => {
   if (GetResourceState('chat') !== 'missing') {

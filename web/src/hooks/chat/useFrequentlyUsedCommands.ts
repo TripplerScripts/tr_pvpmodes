@@ -1,4 +1,4 @@
-import { CommandName } from "../../../../../tr_chat/shared/types"
+import { CommandName } from "../../../../shared/types"
 
 export const useStoreFrequentlyUsedCommands = (command: string) => {
   const previousStoredCommands = getStoredFrequentlyUsedCommands()

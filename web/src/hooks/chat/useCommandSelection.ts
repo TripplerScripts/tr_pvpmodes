@@ -1,10 +1,5 @@
-import { suggestionsCount } from "../../../../../tr_chat/shared/constants/config"
-import { input } from "../../features/chat/input"
-
-export let currentItemSelected: HTMLElement | Element | null | undefined
-
-const isTrashButton = (el: Element | null | undefined) => 
-  el?.innerHTML?.trim() === `<i class="fas fa-trash"></i>`
+import { currentItemSelected, setCurrentItemSelected } from "."
+import { input } from "../../elements/chat/input"
 
 const isValidItem = (el: Element | null | undefined) => {
   if (!el) return false
@@ -36,9 +31,9 @@ export const useCommandSelection = (direction: string) => {
     
     if (!currentItemSelected) {
       const container = document.getElementById('chat-suggestions-items')
-      currentItemSelected = getNextValid(container?.firstElementChild)
+      setCurrentItemSelected(getNextValid(container?.firstElementChild))
     } else {
-      currentItemSelected = getNextValid(currentItemSelected.nextElementSibling)
+      setCurrentItemSelected(getNextValid(currentItemSelected.nextElementSibling))
     }
     
     currentItemSelected?.classList.add('border', 'border-white')
@@ -47,15 +42,15 @@ export const useCommandSelection = (direction: string) => {
   
   if (!currentItemSelected) {
     const container = document.getElementById('chat-suggestions-items')
-    currentItemSelected = getPrevValid(container?.lastElementChild)
+    setCurrentItemSelected(getPrevValid(container?.lastElementChild))
   } else {
     const prev = getPrevValid(currentItemSelected.previousElementSibling)
     if (!prev) {
       // Wrap to last valid element
       const container = document.getElementById('chat-suggestions-items')
-      currentItemSelected = getPrevValid(container?.lastElementChild)
+      setCurrentItemSelected(getPrevValid(container?.lastElementChild))
     } else {
-      currentItemSelected = prev
+      setCurrentItemSelected(prev)
     }
   }
   
@@ -65,5 +60,5 @@ export const useCommandSelection = (direction: string) => {
 
 export const useClearCommandSelection = () => {
   currentItemSelected?.classList.remove('border', 'border-white')
-  currentItemSelected = null
+  setCurrentItemSelected(null)
 }

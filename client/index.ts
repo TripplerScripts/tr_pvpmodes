@@ -1,3 +1,4 @@
+import './api'
 import './nui'
 import './game'
 import { Suggestion } from '../shared/types'

@@ -7,6 +7,8 @@ import playerHasCharacter from './game/playerHasCharacter'
 import startCharacterProcess from './game/startCharacterProcess'
 
 let DOMContentLoaded = false
+export let modeSelected: string | undefined
+export const setModeSelected = (mode: string) => modeSelected = mode
 
 setImmediate(() => {
   const interval = setInterval(() => {
@@ -34,5 +36,6 @@ on('onResourceStop', (resourceName: string) => {
 
 export default (state: boolean) => DOMContentLoaded = state
 
+globalThis.exports('modeSelected', () => modeSelected)
 globalThis.exports('playerHasCharacter', playerHasCharacter)
 globalThis.exports('startCharacterProcess', startCharacterProcess)

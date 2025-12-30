@@ -5,9 +5,7 @@ import { isIterable } from "../utils"
 import { DOMLoaded, earlySuggestionsInsertion } from ".."
 
 control.onDisabled('T', () => {
-  triggerNuiCallback({
-    type: 'open'
-  })
+  triggerNuiCallback('open')
   SetNuiFocus(true, false)
 })
 
@@ -15,10 +13,7 @@ export const addMessage = (message: Message) => {
   if (typeof message !== 'object') fatal(`expected object at #2, got ${typeof message}`)
   if (message.template) return fatal(`template messages are not supported`)
 
-  triggerNuiCallback({
-    type: 'message',
-    message
-  })
+  triggerNuiCallback('message', message)
 }
 
 export const addSuggestion = (name: Suggestion['name'], help: Suggestion['help'], params: Suggestion['params']) => {
@@ -39,14 +34,7 @@ export const addSuggestion = (name: Suggestion['name'], help: Suggestion['help']
     earlySuggestionsInsertion.push({name, help, params})
   }
 
-  triggerNuiCallback({
-    type: 'suggestion',
-    suggestion: {
-      name,
-      help,
-      params
-    }
-  })
+  triggerNuiCallback('suggestion', name, help, params)
 }
 
 export const addSuggestions = (suggestions: Suggestion[]) => {
@@ -66,8 +54,5 @@ export const removeSuggestion = (name: string) => {
     return
   }
 
-  triggerNuiCallback({
-    type: 'remove_suggestion',
-    name
-  })
+  triggerNuiCallback('remove_suggestion', name)
 }

@@ -1,6 +1,5 @@
 import './api'
 import './nui'
-import './exports'
 import openMainMenu from './nui/openMainMenu'
 import openEscapeMenu from './nui/openEscapeMenu'
 import { control } from '@trippler/tr_lib/client'

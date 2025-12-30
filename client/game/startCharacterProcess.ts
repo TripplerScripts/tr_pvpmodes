@@ -1,4 +1,4 @@
-import { trace } from "@trippler/tr_lib/client"
+import { trace } from "@trippler/tr_lib/shared"
 import { defaultSpawnCoords } from "../../shared/constants/config"
 
 export default async (passedOnCreationFinishCoords: [number, number, number, number], passedSpawnCoords: [number, number, number, number], onClothingMenuOpen: Function, onSubmitOrCancel: Function) => {

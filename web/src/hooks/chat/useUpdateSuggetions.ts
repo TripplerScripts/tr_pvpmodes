@@ -4,7 +4,7 @@ import { preventPlaceholderDuplication } from "../../dom/chat"
 import { changeBorderColor } from "./useChangeBorderColor"
 import { getStoredFrequentlyUsedCommands } from "./useFrequentlyUsedCommands"
 import { currentItemSelected } from "."
-import { suggestionsCount } from "../../../../shared/constants"
+import { chat } from "../../../../shared/constants"
 import { Suggestion, CommandName } from "../../../../shared/types"
 import { useClearCommandSelection } from "./useCommandSelection"
 
@@ -99,7 +99,7 @@ export default (typedText: string) => {
   const recentCommands = getStoredFrequentlyUsedCommands()
   closestRelative = undefined
   resultsFound = 0
-  for (let i = 0; i < suggestionsCount; i++) {
+  for (let i = 0; i < chat.suggestionsCount; i++) {
     preventPlaceholderDuplication(i)
     const commandItem = document.getElementById(`chat-suggestion-item-${i}`)!
 

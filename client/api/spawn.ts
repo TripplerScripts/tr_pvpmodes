@@ -1,8 +1,8 @@
-import { creationSpawnCoords, spawnLastLocation } from "../../shared/constants"
+import { spawn } from "../../shared/constants"
 
 const getSpawnCoords = () => {
-  if (spawnLastLocation !== true) {
-    return spawnLastLocation
+  if (spawn.spawnLastLocation !== true) {
+    return spawn.spawnLastLocation
   }
   const playerData = exports.qbx_core.GetPlayerData()
   if (!playerData?.position) return
@@ -17,5 +17,5 @@ on('onResourceStop', (resourceName: string) => {
 })
 
 globalThis.exports('start', async () => {
-  globalThis.exports.tr_onboarding.startCharacterProcess(creationSpawnCoords, getSpawnCoords())
+  globalThis.exports.tr_onboarding.startCharacterProcess(spawn.creationSpawnCoords, getSpawnCoords())
 })

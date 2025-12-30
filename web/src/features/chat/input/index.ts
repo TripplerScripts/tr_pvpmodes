@@ -1,11 +1,11 @@
 import { useButton, useInput, useDiv } from '@trippler/tr_kit/web'
-import useUpdateSuggetions from '../../../hooks/chat/useUpdateSuggetions'
-import { suggestionsCount } from '../../../../../../tr_chat/shared/constants/config'
-import { useChangeBorderColor } from '../../../hooks/chat/useChangeBorderColor'
-import { passCommand } from '../../../../../../tr_chat/web/src/api'
-import { getPassedArgumentsFirstString } from '../../../utils/chat'
-import { clearStoredFrequentlyUsedCommands, getStoredFrequentlyUsedCommands, useStoreFrequentlyUsedCommands } from '../../../hooks/chat/useFrequentlyUsedCommands'
-import { useClearCommandSelection } from '../../../hooks/chat/useCommandSelection'
+import useUpdateSuggetions from '../../../../../../../tr_freeroam/web/src/hooks/chat/useUpdateSuggetions'
+import { suggestionsCount } from '../../../../../../../tr_chat/shared/constants/config'
+import { useChangeBorderColor } from '../../../../../../../tr_freeroam/web/src/hooks/chat/useChangeBorderColor'
+import { passCommand } from '../../../../../../../tr_chat/web/src/api'
+import { getPassedArgumentsFirstString } from '../../../../../../../tr_freeroam/web/src/utils/chat'
+import { clearStoredFrequentlyUsedCommands, getStoredFrequentlyUsedCommands, useStoreFrequentlyUsedCommands } from '../../../../../../../tr_freeroam/web/src/hooks/chat/useFrequentlyUsedCommands'
+import { useClearCommandSelection } from '../../../../../../../tr_freeroam/web/src/hooks/chat/useCommandSelection'
 
 useDiv({
   parent: `chat-container`,

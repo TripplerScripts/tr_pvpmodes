@@ -1,1 +1,0 @@
-import '../../../../tr_competitive/web/src/elements/chat'

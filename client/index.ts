@@ -22,6 +22,7 @@ control.onDisabled('ESC', () => {
 })
 
 onNet('tr_onboarding/client/logout', () => {
+  console.log(true)
   openMainMenu()
 })
 

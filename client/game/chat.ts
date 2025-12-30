@@ -2,9 +2,7 @@ import { control, triggerNuiCallback } from "@trippler/tr_lib/client"
 import { fatal } from '@trippler/tr_lib/shared'
 import { Message, Suggestion } from '../../shared/types'
 import { isIterable } from "../utils"
-
-let DOMLoaded = false
-const earlySuggestionsInsertion: Suggestion[] = []
+import { DOMLoaded, earlySuggestionsInsertion } from ".."
 
 control.onDisabled('T', () => {
   triggerNuiCallback({

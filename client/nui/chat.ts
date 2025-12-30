@@ -1,3 +1,7 @@
+import { onNuiCallback } from "@trippler/tr_lib/client"
+import { addSuggestions } from "../game/chat"
+import { earlySuggestionsInsertion, setDOMLoaded } from ".."
+
 onNuiCallback('grabCursor', (_data, callback) => {
   SetNuiFocus(true, true)
   callback(true)
@@ -14,7 +18,7 @@ onNuiCallback<null>('loseKeyboard', (_data, callback) => {
 })
 
 onNuiCallback<null>('loaded', (_data, callback) => {
-  DOMLoaded = true
+  setDOMLoaded(true)
   addSuggestions(earlySuggestionsInsertion)
   callback(true)
 })

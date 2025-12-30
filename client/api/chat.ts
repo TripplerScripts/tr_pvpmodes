@@ -1,3 +1,5 @@
+import { addMessage, addSuggestion, addSuggestions, removeSuggestion } from "../game/chat"
+
 on(`__cfx_export_chat_addMessage`, (cb: Function) => {
   cb(addMessage)
 })

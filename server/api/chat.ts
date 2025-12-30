@@ -1,4 +1,4 @@
-
+import { fatal, trace } from "@trippler/tr_lib/shared"
 
 const addMessage = (target: number, message: string) => {
   if (typeof target !== 'number') {

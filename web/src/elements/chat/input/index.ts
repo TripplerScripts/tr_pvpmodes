@@ -1,4 +1,11 @@
 import { useButton, useInput, useDiv } from '@trippler/tr_kit/web'
+import useUpdateSuggetions from '../../../hooks/chat/useUpdateSuggetions'
+import { useChangeBorderColor } from '../../../hooks/chat/useChangeBorderColor'
+import { passCommand } from '../../../api/chat'
+import { clearStoredFrequentlyUsedCommands, useStoreFrequentlyUsedCommands } from '../../../hooks/chat/useFrequentlyUsedCommands'
+import { getPassedArgumentsFirstString } from '../../../utils/chat'
+import { useClearCommandSelection } from '../../../hooks/chat/useCommandSelection'
+import { chat } from '../../../../../shared/constants'
 
 useDiv({
   parent: `chat-container`,
@@ -41,7 +48,7 @@ useButton({
 })
 
 setTimeout(() => {
-  [...Array(suggestionsCount)].forEach((_, index) => {
+  [...Array(chat.suggestionsCount)].forEach((_, index) => {
     useDiv({
       parent: `chat-suggestions-items`,
       id: `chat-suggestion-item-${index}`,

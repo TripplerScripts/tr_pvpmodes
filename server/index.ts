@@ -5,8 +5,10 @@ if (modulesEnabled.chat) {
   import('./api/chat')
   setTimeout(() => {
     if (GetResourceState('chat') !== 'missing') {
-      info("the resource 'chat' was detected, stopping 'chat'...")
       ExecuteCommand('stop chat')
+      if (GetResourceState('chat') !== 'stopped') {
+        info("unable to stop the resource 'chat', possibility: no permission to execute commands")
+      } else if (GetResourceState('chat') === 'stopped') info("successfully stopped the resource 'chat'")
     }
   })
 }

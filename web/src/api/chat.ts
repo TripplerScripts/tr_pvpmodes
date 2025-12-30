@@ -4,29 +4,30 @@ import { trace } from '@trippler/tr_lib/shared'
 import { suggestions } from "../hooks/chat"
 import { changeBorderColor } from "../hooks/chat/useChangeBorderColor"
 import { getArrayfiedPassedCharacters } from "../utils/chat"
+import { Suggestion } from "../../../shared/types"
 
 const root = document.getElementById(`chat-root`)
 
-onNuiCallback('open', () => {
+onNuiCallback('chat/open', () => {
   if (!root)  return
   root.classList.remove('hidden')
   const inputElement = document.querySelector('.input') as HTMLInputElement
   inputElement?.focus()
 })
 
-onNuiCallback('message', (message) => {
+onNuiCallback('chat/message', (message) => {
   console.log(message)
 })
 
-onNuiCallback('suggestion', (suggestion) => {
+onNuiCallback<[Suggestion['name'], Suggestion['help'], Suggestion['params']]>('chat/suggestion', (name, help, params) => {
   suggestions.push({ 
-    name: suggestion.name[0] !== `/` ? suggestion.name : suggestion.name.slice(1),
-    help: suggestion.help,
-    params: suggestion.params
+    name: name[0] !== `/` ? name : name.slice(1),
+    help,
+    params
   })
 })
 
-onNuiCallback<[string]>('remove_suggestion', (name) => {
+onNuiCallback<[string]>('chat/remove_suggestion', (name) => {
   const filteredName = name[0] !== `/` ? name : name.slice(1)
   for (const [key, value] of suggestions.entries()) {
     if (value.name === filteredName) {
@@ -38,15 +39,15 @@ onNuiCallback<[string]>('remove_suggestion', (name) => {
 })
 
 export const passCommand = (raw: string) => {
-  triggerNuiCallback<boolean>('onCommand', { command: getArrayfiedPassedCharacters(raw) })
+  triggerNuiCallback<boolean>('chat/onCommand', { command: getArrayfiedPassedCharacters(raw) })
   changeBorderColor()
   useHideChat()
 }
 
 export const grabCursor = () => {
-  triggerNuiCallback<boolean>('grabCursor')
+  triggerNuiCallback<boolean>('chat/grabCursor')
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  triggerNuiCallback<boolean>('loaded')
+  triggerNuiCallback<boolean>('chat/loaded')
 })

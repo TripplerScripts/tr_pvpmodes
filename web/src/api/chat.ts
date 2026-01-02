@@ -5,15 +5,14 @@ import { suggestions } from "../hooks/chat"
 import { changeBorderColor } from "../hooks/chat/useChangeBorderColor"
 import { getArrayfiedPassedCharacters } from "../utils/chat"
 import { Message, Suggestion } from "../../../shared/types"
+import useOpenChat from "../hooks/chat/useOpenChat"
+import useAddSuggestion from "../hooks/chat/useAddSuggestion"
+import useRemoveSuggestion from "../hooks/chat/useRemoveSuggestion"
+import useSendCommand from "../hooks/chat/useSendCommand"
 
-const root = document.getElementById(`chat-root`)
 
 onNuiCallback('chat/openChat', () => {
-  nuiFocus(true, false)
-  if (!root)  return
-  root.classList.remove('hidden')
-  const inputElement = document.querySelector('.input') as HTMLInputElement
-  inputElement?.focus()
+  useOpenChat()
 })
 
 onNuiCallback<[Message]>('chat/message', (message) => {
@@ -21,32 +20,15 @@ onNuiCallback<[Message]>('chat/message', (message) => {
 })
 
 onNuiCallback<[Suggestion['name'], Suggestion['help'], Suggestion['params']]>('chat/addSuggestion', (name, help, params) => {
-  suggestions.push({ 
-    name: name[0] !== `/` ? name : name.slice(1),
-    help,
-    params
-  })
+  useAddSuggestion(name, help, params)
 })
 
-onNuiCallback<[string]>('chat/removeSuggestion', (name) => {
-  const filteredName = name[0] !== `/` ? name : name.slice(1)
-  for (const [key, value] of suggestions.entries()) {
-    if (value.name === filteredName) {
-      suggestions.splice(key, 1)
-      return
-    }
-  }
-  trace(`tried to remove suggestion '${name}' but it was not found`)
+onNuiCallback<[Suggestion['name']]>('chat/removeSuggestion', (name) => {
+  useRemoveSuggestion(name)
 })
 
 export const sendCommand = (raw: string) => {
-  triggerNuiCallback<boolean>('chat/sendCommand', { command: getArrayfiedPassedCharacters(raw) })
-  changeBorderColor()
-  useHideChat()
-}
-
-export const grabCursor = () => {
-  nuiFocus(true, true)
+  useSendCommand(raw)
 }
 
 document.addEventListener("DOMContentLoaded", () => {

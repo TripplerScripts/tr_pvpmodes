@@ -1,4 +1,4 @@
-import { Suggestion } from "../../../../shared/types";
+import { Suggestion } from "../../../../shared/types"
 
 export let currentItemSelected: HTMLElement | Element | null | undefined
 export const suggestions: Suggestion[] = []

@@ -1,4 +1,4 @@
-import { onNuiCallback, triggerNuiCallback } from "@trippler/tr_lib/web"
+import { onNuiCallback } from "@trippler/tr_lib/web"
 import { Message, Suggestion } from "../../../shared/types"
 import { addMessage, addSuggestion, openChat, removeSuggestion } from "../modules/chat"
 

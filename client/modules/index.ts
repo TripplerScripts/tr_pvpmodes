@@ -1,5 +1,5 @@
 import { fatal, trace } from "@trippler/tr_lib/shared"
-import { defaultSpawnCoords, playerCharacterInfo } from "../../shared/constants/config"
+import { createNewCharacter, getCharacterPreviewData, getPlayerCharacters, loadCharacter, setPedAppearance, spawnPlayer, startGameMode } from "../api"
 
 export let modeSelected: string | undefined
 
@@ -9,7 +9,7 @@ export const onPlayerLoaded = () => {
 }
 
 export const preparePlayerCharacterPed = async (citizenId: string) => {
-  const [ clothes, model ] = await exports.tr_onboarding.getCharacterPreviewData(citizenId)
+  const [ clothes, model ] = await getCharacterPreviewData(citizenId)
 
   RequestModel(model)
   await new Promise<void>((resolve) => {
@@ -25,23 +25,18 @@ export const preparePlayerCharacterPed = async (citizenId: string) => {
 
 export const loadPlayerCharactersPed = async (model: string, clothes: string, citizenId: string) => {
   SetPlayerModel(PlayerId(), model)
-  exports['illenium-appearance'].setPedAppearance(PlayerPedId(), JSON.parse(clothes))
+  setPedAppearance(clothes)
   SetModelAsNoLongerNeeded(model)
-  exports.tr_onboarding.loadCharacter(citizenId)
+  loadCharacter(citizenId)
   onPlayerLoaded()
 }
 
 export const spawnPlayerPed = (spawnCoords: number[]) => {
-  exports.spawnmanager.spawnPlayer({
-    x: spawnCoords[0],
-    y: spawnCoords[1],
-    z: spawnCoords[2],
-    heading: spawnCoords[3]
-  })
+  spawnPlayer(spawnCoords)
 }
 
 export const createPlayerNewCharacter = async () => {
-  const newCreatedCharacter = await exports.tr_onboarding.createNewCharacter(null, playerCharacterInfo)
+  const newCreatedCharacter = await createNewCharacter()
   if (!newCreatedCharacter) {
     trace('Lenix got no idea why this is failing')
   }
@@ -55,19 +50,17 @@ export const openAppearanceMenu = (onClothingMenuOpen: Function, onSubmitOrCance
 export const selecteGameMode = (mode: string) => {
   if (mode === 'competitive') {
     if (GetResourceState('tr_competitive') !== 'started') fatal('tr_competitive is not started')
-    globalThis.exports.tr_competitive.start()
+    startGameMode.competitive()
     modeSelected = mode
   } else if (mode === 'freeroam') {
     if (GetResourceState('tr_freeroam') !== 'started') fatal('tr_freeroam is not started')
-    globalThis.exports.tr_freeroam.start()
+    startGameMode.freeroam()
     modeSelected = mode
   }
 }
 
-export const logoutPlayer = () => emitNet('tr_onboarding/server/logout')
-
 export const getPlayerCharacterCitizenId = async () => {
-  const characters = await exports.tr_onboarding.getPlayerCharacters()
+  const characters = await getPlayerCharacters()
   if (characters.length > 0) {
     return characters[0].citizenid
   } else {

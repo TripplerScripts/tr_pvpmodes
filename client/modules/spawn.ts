@@ -1,4 +1,3 @@
-import { triggerNuiCallback } from "@trippler/tr_lib/client"
 import { spawn } from "../../shared/constants"
 
 export const getSpawnCoords = () => {
@@ -11,10 +10,6 @@ export const getSpawnCoords = () => {
   return [ playerData.position.x, playerData.position.y, playerData.position.z, playerData.position.w ]
 }
 
-export const openEscapeMenu = () => {
-  triggerNuiCallback('dashboard/openEscapeMenu')
-}
-
 export const logoutPlayer = () => {
-  emitNet('tr_onboarding/server/logout')
+  globalThis.exports.tr_onboarding.logoutPlayer()
 }

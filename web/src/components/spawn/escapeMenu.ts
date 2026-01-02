@@ -17,6 +17,7 @@ export default () => {
           onClick: () => {
             alertElement.remove()
             nuiFocus(false, false)
+            menuState = false
           }
         },
         {
@@ -26,6 +27,7 @@ export default () => {
             alertElement.remove()
             nuiFocus(false, false)
             triggerNuiCallback("leaveFreeroam")
+            menuState = false
           }
         }
       ]

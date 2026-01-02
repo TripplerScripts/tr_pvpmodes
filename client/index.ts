@@ -3,6 +3,7 @@ import { modulesEnabled } from '../shared/constants'
 
 if (modulesEnabled.spawn) {
   import('./api/spawn')
+  import('./game/spawn')
 }
 if (modulesEnabled.chat) {
   import('./api/chat')

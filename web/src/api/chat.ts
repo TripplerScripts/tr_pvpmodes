@@ -1,10 +1,11 @@
-import { onNuiCallback, triggerNuiCallback } from "@trippler/tr_lib/web"
+import { nuiFocus, onNuiCallback, triggerNuiCallback } from "@trippler/tr_lib/web"
 import useHideChat from "../hooks/chat/useHideChat"
 import { trace } from '@trippler/tr_lib/shared'
 import { suggestions } from "../hooks/chat"
 import { changeBorderColor } from "../hooks/chat/useChangeBorderColor"
 import { getArrayfiedPassedCharacters } from "../utils/chat"
 import { Message, Suggestion } from "../../../shared/types"
+import openEscapeMenu from "../components/escapeMenu"
 
 const root = document.getElementById(`chat-root`)
 
@@ -13,6 +14,10 @@ onNuiCallback('chat/open', () => {
   root.classList.remove('hidden')
   const inputElement = document.querySelector('.input') as HTMLInputElement
   inputElement?.focus()
+})
+
+onNuiCallback('chat/openEscapeMenu', () => {
+  openEscapeMenu()
 })
 
 onNuiCallback<[Message]>('chat/message', (message) => {
@@ -45,7 +50,7 @@ export const passCommand = (raw: string) => {
 }
 
 export const grabCursor = () => {
-  triggerNuiCallback<boolean>('chat/grabCursor')
+  nuiFocus(true, true)
 }
 
 document.addEventListener("DOMContentLoaded", () => {

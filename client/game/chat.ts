@@ -7,7 +7,10 @@ import { DOMLoaded, earlySuggestionsInsertion } from ".."
 control.onDisabled('T', () => {
   if (globalThis.exports.tr_onboarding.modeSelected() !== 'freeroam') return 
   triggerNuiCallback('chat/open')
-  SetNuiFocus(true, false)
+})
+
+control.onDisabled('ESC', () => {
+  triggerNuiCallback('chat/openEscapeMenu')
 })
 
 export const addMessage = (message: Message) => {

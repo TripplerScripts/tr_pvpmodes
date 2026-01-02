@@ -9,6 +9,7 @@ export const startCharacterProcess = async (passedOnCreationFinishCoords: number
 
     loadPlayerCharactersPed(model, clothes, citizenId)
     spawnPlayerPed(spawnCoords)
+    
   } else {
     const onCreationFinishCoords = passedOnCreationFinishCoords || defaultSpawnCoords
     spawnPlayerPed(onCreationFinishCoords)

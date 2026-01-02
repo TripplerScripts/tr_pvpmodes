@@ -4,8 +4,8 @@ import './game'
 import { openMainMenu } from './nui'
 import { onDOMLoaded } from '@trippler/tr_lib/client'
 
-const tick = setTick(() => {
-  onDOMLoaded(() => {
+onDOMLoaded(() => {
+  const tick = setTick(() => {
     if (NetworkIsSessionStarted()) {
       openMainMenu()
       clearTick(tick)

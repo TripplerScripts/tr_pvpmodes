@@ -1,5 +1,5 @@
 import { useAlert } from '@lenixdev/fusion/web'
-import { triggerNuiCallback } from '@trippler/tr_lib/web'
+import { nuiFocus, triggerNuiCallback } from '@trippler/tr_lib/web'
 
 export default () => {
   const [alertElement, _alertIndex] = useAlert({
@@ -10,13 +10,17 @@ export default () => {
       {
         content: "Cancel",
         type: "primary",
-        onClick: () => alertElement.remove()
+        onClick: () => {
+          alertElement.remove()
+          nuiFocus(false, false)
+        }
       },
       {
-        content: "No",
+        content: "Leave",
         type: "soft",
         onClick: () => {
           alertElement.remove()
+          nuiFocus(false, false)
           triggerNuiCallback("leaveFreeroam")
         }
       }

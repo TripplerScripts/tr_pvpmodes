@@ -14,3 +14,7 @@ export const getSpawnCoords = () => {
 export const openEscapeMenu = () => {
   triggerNuiCallback('dashboard/openEscapeMenu')
 }
+
+export const logoutPlayer = () => {
+  emitNet('tr_onboarding/server/logout')
+}

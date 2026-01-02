@@ -1,12 +1,12 @@
 import { spawn } from "../../shared/constants"
-import { getSpawnCoords } from "../modules/spawn"
+import { getSpawnCoords, logoutPlayer } from "../modules/spawn"
 
 on('onResourceStop', (resourceName: string) => {
   if (resourceName === GetCurrentResourceName()) {
-    emitNet('tr_onboarding/server/logout')
+    logoutPlayer()
   }
 })
 
-globalThis.exports('start', async () => {
+globalThis.exports('startGameMode', async () => {
   globalThis.exports.tr_onboarding.startCharacterProcess(spawn.creationSpawnCoords, getSpawnCoords())
 })

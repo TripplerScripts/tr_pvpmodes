@@ -9,7 +9,7 @@ import useHideChat from "../hooks/chat/useHideChat"
 let enteredSelections = false
 
 document.addEventListener('keydown', (event) => {
-  if (!input.focus) return
+  if (document.activeElement !== input) return
   if (event.key === 'Tab') {
     event.preventDefault()
     if (enteredSelections) {

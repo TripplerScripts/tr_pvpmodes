@@ -19,10 +19,6 @@ setImmediate(() => {
   }, 1000)
 })
 
-control.onDisabled('ESC', () => {
-  openEscapeMenu()
-})
-
 onNet('tr_onboarding/client/logout', () => {
   console.log(true)
   openMainMenu()

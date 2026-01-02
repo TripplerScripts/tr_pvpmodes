@@ -1,4 +1,4 @@
-export const logoutPlayer = (source: number) => {
+const logoutPlayer = (source: number) => {
   exports.qbx_core.Logout(source)
   emitNet('tr_onboarding/client/openMainMenu', source)
 }

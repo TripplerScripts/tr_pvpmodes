@@ -1,7 +1,10 @@
-import openMainMenu from '../hooks/useMenu'
-import { nuiFocus, onNuiCallback } from '@trippler/tr_lib/web'
+import { toggleMenu,  } from '../modules'
+import { onNuiCallback } from '@trippler/tr_lib/web'
 
 onNuiCallback('openMainMenu', () => {
-  nuiFocus(true, true)
-  openMainMenu(true)
+  toggleMenu(true)
+})
+
+onNuiCallback('closeMainMenu', () => {
+  toggleMenu(false)
 })

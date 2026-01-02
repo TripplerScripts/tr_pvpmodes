@@ -1,5 +1,5 @@
 import { useDiv, useButton } from '@trippler/tr_kit/web'
-import useSelectMode from '../hooks/useSelectMode'
+import { selectMode } from '../modules'
 
 document.body.id = 'body'
 useDiv({
@@ -25,7 +25,7 @@ useButton({
   content: "Competitive",
   size: "5xl",
   type: "primary",
-  onClick: () => useSelectMode('competitive')
+  onClick: () => selectMode('competitive')
 })
 
 useButton({
@@ -34,5 +34,5 @@ useButton({
   content: "Freeroam",
   size: "5xl",
   type: "soft",
-  onClick: () => useSelectMode('freeroam')
+  onClick: () => selectMode('freeroam')
 })

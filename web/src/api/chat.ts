@@ -5,11 +5,10 @@ import { suggestions } from "../hooks/chat"
 import { changeBorderColor } from "../hooks/chat/useChangeBorderColor"
 import { getArrayfiedPassedCharacters } from "../utils/chat"
 import { Message, Suggestion } from "../../../shared/types"
-import openEscapeMenu from "../components/dashboard/escapeMenu"
 
 const root = document.getElementById(`chat-root`)
 
-onNuiCallback('chat/open', () => {
+onNuiCallback('chat/openChat', () => {
   nuiFocus(true, false)
   if (!root)  return
   root.classList.remove('hidden')
@@ -17,15 +16,11 @@ onNuiCallback('chat/open', () => {
   inputElement?.focus()
 })
 
-onNuiCallback('chat/openEscapeMenu', () => {
-  openEscapeMenu()
-})
-
 onNuiCallback<[Message]>('chat/message', (message) => {
   console.log(message)
 })
 
-onNuiCallback<[Suggestion['name'], Suggestion['help'], Suggestion['params']]>('chat/suggestion', (name, help, params) => {
+onNuiCallback<[Suggestion['name'], Suggestion['help'], Suggestion['params']]>('chat/addSuggestion', (name, help, params) => {
   suggestions.push({ 
     name: name[0] !== `/` ? name : name.slice(1),
     help,
@@ -33,7 +28,7 @@ onNuiCallback<[Suggestion['name'], Suggestion['help'], Suggestion['params']]>('c
   })
 })
 
-onNuiCallback<[string]>('chat/remove_suggestion', (name) => {
+onNuiCallback<[string]>('chat/removeSuggestion', (name) => {
   const filteredName = name[0] !== `/` ? name : name.slice(1)
   for (const [key, value] of suggestions.entries()) {
     if (value.name === filteredName) {
@@ -44,8 +39,8 @@ onNuiCallback<[string]>('chat/remove_suggestion', (name) => {
   trace(`tried to remove suggestion '${name}' but it was not found`)
 })
 
-export const passCommand = (raw: string) => {
-  triggerNuiCallback<boolean>('chat/onCommand', { command: getArrayfiedPassedCharacters(raw) })
+export const sendCommand = (raw: string) => {
+  triggerNuiCallback<boolean>('chat/sendCommand', { command: getArrayfiedPassedCharacters(raw) })
   changeBorderColor()
   useHideChat()
 }

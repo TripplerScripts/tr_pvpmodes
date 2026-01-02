@@ -1,7 +1,7 @@
 import { useButton, useInput, useDiv } from '@trippler/tr_kit/web'
 import useUpdateSuggetions from '../../../hooks/chat/useUpdateSuggetions'
 import { useChangeBorderColor } from '../../../hooks/chat/useChangeBorderColor'
-import { passCommand } from '../../../api/chat'
+import { sendCommand } from '../../../api/chat'
 import { clearStoredFrequentlyUsedCommands, useStoreFrequentlyUsedCommands } from '../../../hooks/chat/useFrequentlyUsedCommands'
 import { getPassedArgumentsFirstString } from '../../../utils/chat'
 import { useClearCommandSelection } from '../../../hooks/chat/useCommandSelection'
@@ -22,7 +22,7 @@ export const input = useInput({
     useChangeBorderColor(input.value)
   },
   onSubmit: () => {
-    passCommand(input.value)
+    sendCommand(input.value)
     input.value[0] === `/` && useStoreFrequentlyUsedCommands(getPassedArgumentsFirstString(input.value))
     useUpdateSuggetions(``)
     input.value = ``

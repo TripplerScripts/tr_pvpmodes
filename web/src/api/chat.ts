@@ -1,34 +1,25 @@
-import { nuiFocus, onNuiCallback, triggerNuiCallback } from "@trippler/tr_lib/web"
-import useHideChat from "../hooks/chat/useHideChat"
-import { trace } from '@trippler/tr_lib/shared'
-import { suggestions } from "../hooks/chat"
-import { changeBorderColor } from "../hooks/chat/useChangeBorderColor"
-import { getArrayfiedPassedCharacters } from "../utils/chat"
+import { onNuiCallback, triggerNuiCallback } from "@trippler/tr_lib/web"
 import { Message, Suggestion } from "../../../shared/types"
-import useOpenChat from "../hooks/chat/useOpenChat"
-import useAddSuggestion from "../hooks/chat/useAddSuggestion"
-import useRemoveSuggestion from "../hooks/chat/useRemoveSuggestion"
-import useSendCommand from "../hooks/chat/useSendCommand"
-
+import { addMessage, addSuggestion, openChat, removeSuggestion } from "../modules/chat"
 
 onNuiCallback('chat/openChat', () => {
-  useOpenChat()
+  openChat()
 })
 
 onNuiCallback<[Message]>('chat/message', (message) => {
-  console.log(message)
+  addMessage(message)
 })
 
 onNuiCallback<[Suggestion['name'], Suggestion['help'], Suggestion['params']]>('chat/addSuggestion', (name, help, params) => {
-  useAddSuggestion(name, help, params)
+  addSuggestion(name, help, params)
 })
 
 onNuiCallback<[Suggestion['name']]>('chat/removeSuggestion', (name) => {
-  useRemoveSuggestion(name)
+  removeSuggestion(name)
 })
 
 export const sendCommand = (raw: string) => {
-  useSendCommand(raw)
+  sendCommand(raw)
 }
 
 document.addEventListener("DOMContentLoaded", () => {

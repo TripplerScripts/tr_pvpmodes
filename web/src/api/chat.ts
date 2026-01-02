@@ -10,6 +10,7 @@ import openEscapeMenu from "../components/escapeMenu"
 const root = document.getElementById(`chat-root`)
 
 onNuiCallback('chat/open', () => {
+  nuiFocus(true, false)
   if (!root)  return
   root.classList.remove('hidden')
   const inputElement = document.querySelector('.input') as HTMLInputElement

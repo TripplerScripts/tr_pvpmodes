@@ -33,6 +33,6 @@ on('onResourceStop', (resourceName: string) => {
   }
 })
 
-globalThis.exports('logoutPlayer', () => logoutPlayer)
+globalThis.exports('logoutPlayer', logoutPlayer)
 globalThis.exports('modeSelected', () => modeSelected)
 globalThis.exports('startCharacterProcess', startCharacterProcess)

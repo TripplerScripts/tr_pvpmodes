@@ -1,7 +1,18 @@
-import DOMContentLoaded from '..'
-import { onNuiCallback } from '@trippler/tr_lib/client'
+import { modeSelected } from '..'
+import playerHasCharacter from '../game/playerHasCharacter'
+import startCharacterProcess from '../game/startCharacterProcess'
+import openMainMenu from '../nui/openMainMenu'
 
-onNuiCallback<null>('DOMContentLoaded', (_data, callback) => {
-  DOMContentLoaded(true)
-  callback(true)
+onNet('tr_onboarding/client/logout', () => {
+  openMainMenu()
 })
+
+on('onResourceStop', (resourceName: string) => {
+  if (resourceName === GetCurrentResourceName()) {
+    emitNet('tr_onboarding/server/logout')
+  }
+})
+
+globalThis.exports('modeSelected', () => modeSelected)
+globalThis.exports('playerHasCharacter', playerHasCharacter)
+globalThis.exports('startCharacterProcess', startCharacterProcess)

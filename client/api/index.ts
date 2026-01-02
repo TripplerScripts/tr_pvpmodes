@@ -14,8 +14,8 @@ export const spawnPlayer = (spawnCoords: number[]) => exports.spawnmanager.spawn
 })
 export const createNewCharacter = () => exports.tr_onboarding.createNewCharacter(null, playerCharacterInfo)
 export const startGameMode = {
-  competitive: exports.tr_competitive.startMode(),
-  freeroam: exports.tr_freeroam.startMode(),
+  competitive: exports.tr_competitive.startMode,
+  freeroam: exports.tr_freeroam.startMode,
 }
 export const getPlayerCharacters = () => exports.tr_onboarding.getPlayerCharacters()
 

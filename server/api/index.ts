@@ -1,5 +1,5 @@
 const logoutPlayer = (source: number) => {
-  exports.qbx_core.Logout(source)
+  globalThis.exports.qbx_core.Logout(source)
   emitNet('tr_onboarding/client/openMainMenu', source)
 }
 

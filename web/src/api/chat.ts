@@ -5,7 +5,7 @@ import { suggestions } from "../hooks/chat"
 import { changeBorderColor } from "../hooks/chat/useChangeBorderColor"
 import { getArrayfiedPassedCharacters } from "../utils/chat"
 import { Message, Suggestion } from "../../../shared/types"
-import openEscapeMenu from "../components/escapeMenu"
+import openEscapeMenu from "../components/dashboard/escapeMenu"
 
 const root = document.getElementById(`chat-root`)
 

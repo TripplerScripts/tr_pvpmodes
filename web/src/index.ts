@@ -5,5 +5,6 @@ if (modulesEnabled.chat) {
     import('./api/chat')
   }).then(() => {
     import('./dom/chat')
+    import('./dom/dashboard')
   })
 }

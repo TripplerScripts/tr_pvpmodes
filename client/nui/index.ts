@@ -1,15 +1,9 @@
-import { onNuiCallback } from "@trippler/tr_lib/client"
-import { setModeSelected } from ".."
+import { onNuiCallback, triggerNuiCallback } from "@trippler/tr_lib/client"
+import { selecteGameMode } from "../modules"
 
 onNuiCallback<{ mode: string }>('selectMode', (data, callback) => {
-  if (data.mode === 'competitive') {
-    globalThis.exports.tr_competitive.start()
-    setModeSelected('competitive')
-  } else {
-    if (data.mode === 'freeroam') {
-      globalThis.exports.tr_freeroam.start()
-      setModeSelected('freeroam')
-    } else throw new Error('Invalid game mode invoked')
-  }
+  selecteGameMode(data.mode)
   callback(true)
 })
+
+export const openMainMenu = () => triggerNuiCallback('open')

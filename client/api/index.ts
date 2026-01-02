@@ -1,7 +1,6 @@
-import { modeSelected } from '..'
-import playerHasCharacter from '../game/playerHasCharacter'
-import startCharacterProcess from '../game/startCharacterProcess'
-import openMainMenu from '../nui/openMainMenu'
+import { logoutPlayer, modeSelected } from '../modules'
+import { startCharacterProcess } from '../game'
+import { openMainMenu } from '../nui'
 
 onNet('tr_onboarding/client/logout', () => {
   openMainMenu()
@@ -9,10 +8,9 @@ onNet('tr_onboarding/client/logout', () => {
 
 on('onResourceStop', (resourceName: string) => {
   if (resourceName === GetCurrentResourceName()) {
-    emitNet('tr_onboarding/server/logout')
+    logoutPlayer()
   }
 })
 
 globalThis.exports('modeSelected', () => modeSelected)
-globalThis.exports('playerHasCharacter', playerHasCharacter)
 globalThis.exports('startCharacterProcess', startCharacterProcess)

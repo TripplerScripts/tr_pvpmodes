@@ -2,10 +2,11 @@ fx_version 'cerulean'
 game 'gta5'
 dependencies {
   'qbx_core',
+  'illenium-appearance'
 }
 
 author 'Lenix'
-version '2.0.0'
+vsion '2.0.0'
 
 client_scripts {
   '@ox_lib/init.lua',

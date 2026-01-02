@@ -21,7 +21,3 @@ onNuiCallback<[Suggestion['name']]>('chat/removeSuggestion', (name) => {
 export const sendCommand = (raw: string) => {
   sendCommand(raw)
 }
-
-document.addEventListener("DOMContentLoaded", () => {
-  triggerNuiCallback<boolean>('chat/loaded')
-})

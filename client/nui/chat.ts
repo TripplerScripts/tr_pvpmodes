@@ -1,4 +1,4 @@
-import { onNuiCallback } from "@trippler/tr_lib/client"
+import { onNuiCallback, onDOMLoaded } from "@trippler/tr_lib/client"
 import { addSuggestions } from "../modules/chat"
 import { earlySuggestionsInsertion, setDOMLoaded } from ".."
 
@@ -7,9 +7,12 @@ onNuiCallback<{ command: string[] }>('chat/sendCommand', (data, callback) => {
   callback(true)
 })
 
-onNuiCallback<null>('chat/loaded', (_data, callback) => {
+onDOMLoaded(() => {
   setDOMLoaded(true)
   addSuggestions(earlySuggestionsInsertion)
+})
+
+onNuiCallback<null>('chat/loaded', (_data, callback) => {
   callback(true)
 })
 

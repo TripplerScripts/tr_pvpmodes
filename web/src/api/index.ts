@@ -1,7 +1,7 @@
-import useMainIntrance from '../hooks/useMainIntrance'
+import openMainMenu from '../hooks/useMenu'
 import { nuiFocus, onNuiCallback } from '@trippler/tr_lib/web'
 
-onNuiCallback('open', () => {
+onNuiCallback('openMainMenu', () => {
   nuiFocus(true, true)
-  useMainIntrance(true)
+  openMainMenu(true)
 })

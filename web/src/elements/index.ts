@@ -9,12 +9,12 @@ useDiv({
 
 useDiv({
   parent: "root",
-  id: "main-intrance",
+  id: "main-menu",
   className: "w-[100vw] h-[100vh] flex items-end justify-center py-52 bg-stone-900/20 bg-[url(./images/bg.jpg)] bg-cover bg-center"
 })
 
 useDiv({
-  parent: "main-intrance",
+  parent: "main-menu",
   id: "dashboard-content",
   className: "flex flex-col items-center gap-5"    
 })

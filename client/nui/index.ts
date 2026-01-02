@@ -6,4 +6,4 @@ onNuiCallback<{ mode: string }>('selectMode', (data, callback) => {
   callback(true)
 })
 
-export const openMainMenu = () => triggerNuiCallback('open')
+export const openMainMenu = () => triggerNuiCallback('openMainMenu')

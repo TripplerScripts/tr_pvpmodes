@@ -2,7 +2,6 @@ import { onNuiCallback } from "@trippler/tr_lib/client"
 import { setModeSelected } from ".."
 
 onNuiCallback<{ mode: string }>('selectMode', (data, callback) => {
-  SetNuiFocus(false, false)
   if (data.mode === 'competitive') {
     globalThis.exports.tr_competitive.start()
     setModeSelected('competitive')

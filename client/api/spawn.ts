@@ -7,6 +7,6 @@ on('onResourceStop', (resourceName: string) => {
   }
 })
 
-globalThis.exports('startGameMode', async () => {
+globalThis.exports('startMode', async () => {
   globalThis.exports.tr_onboarding.startCharacterProcess(spawn.creationSpawnCoords, getSpawnCoords())
 })

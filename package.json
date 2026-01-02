@@ -15,6 +15,7 @@
   "devDependencies": {
     "@citizenfx/client": "latest",
     "@citizenfx/server": "latest",
+    "@lenixdev/fusion": "latest",
     "@trippler/tr_kit": "latest",
     "@trippler/tr_lib": "latest",
     "@types/node": "^20.0.0",

@@ -7,11 +7,22 @@ import { getState } from "../../states"
 import { input } from "../../elements/chat/input"
 import { resultsFound } from "./updateSuggetions"
 import { hideChat } from "./toggles"
+import { createNewMessage } from "../../elements/chat/messages"
 
-export const sendCommand = (raw: string) => {
-  triggerNuiCallback<boolean>('chat/sendCommand', { command: getArrayfiedPassedCharacters(raw) })
-  changeBorderColor()
-  hideChat()
+export const addMessage = (message: Message) => {
+  createNewMessage(message.args)
+}
+
+export const addSuggestion = (
+  name: Suggestion['name'],
+  help: Suggestion['help'],
+  params: Suggestion['params']  
+) => {
+  getState.suggestions.push({ 
+    name: name[0] !== `/` ? name : name.slice(1),
+    help,
+    params
+  })
 }
 
 export const removeSuggestion = (name: Suggestion['name']) => {
@@ -26,25 +37,16 @@ export const removeSuggestion = (name: Suggestion['name']) => {
 }
 
 
-export const addSuggestion = (
-  name: Suggestion['name'],
-  help: Suggestion['help'],
-  params: Suggestion['params']  
-) => {
-  getState.suggestions.push({ 
-    name: name[0] !== `/` ? name : name.slice(1),
-    help,
-    params
-  })
-}
 
 export const acceptSuggetion = (suggestion: string | undefined) => {
   if (!suggestion || resultsFound < 1) return
   input.value = `/${suggestion}`
 }
 
-export const addMessage = (message: Message) => {
-  console.log(message)
+export const sendCommand = (raw: string) => {
+  triggerNuiCallback<boolean>('chat/sendCommand', { command: getArrayfiedPassedCharacters(raw) })
+  changeBorderColor()
+  hideChat()
 }
 
 export const preventPlaceholderDuplication = (index: number) => {

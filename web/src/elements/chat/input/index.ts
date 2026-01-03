@@ -10,13 +10,13 @@ import { chat } from '../../../../../shared/constants'
 useDiv({
   parent: `chat-container`,
   id: `chat-input`,
-  className: `w-full h-[40%] bg-stone-600 flex flex-col gap-1`
+  style: `w-full h-[40%] bg-stone-600 flex flex-col gap-1`
 })
 
 export const input = useInput({
   parent: `chat-input`,
   placeholder: `type / to start a command`,
-  className: `input w-full bg-stone-700 p-2 outline-none text-white transition-all`,
+  style: `input w-full bg-stone-700 p-2 outline-none text-white transition-all`,
   onChange: () => {
     useUpdateSuggetions(input.value)
     useChangeBorderColor(input.value)
@@ -32,13 +32,13 @@ export const input = useInput({
 useDiv({
   parent: `chat-input`,
   id: `chat-suggestions-items`,
-  className: `relative w-full h-full bg-inherit flex flex-col justify-between`,
+  style: `relative w-full h-full bg-inherit flex flex-col justify-between`,
 })
 
 useButton({
   parent: `chat-suggestions-items`,
   content: '<i class="fas fa-trash"></i>',
-  className: `absolute top-0 right-0 text-stone-400 z-10 hover:text-stone-300 mx-2`,
+  style: `absolute top-0 right-0 text-stone-400 z-10 hover:text-stone-300 mx-2`,
   onClick: () => {
     clearStoredFrequentlyUsedCommands()
     useClearCommandSelection()
@@ -52,7 +52,7 @@ setTimeout(() => {
     useDiv({
       parent: `chat-suggestions-items`,
       id: `chat-suggestion-item-${index}`,
-      className: `w-full h-fit bg-inherit text-stone-300 flex flex-col gap-1`,
+      style: `w-full h-fit bg-inherit text-stone-300 flex flex-col gap-1`,
     })
   })
 })

@@ -63,7 +63,7 @@ const createCommand = (commandIndex: number, command: CommandName, lastIndex: nu
   useDiv({
     parent: `chat-suggestion-item-${commandIndex}`,
     id: `chat-suggestion-item-${commandIndex}-arguments`,
-    className: `flex gap-1`
+    style: `flex gap-1`
   })
   useDiv({
     parent: `chat-suggestion-item-${commandIndex}-arguments`,

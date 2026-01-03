@@ -7,6 +7,11 @@ onNuiCallback('chat/openChat', () => {
   openChat()
 })
 
+openChat()
+addMessage({
+  args: ['Hello, World!', 'This is Lenix']
+})
+
 onNuiCallback<[Message]>('chat/message', (message) => {
   addMessage(message)
 })

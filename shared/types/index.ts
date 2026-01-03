@@ -11,7 +11,7 @@ export interface Suggestion {
 
 export interface Message {
   args: Array<string>
-  template: string
+  template?: string
   params?: { [key: string]: string }
   multiline?: boolean
   color?: [ number, number, number ]

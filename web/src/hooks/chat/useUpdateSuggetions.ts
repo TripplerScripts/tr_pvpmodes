@@ -1,6 +1,6 @@
 import { useDiv } from "@trippler/tr_kit/web"
 import { findClosest, getCommandArguments, getPassedArgumentsLastIndex, getPassedArgumentsFirstString, isInShowRecentCommandsPosition, isTextInCommandSyntax, getCommandHelp, isCharNumber, getPassedBlocksCount, getPassedSpacesCount } from "../../utils/chat"
-import { preventPlaceholderDuplication } from "../../dom/chat"
+import { preventPlaceholderDuplication } from "../../modules/chat"
 import { changeBorderColor } from "./useChangeBorderColor"
 import { getStoredFrequentlyUsedCommands } from "../../modules/chat"
 import { currentItemSelected } from "."

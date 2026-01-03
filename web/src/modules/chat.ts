@@ -83,3 +83,10 @@ export const acceptSuggetion = (suggestion: string | undefined) => {
 export const addMessage = (message: Message) => {
   console.log(message)
 }
+
+export const preventPlaceholderDuplication = (index: number) => {
+  const element = document.getElementById(`chat-suggestion-item-${index}`)
+  if (element) {
+    element.innerHTML = ''
+  }
+}

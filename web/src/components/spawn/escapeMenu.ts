@@ -37,5 +37,6 @@ export default () => {
   } else {
     lastElement?.remove()
     menuState = false
+    nuiFocus(false, false)
   }
 }

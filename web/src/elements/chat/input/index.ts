@@ -1,10 +1,10 @@
 import { useButton, useInput, useDiv } from '@trippler/tr_kit/web'
-import useUpdateSuggetions from '../../../hooks/chat/useUpdateSuggetions'
-import { useChangeBorderColor } from '../../../hooks/chat/useChangeBorderColor'
+import useUpdateSuggetions from '../../../modules/chat/updateSuggetions'
+import { useChangeBorderColor } from '../../../modules/chat/changeBorderColor'
 import { sendCommand } from '../../../api/chat'
 import { clearStoredFrequentlyUsedCommands, useStoreFrequentlyUsedCommands } from '../../../modules/chat'
 import { getPassedArgumentsFirstString } from '../../../utils/chat'
-import { useClearCommandSelection } from '../../../hooks/chat/useCommandSelection'
+import { useClearCommandSelection } from '../../../modules/chat/commandSelection'
 import { chat } from '../../../../../shared/constants'
 
 useDiv({

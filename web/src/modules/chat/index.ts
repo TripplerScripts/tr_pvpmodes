@@ -1,13 +1,13 @@
 import { triggerNuiCallback } from "@trippler/tr_lib/web"
-import { getArrayfiedPassedCharacters } from "../utils/chat"
-import { changeBorderColor } from "../hooks/chat/useChangeBorderColor"
+import { getArrayfiedPassedCharacters } from "../../utils/chat"
+import { changeBorderColor } from "./changeBorderColor"
 import { nuiFocus } from "@trippler/tr_lib/web"
 import { trace } from "@trippler/tr_lib/shared"
-import { Message, Suggestion } from "../../../shared/types"
-import { CommandName } from "../../../shared/types"
-import { getState } from "../states"
-import { input } from "../elements/chat/input"
-import { resultsFound } from "../hooks/chat/useUpdateSuggetions"
+import { Message, Suggestion } from "../../../../shared/types"
+import { CommandName } from "../../../../shared/types"
+import { getState } from "../../states"
+import { input } from "../../elements/chat/input"
+import { resultsFound } from "./updateSuggetions"
 
 const root = document.getElementById(`chat-root`)
 

@@ -8,9 +8,9 @@ let modules: any = {}
     modules.input = (await import("../elements/chat/input")).input
     modules.hideChat = (await import("../modules/chat")).hideChat
     modules.acceptSuggetion = (await import("../modules/chat")).acceptSuggetion
-    modules.useCommandSelection = (await import("../hooks/chat/useCommandSelection")).useCommandSelection
+    modules.useCommandSelection = (await import("../modules/chat/commandSelection")).useCommandSelection
     modules.currentItemSelected = (await import("../states")).getState.currentItemSelected
-    modules.closestRelative = (await import("../hooks/chat/useUpdateSuggetions")).closestRelative
+    modules.closestRelative = (await import("../modules/chat/updateSuggetions")).closestRelative
   }
   if (modulesEnabled.spawn) {
     modules.escapeMenu = (await import("../components/spawn/escapeMenu")).default

@@ -1,12 +1,12 @@
 import { useDiv } from "@trippler/tr_kit/web"
 import { findClosest, getCommandArguments, getPassedArgumentsLastIndex, getPassedArgumentsFirstString, isInShowRecentCommandsPosition, isTextInCommandSyntax, getCommandHelp, isCharNumber, getPassedBlocksCount, getPassedSpacesCount } from "../../utils/chat"
-import { preventPlaceholderDuplication } from "../../modules/chat"
-import { changeBorderColor } from "./useChangeBorderColor"
-import { getStoredFrequentlyUsedCommands } from "../../modules/chat"
+import { preventPlaceholderDuplication } from "."
+import { changeBorderColor } from "./changeBorderColor"
+import { getStoredFrequentlyUsedCommands } from "."
 import { getState } from "../../states"
 import { chat } from "../../../../shared/constants"
 import { Suggestion, CommandName } from "../../../../shared/types"
-import { useClearCommandSelection } from "./useCommandSelection"
+import { useClearCommandSelection } from "./commandSelection"
 
 export let closestRelative: string | undefined
 export let resultsFound: number = 0

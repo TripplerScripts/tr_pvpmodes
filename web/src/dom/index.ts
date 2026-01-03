@@ -6,7 +6,7 @@ let modules: any = {}
   if (modulesEnabled.chat) {
     modules.nuiFocus = (await import("@trippler/tr_lib/web")).nuiFocus
     modules.input = (await import("../elements/chat/input")).input
-    modules.hideChat = (await import("../modules/chat")).hideChat
+    modules.hideChat = (await import("../modules/chat/toggles")).hideChat
     modules.acceptSuggetion = (await import("../modules/chat")).acceptSuggetion
     modules.useCommandSelection = (await import("../modules/chat/commandSelection")).useCommandSelection
     modules.currentItemSelected = (await import("../states")).getState.currentItemSelected

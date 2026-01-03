@@ -19,13 +19,13 @@ export const useChangeBorderColor = (characters: string) => {
     changeBorderColor()
     return
   }
-  const CommandName = getPassedArgumentsFirstString(characters)
+  const commandName = getPassedArgumentsFirstString(characters)
   const index = getPassedBlocksCount(characters)
-  if (index == getCommandArguments(CommandName)?.length) {
+  if (index == getCommandArguments(commandName)?.length) {
     changeBorderColor(`ring-green-600/60`)
     return
   }
-  if (index > (getCommandArguments(CommandName) ?? [])?.length) {
+  if (index > (getCommandArguments(commandName) ?? [])?.length) {
     changeBorderColor(`ring-yellow-600/60`)
     return
   }

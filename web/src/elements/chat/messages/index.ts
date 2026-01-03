@@ -11,7 +11,7 @@ const createMessage = (message: Message['args'][number]) => {
   useDiv({
     parent: `chat-messages`,
     content: message,
-    style: `color-white`
+    style: `text-white`
   })
 }
 

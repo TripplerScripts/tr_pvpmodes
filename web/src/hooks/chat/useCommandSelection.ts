@@ -1,4 +1,4 @@
-import { currentItemSelected, setCurrentItemSelected } from "."
+import { getState, setState } from "../../states"
 import { input } from "../../elements/chat/input"
 
 const isValidItem = (el: Element | null | undefined) => {
@@ -27,38 +27,38 @@ export const useCommandSelection = (direction: string) => {
   if (input.value.length === 0) return
 
   if (direction === 'down') {
-    currentItemSelected?.classList.remove('border', 'border-white')
+    getState.currentItemSelected?.classList.remove('border', 'border-white')
     
-    if (!currentItemSelected) {
+    if (!getState.currentItemSelected) {
       const container = document.getElementById('chat-suggestions-items')
-      setCurrentItemSelected(getNextValid(container?.firstElementChild))
+      setState.currentItemSelected(getNextValid(container?.firstElementChild))
     } else {
-      setCurrentItemSelected(getNextValid(currentItemSelected.nextElementSibling))
+      setState.currentItemSelected(getNextValid(getState.currentItemSelected.nextElementSibling))
     }
     
-    currentItemSelected?.classList.add('border', 'border-white')
+    getState.currentItemSelected?.classList.add('border', 'border-white')
   } else if (direction === 'up') {
-  currentItemSelected?.classList.remove('border', 'border-white')
+  getState.currentItemSelected?.classList.remove('border', 'border-white')
   
-  if (!currentItemSelected) {
+  if (!getState.currentItemSelected) {
     const container = document.getElementById('chat-suggestions-items')
-    setCurrentItemSelected(getPrevValid(container?.lastElementChild))
+    setState.currentItemSelected(getPrevValid(container?.lastElementChild))
   } else {
-    const prev = getPrevValid(currentItemSelected.previousElementSibling)
+    const prev = getPrevValid(getState.currentItemSelected.previousElementSibling)
     if (!prev) {
       // Wrap to last valid element
       const container = document.getElementById('chat-suggestions-items')
-      setCurrentItemSelected(getPrevValid(container?.lastElementChild))
+      setState.currentItemSelected(getPrevValid(container?.lastElementChild))
     } else {
-      setCurrentItemSelected(prev)
+      setState.currentItemSelected(prev)
     }
   }
   
-  currentItemSelected?.classList.add('border', 'border-white')
+  getState.currentItemSelected?.classList.add('border', 'border-white')
 }
 }
 
 export const useClearCommandSelection = () => {
-  currentItemSelected?.classList.remove('border', 'border-white')
-  setCurrentItemSelected(null)
+  getState.currentItemSelected?.classList.remove('border', 'border-white')
+  setState.currentItemSelected(null)
 }

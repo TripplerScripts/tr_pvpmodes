@@ -1,26 +1,26 @@
 import { CommandName } from "../../../../shared/types"
-import { suggestions } from "../../hooks/chat"
+import { getState } from "../../states"
 
 const getCommandNames = () => {
   let commandNames: string[] = []
-  for (const key in suggestions) {
-    commandNames.push(suggestions[key].name)
+  for (const key in getState.suggestions) {
+    commandNames.push(getState.suggestions[key].name)
   }
   return commandNames
 }
 
 export const getCommandHelp = (command: CommandName) => {
-  for (const key in suggestions) {
-    if (suggestions[key].name === command) {
-      return suggestions[key].help
+  for (const key in getState.suggestions) {
+    if (getState.suggestions[key].name === command) {
+      return getState.suggestions[key].help
     }
   }
 }
 
 export const getCommandArguments = (command: CommandName) => {
-  for (const key in suggestions) {
-    if (suggestions[key].name === command) {
-      return suggestions[key].params
+  for (const key in getState.suggestions) {
+    if (getState.suggestions[key].name === command) {
+      return getState.suggestions[key].params
     }
   }
 }

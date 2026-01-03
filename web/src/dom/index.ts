@@ -9,7 +9,7 @@ let modules: any = {}
     modules.hideChat = (await import("../modules/chat")).hideChat
     modules.acceptSuggetion = (await import("../modules/chat")).acceptSuggetion
     modules.useCommandSelection = (await import("../hooks/chat/useCommandSelection")).useCommandSelection
-    modules.currentItemSelected = (await import("../hooks/chat")).currentItemSelected
+    modules.currentItemSelected = (await import("../states")).getState.currentItemSelected
     modules.closestRelative = (await import("../hooks/chat/useUpdateSuggetions")).closestRelative
   }
   if (modulesEnabled.spawn) {

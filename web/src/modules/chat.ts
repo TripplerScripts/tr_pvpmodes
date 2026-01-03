@@ -5,7 +5,7 @@ import { nuiFocus } from "@trippler/tr_lib/web"
 import { trace } from "@trippler/tr_lib/shared"
 import { Message, Suggestion } from "../../../shared/types"
 import { CommandName } from "../../../shared/types"
-import { suggestions } from "../hooks/chat"
+import { getState } from "../states"
 import { input } from "../elements/chat/input"
 import { resultsFound } from "../hooks/chat/useUpdateSuggetions"
 
@@ -27,9 +27,9 @@ export const openChat = () => {
 
 export const removeSuggestion = (name: Suggestion['name']) => {
   const filteredName = name[0] !== `/` ? name : name.slice(1)
-  for (const [key, value] of suggestions.entries()) {
+  for (const [key, value] of getState.suggestions.entries()) {
     if (value.name === filteredName) {
-      suggestions.splice(key, 1)
+      getState.suggestions.splice(key, 1)
       return
     }
   }
@@ -62,13 +62,12 @@ export const clearStoredFrequentlyUsedCommands = () => {
   localStorage.removeItem('frequentlyUsedCommands')
 }
 
-
 export const addSuggestion = (
   name: Suggestion['name'],
   help: Suggestion['help'],
   params: Suggestion['params']  
 ) => {
-  suggestions.push({ 
+  getState.suggestions.push({ 
     name: name[0] !== `/` ? name : name.slice(1),
     help,
     params

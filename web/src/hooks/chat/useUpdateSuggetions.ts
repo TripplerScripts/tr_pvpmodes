@@ -3,7 +3,7 @@ import { findClosest, getCommandArguments, getPassedArgumentsLastIndex, getPasse
 import { preventPlaceholderDuplication } from "../../modules/chat"
 import { changeBorderColor } from "./useChangeBorderColor"
 import { getStoredFrequentlyUsedCommands } from "../../modules/chat"
-import { currentItemSelected } from "."
+import { getState } from "../../states"
 import { chat } from "../../../../shared/constants"
 import { Suggestion, CommandName } from "../../../../shared/types"
 import { useClearCommandSelection } from "./useCommandSelection"
@@ -125,7 +125,7 @@ export default (typedText: string) => {
           }
         } else {
           commandItem.textContent = ``
-          if (currentItemSelected?.id === `chat-suggestion-item-${i}`) {
+          if (getState.currentItemSelected?.id === `chat-suggestion-item-${i}`) {
             useClearCommandSelection()
           }
         }

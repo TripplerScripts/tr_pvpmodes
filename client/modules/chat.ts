@@ -1,5 +1,5 @@
 import { triggerNuiCallback } from "@trippler/tr_lib/client"
-import { fatal } from '@trippler/tr_lib/shared'
+import { fatal, info } from '@trippler/tr_lib/shared'
 import { Message, Suggestion } from '../../shared/types'
 import { isIterable } from "../utils"
 import { DOMLoaded, earlySuggestionsInsertion } from ".."
@@ -11,7 +11,7 @@ export const openChat = () => {
 
 export const addMessage = (message: Message) => {
   if (typeof message !== 'object') fatal(`expected object at #2, got ${typeof message}`)
-  if (message.template) return fatal(`template messages are not supported`)
+  if (message.template) return info(`template messages are not supported`)
 
   triggerNuiCallback('chat/message', message)
 }

@@ -10,13 +10,13 @@ useDiv({
 useDiv({
   parent: "root",
   id: "main-menu",
-  className: "w-[100vw] h-[100vh] flex items-end justify-center py-52 bg-stone-900/20 bg-[url(https://r2.fivemanage.com/COKMc8Wcmk9K5dp547rEw/onboardingbg2.jpg)] bg-cover bg-center"
+  style: "w-[100vw] h-[100vh] flex items-end justify-center py-52 bg-stone-900/20 bg-[url(https://r2.fivemanage.com/COKMc8Wcmk9K5dp547rEw/onboardingbg2.jpg)] bg-cover bg-center"
 })
 
 useDiv({
   parent: "main-menu",
   id: "dashboard-content",
-  className: "flex flex-col items-center gap-5"    
+  style: "flex flex-col items-center gap-5"    
 })
 
 useButton({

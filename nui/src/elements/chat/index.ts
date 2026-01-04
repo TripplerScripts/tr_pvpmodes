@@ -1,4 +1,4 @@
-import { useDiv } from '@trippler/tr_kit/web'
+import { useDiv } from '@trippler/tr_kit/nui'
 import('./messages')
 import('./input')
 

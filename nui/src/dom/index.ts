@@ -4,7 +4,7 @@ let modules: any = {}
 
 ;(async () => {
   if (modulesEnabled.chat) {
-    modules.nuiFocus = (await import("@trippler/tr_lib/web")).nuiFocus
+    modules.nuiFocus = (await import("@trippler/tr_lib/nui")).nuiFocus
     modules.input = (await import("../elements/chat/input")).input
     modules.hideChat = (await import("../modules/chat/toggles")).hideChat
     modules.acceptSuggetion = (await import("../modules/chat")).acceptSuggetion

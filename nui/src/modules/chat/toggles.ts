@@ -1,4 +1,4 @@
-import { nuiFocus } from "@trippler/tr_lib/web"
+import { nuiFocus } from "@trippler/tr_lib/nui"
 
 const root = document.getElementById(`chat-root`)
 

@@ -1,4 +1,4 @@
-import { useButton, useInput, useDiv } from '@trippler/tr_kit/web'
+import { useButton, useInput, useDiv } from '@trippler/tr_kit/nui'
 import useUpdateSuggetions from '../../../modules/chat/updateSuggetions'
 import { useChangeBorderColor } from '../../../modules/chat/changeBorderColor'
 import { sendCommand } from '../../../api/chat'

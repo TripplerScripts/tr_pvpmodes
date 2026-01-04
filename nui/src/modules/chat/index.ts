@@ -1,4 +1,4 @@
-import { triggerNuiCallback } from "@trippler/tr_lib/web"
+import { triggerNuiCallback } from "@trippler/tr_lib/nui"
 import { getArrayfiedPassedCharacters } from "../../utils/chat"
 import { changeBorderColor } from "./changeBorderColor"
 import { trace } from "@trippler/tr_lib/shared"

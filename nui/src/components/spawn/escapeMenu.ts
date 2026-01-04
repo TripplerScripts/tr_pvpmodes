@@ -1,5 +1,5 @@
-import { useAlert } from '@lenixdev/fusion/web'
-import { nuiFocus, triggerNuiCallback } from '@trippler/tr_lib/web'
+import { useAlert } from '@lenixdev/fusion/nui'
+import { nuiFocus, triggerNuiCallback } from '@trippler/tr_lib/nui'
 
 let menuState = false
 let lastElement: HTMLElement | null = null

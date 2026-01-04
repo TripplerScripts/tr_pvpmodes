@@ -1,4 +1,4 @@
-import { useDiv } from "@trippler/tr_kit/web"
+import { useDiv } from "@trippler/tr_kit/nui"
 import { findClosest, getCommandArguments, getPassedArgumentsLastIndex, getPassedArgumentsFirstString, isInShowRecentCommandsPosition, isTextInCommandSyntax, getCommandHelp, isCharNumber, getPassedBlocksCount, getPassedSpacesCount } from "../../utils/chat"
 import { preventPlaceholderDuplication } from "."
 import { changeBorderColor } from "./changeBorderColor"
@@ -46,7 +46,7 @@ const createArgument = ({
   useDiv({
     parent: `chat-suggestion-item-${commandIndex}-arguments`,
     id: `chat-suggestion-item-${argumentIndex + 1}-argument`,
-    className,
+    style: className,
     content: param.name
   })
   if (lastIndex === argumentIndex + 1) {

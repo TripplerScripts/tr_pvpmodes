@@ -20,6 +20,6 @@ server_scripts {
 
 ui_page 'web/public/index.html'
 files {
-  'build/web.js',
+  'build/nui.js',
   'web/**'
 }

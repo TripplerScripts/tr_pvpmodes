@@ -1,4 +1,4 @@
-import { useDiv, useButton } from '@trippler/tr_kit/web'
+import { useDiv, useButton } from '@trippler/tr_kit/nui'
 import { selectMode } from '../modules'
 
 document.body.id = 'body'

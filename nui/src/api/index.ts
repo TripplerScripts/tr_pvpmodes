@@ -1,5 +1,5 @@
 import { toggleMenu,  } from '../modules'
-import { onNuiCallback } from '@trippler/tr_lib/web'
+import { onNuiCallback } from '@trippler/tr_lib/nui'
 
 onNuiCallback('openMainMenu', () => {
   toggleMenu(true)

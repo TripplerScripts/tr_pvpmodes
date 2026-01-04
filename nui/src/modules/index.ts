@@ -1,5 +1,5 @@
-import { nuiFocus } from "@trippler/tr_lib/web"
-import { triggerNuiCallback } from "@trippler/tr_lib/web"
+import { nuiFocus } from "@trippler/tr_lib/nui"
+import { triggerNuiCallback } from "@trippler/tr_lib/nui"
 
 export const toggleMenu = (state: boolean) => {
   nuiFocus(state, state)

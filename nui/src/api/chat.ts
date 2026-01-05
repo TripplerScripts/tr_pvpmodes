@@ -29,15 +29,15 @@ setTimeout(() => {
   }, 1000)
 })
 
-onNuiCallback<[Message]>('chat/message', (message) => {
+onNuiCallback('chat/message', (message: Message) => {
   addMessage(message)
 })
 
-onNuiCallback<[Suggestion['name'], Suggestion['help'], Suggestion['params']]>('chat/addSuggestion', (name, help, params) => {
+onNuiCallback('chat/addSuggestion', (name: Suggestion['name'], help: Suggestion['help'], params: Suggestion['params']) => {
   addSuggestion(name, help, params)
 })
 
-onNuiCallback<[Suggestion['name']]>('chat/removeSuggestion', (name) => {
+onNuiCallback('chat/removeSuggestion', (name: Suggestion['name']) => {
   removeSuggestion(name)
 })
 

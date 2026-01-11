@@ -11,7 +11,7 @@ export const openChat = () => {
 
 export const addMessage = (message: Message) => {
   if (typeof message !== 'object') fatal(`expected object at #2, got ${typeof message}`)
-  if (message.template) return info(`template messages are not supported`)
+  if (message.template) return info(`template messages are not supported, the caller: '${GetInvokingResource()}'`)
 
   triggerNuiCallback('chat/message', message)
 }

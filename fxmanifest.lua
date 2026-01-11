@@ -4,7 +4,10 @@ game 'gta5'
 author 'Lenix'
 version '1.0.0'
 
-client_script 'build/client.js'
+client_scripts {
+  'build/client.lua',
+  'build/client.js'
+}
 server_script 'build/server.js'
 
 ui_page 'nui/public/index.html'

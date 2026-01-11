@@ -6,20 +6,20 @@ dependencies {
 }
 
 author 'Lenix'
-vsion '2.0.0'
+version '2.0.0'
 
 client_scripts {
   '@ox_lib/init.lua',
+  'build/client.lua',
   'build/client.js',
-  'build/client.lua'
 }
 
 server_scripts {
   'build/server.js',
 }
 
-ui_page 'web/public/index.html'
+ui_page 'nui/public/index.html'
 files {
   'build/nui.js',
-  'web/**'
+  'nui/**'
 }

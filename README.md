@@ -1,5 +1,5 @@
 ## Setup
-add_ace resource.tr_chat command allow
+add_ace resource.tr_freeroam command allow
 
 # Todo
 ## chat

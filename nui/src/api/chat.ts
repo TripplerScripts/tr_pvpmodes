@@ -7,7 +7,7 @@ onNuiCallback('chat/openChat', () => {
   openChat()
 })
 
-setTimeout(() => {
+/* setTimeout(() => {
   openChat()
   addMessage({
     args: ['Hello, World!']
@@ -27,7 +27,7 @@ setTimeout(() => {
       }, 1000)
     }, 1000)
   }, 1000)
-})
+}) */
 
 onNuiCallback('chat/message', (message: Message) => {
   addMessage(message)

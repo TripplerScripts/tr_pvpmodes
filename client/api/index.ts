@@ -1,7 +1,7 @@
 import { modeSelected } from '../modules'
 import { startCharacterProcess } from '../game'
 import { openMainMenu } from '../nui'
-import { playerCharacterInfo } from '../../shared/constants/config'
+import { playerCharacterInfo } from '../../shared/constants'
 
 export const getCharacterPreviewData = (citizenId: string) => exports.tr_onboarding.getCharacterPreviewData(citizenId)
 export const setPedAppearance = (clothes: string) => exports['illenium-appearance'].setPedAppearance(PlayerPedId(), JSON.parse(clothes))
@@ -19,13 +19,9 @@ export const startGameMode = {
 }
 export const getPlayerCharacters = () => exports.tr_onboarding.getPlayerCharacters()
 
-onNet('tr_onboarding/client/openMainMenu', () => {
-  openMainMenu()
-})
+onNet('tr_onboarding/client/openMainMenu', () => openMainMenu())
 
-const logoutPlayer = () => {
-  emitNet('tr_onboarding/server/logoutPlayer')
-}
+const logoutPlayer = () => emitNet('tr_onboarding/server/logoutPlayer')
 
 on('onResourceStop', (resourceName: string) => {
   if (resourceName === GetCurrentResourceName()) {

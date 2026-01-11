@@ -1,13 +1,10 @@
 import { trace } from "@trippler/tr_lib/shared"
-import { defaultSpawnCoords } from "../../shared/constants/config"
 import { createPlayerNewCharacter, getPlayerCharacterCitizenId, loadPlayerCharactersPed, onPlayerLoaded, openAppearanceMenu, preparePlayerCharacterPed, spawnPlayerPed } from "../modules"
 import { closeMainMenu } from "../nui"
 
 const everyScalar = (coords: [number, number, number, number] | number[], debug?: boolean) => {
   if (coords.length === 4) {
-    if (coords.every(scalar => {
-      typeof scalar === 'number'
-    })) {
+    if (coords.every(scalar => { return typeof scalar === 'number' })) {
       return coords
     } else {
       debug && trace(`expected array of numbers only, got ${coords}`)
@@ -22,14 +19,17 @@ const everyScalar = (coords: [number, number, number, number] | number[], debug?
 export const startCharacterProcess = async (passedOnCreationFinishCoords: number[], passedSpawnCoords: number[], onClothingMenuOpen: Function, onSubmitOrCancel: Function) => {
   const citizenId = await getPlayerCharacterCitizenId()
   if (citizenId) {
-    const [ clothes, model ] = await preparePlayerCharacterPed(citizenId)
-    const spawnCoords = everyScalar(passedSpawnCoords) || defaultSpawnCoords
+    const [clothes, model] = await preparePlayerCharacterPed(citizenId)
+    const spawnCoords = everyScalar(passedSpawnCoords, true)
+    if (!spawnCoords) return
 
     loadPlayerCharactersPed(model, clothes, citizenId)
     spawnPlayerPed(spawnCoords)
     closeMainMenu()
   } else {
-    const onCreationFinishCoords = passedOnCreationFinishCoords || defaultSpawnCoords
+    const onCreationFinishCoords = everyScalar(passedOnCreationFinishCoords)
+    if (!onCreationFinishCoords) return
+    
     spawnPlayerPed(onCreationFinishCoords)
     await createPlayerNewCharacter()
     onPlayerLoaded()

@@ -1,5 +1,6 @@
 import { fatal, trace } from "@trippler/tr_lib/shared"
 import { createNewCharacter, getCharacterPreviewData, getPlayerCharacters, loadCharacter, setPedAppearance, spawnPlayer, startGameMode } from "../api"
+import { closeMainMenu } from "../nui"
 
 export let modeSelected: string | undefined
 
@@ -50,7 +51,9 @@ export const openAppearanceMenu = (onClothingMenuOpen: Function, onSubmitOrCance
 export const selecteGameMode = (mode: string) => {
   if (mode === 'competitive') {
     if (GetResourceState('tr_competitive') !== 'started') fatal('tr_competitive is not started')
-    startGameMode.competitive()
+    const delayToCloseDashboard = startGameMode.competitive()
+    if (delayToCloseDashboard) 
+    setTimeout(() => closeMainMenu(), delayToCloseDashboard)
     modeSelected = mode
   } else if (mode === 'freeroam') {
     if (GetResourceState('tr_freeroam') !== 'started') fatal('tr_freeroam is not started')
